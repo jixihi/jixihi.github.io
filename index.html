@@ -191,7 +191,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2026-04-08 12:55:05 / Modified: 13:07:48" itemprop="dateCreated datePublished" datetime="2026-04-08T12:55:05+08:00">2026-04-08</time>
+      <time title="Created: 2026-04-08 12:55:05 / Modified: 15:07:45" itemprop="dateCreated datePublished" datetime="2026-04-08T12:55:05+08:00">2026-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -213,27 +213,126 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Linux第一天"><a href="#Linux第一天" class="headerlink" title="Linux第一天"></a>Linux第一天</h3><h4 id="1-系统目录结构"><a href="#1-系统目录结构" class="headerlink" title="1.系统目录结构"></a>1.系统目录结构</h4><p>查看根目录下的所有目录</p>
-<p>bin目录（二进制目录）：存储着所有用户都可以直接使用机器指令</p>
-<p>sbin(系统级二进制目录)：存储着系统管理员可以执行的机器指令</p>
-<p>lib（库）：存储着系统和应用程序所需要的共享库文件，系统启动核心库、动态链接器所在位置。</p>
-<p>lib64：一些存储特殊的共享库文件。</p>
-<p>user：包含用户所有的应用程序、软件、库和文件</p>
-<p>user&#x2F;local：包含着用户本地的应用程序和文件，本机安装或编译软件的独立区域。</p>
-<p>boot（链接文件）：存储着引导文件，启动所需文件：内核、initramfs、引导配置。</p>
-<p>dev（设备文件）：存储着硬件设备文件</p>
-<p>ect：存储着系统配置文件</p>
-<p>home：普通用户的主目录</p>
-<p>root：root用户主目录</p>
-<p>opt（可选目录）：给第三方软件包存储的位置</p>
-<p>media（媒体目录）：识别可移动媒体设备的挂载目录</p>
-<p>mnt：另一个可移动媒体设备的挂载点</p>
-<p>proc（process进程目录）：一个虚拟目录，存储着系统的进程，数据保存在内存中</p>
-<p>run（运行目录）：一个临时文件系统，重启后会被干掉，存储着所有运行信息</p>
-<p>srv（servce服务目录）：存储着系统服务信息</p>
-<p>sys：存储着系统硬件信息，设备、驱动、内核子系统的状态接口。</p>
-<p>tmp：临时目录</p>
-<p>var（可变目录）：存储经常被修改的文件，如log日志</p>
+          <h1 id="🐧-Linux-根目录结构详解"><a href="#🐧-Linux-根目录结构详解" class="headerlink" title="🐧 Linux 根目录结构详解"></a>🐧 Linux 根目录结构详解</h1><hr>
+<h2 id="🌲-目录结构全景"><a href="#🌲-目录结构全景" class="headerlink" title="🌲 目录结构全景"></a>🌲 目录结构全景</h2><p>Linux 文件系统以 <code>/</code> 为根，采用严格的树状层级规范。以下是核心目录的精准定位与功能说明：</p>
+<table>
+<thead>
+<tr>
+<th align="left">目录路径</th>
+<th align="left">英文全称 &#x2F; 含义</th>
+<th align="left">核心作用与说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>/bin</code></td>
+<td align="left"><strong>Bin</strong>ary</td>
+<td align="left">存放<strong>所有用户</strong>可执行的基础命令（如 <code>ls</code>、<code>cp</code>、<code>cat</code>、<code>bash</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>/sbin</code></td>
+<td align="left"><strong>S</strong>ystem <strong>Bin</strong>ary</td>
+<td align="left">存放<strong>系统管理员</strong>专用的管理命令（如 <code>fdisk</code>、<code>iptables</code>、<code>systemctl</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>/lib</code> <code>/lib64</code></td>
+<td align="left"><strong>Lib</strong>rary</td>
+<td align="left">系统启动与程序运行所需的<strong>共享库文件</strong>（<code>.so</code>）及动态链接器；<code>lib64</code> 专用于 64 位架构</td>
+</tr>
+<tr>
+<td align="left"><code>/usr</code></td>
+<td align="left"><strong>U</strong>nix <strong>S</strong>ystem <strong>R</strong>esources</td>
+<td align="left">存放用户级应用程序、库、文档与头文件（⚠️ <strong>非 <code>user</code> 缩写</strong>，是系统中最大的只读数据目录）</td>
+</tr>
+<tr>
+<td align="left"><code>/usr/local</code></td>
+<td align="left">Local Software</td>
+<td align="left"><strong>本地编译安装</strong>的第三方软件独立目录，避免与系统包管理器（apt&#x2F;yum）冲突</td>
+</tr>
+<tr>
+<td align="left"><code>/boot</code></td>
+<td align="left">Boot Loader</td>
+<td align="left">系统启动核心文件：Linux 内核（<code>vmlinuz</code>）、初始内存盘（<code>initramfs</code>）、GRUB 引导配置</td>
+</tr>
+<tr>
+<td align="left"><code>/dev</code></td>
+<td align="left"><strong>Dev</strong>ice</td>
+<td align="left"><strong>设备文件</strong>目录，代表所有硬件（如 <code>/dev/sda</code> 硬盘、<code>/dev/tty</code> 终端），由 <code>udev</code> 动态管理</td>
+</tr>
+<tr>
+<td align="left"><code>/etc</code></td>
+<td align="left"><strong>E</strong>ditable <strong>T</strong>ext <strong>C</strong>onfiguration</td>
+<td align="left">系统及应用的<strong>全局配置文件</strong>（如 <code>/etc/passwd</code>、<code>/etc/ssh/sshd_config</code>），通常为纯文本</td>
+</tr>
+<tr>
+<td align="left"><code>/home</code></td>
+<td align="left">Home Directories</td>
+<td align="left"><strong>普通用户主目录</strong>，存放个人文档、配置与数据（如 <code>/home/alice</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>/root</code></td>
+<td align="left">Root Home</td>
+<td align="left"><strong>超级管理员专属主目录</strong>，独立于 <code>/home</code>，权限严格隔离</td>
+</tr>
+<tr>
+<td align="left"><code>/opt</code></td>
+<td align="left"><strong>Opt</strong>ional</td>
+<td align="left"><strong>第三方商业&#x2F;大型软件</strong>安装目录（如 Oracle、MATLAB、Chrome），通常自包含、不干扰系统</td>
+</tr>
+<tr>
+<td align="left"><code>/media</code></td>
+<td align="left"><strong>Media</strong></td>
+<td align="left">系统<strong>自动挂载</strong>可移动介质（U盘、光盘、SD卡）的默认入口</td>
+</tr>
+<tr>
+<td align="left"><code>/mnt</code></td>
+<td align="left"><strong>Mou</strong>n<strong>t</strong></td>
+<td align="left">供管理员<strong>手动临时挂载</strong>文件系统的通用目录（如测试分区、NFS&#x2F;CIFS 共享）</td>
+</tr>
+<tr>
+<td align="left"><code>/proc</code></td>
+<td align="left"><strong>Proc</strong>ess</td>
+<td align="left"><strong>虚拟文件系统</strong>（内存映射），实时反映进程状态与内核参数（如 <code>/proc/cpuinfo</code>、<code>/proc/meminfo</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>/run</code></td>
+<td align="left"><strong>Run</strong>time</td>
+<td align="left">存放系统运行时的<strong>临时状态数据</strong>（PID 文件、socket、锁文件），基于 <code>tmpfs</code>，重启清空</td>
+</tr>
+<tr>
+<td align="left"><code>/srv</code></td>
+<td align="left"><strong>S</strong>e<strong>rv</strong>ice</td>
+<td align="left">本机对外提供的<strong>服务数据</strong>目录（如 Web 服务器 <code>/srv/www</code>、FTP 服务器 <code>/srv/ftp</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>/sys</code></td>
+<td align="left"><strong>Sys</strong>tem</td>
+<td align="left"><strong>虚拟文件系统</strong>，提供内核与硬件&#x2F;驱动&#x2F;电源管理的交互接口（常用于设备调试与电源策略）</td>
+</tr>
+<tr>
+<td align="left"><code>/tmp</code></td>
+<td align="left"><strong>Tmp</strong>orary</td>
+<td align="left"><strong>全局临时目录</strong>，任意用户可读写，通常重启自动清理或配置 <code>tmpwatch</code> 定期轮转</td>
+</tr>
+<tr>
+<td align="left"><code>/var</code></td>
+<td align="left"><strong>Var</strong>iable</td>
+<td align="left">存放<strong>频繁变更的数据</strong>：日志（<code>/var/log</code>）、缓存（<code>/var/cache</code>）、邮件队列、数据库文件等</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔍-关键修正与避坑指南"><a href="#🔍-关键修正与避坑指南" class="headerlink" title="🔍 关键修正与避坑指南"></a>🔍 关键修正与避坑指南</h2><ul>
+<li>✅ <code>user</code> → 实际为 <code>/usr</code>。历史命名源于早期 Unix 将用户工具与系统核心分离，<strong>并非 <code>user</code> 的缩写</strong>。</li>
+<li>✅ <code>ect</code> → 正确拼写为 <code>/etc</code>。早期用于存放 “et cetera”（杂项）文件，现代 Linux 已演进为<strong>配置中心</strong>。</li>
+<li>🚫 <strong>勿随意修改</strong> <code>/proc</code> 与 <code>/sys</code> 中的节点，除非明确知晓对应内核接口作用。</li>
+<li>🗑️ <code>/tmp</code> 和 <code>/run</code> 属于<strong>易失性目录</strong>，重要业务数据与持久化配置切勿存放于此。</li>
+<li>📦 安装源码或第三方软件优先选择 <code>/opt</code> 或 <code>/usr/local</code>，保持系统目录纯净，便于升级与卸载。</li>
+<li>🔐 修改 <code>/etc</code> 配置前务必备份：<code>sudo cp -a /etc/ssh/sshd_config /etc/ssh/sshd_config.bak</code></li>
+</ul>
+<hr>
+<h2 id="🧠-高效记忆口诀"><a href="#🧠-高效记忆口诀" class="headerlink" title="🧠 高效记忆口诀"></a>🧠 高效记忆口诀</h2><blockquote>
+<p>📦 <strong>bin&#x2F;sbin 放命令，lib&#x2F;lib64 存库文件；</strong><br>🌐 <strong>usr 装资源，boot 管启动；</strong><br>🔧 <strong>dev 映射硬件，etc 管配置；</strong><br>🏠 <strong>home 住用户，root 独居处；</strong><br>📥 <strong>opt 装第三方，media&#x2F;mnt 挂载区；</strong><br>🧵 <strong>proc 看进程，sys 调驱动；</strong><br>🕰️ <strong>run 存状态，tmp 临时用，var 记日志。</strong></p>
+</blockquote>
+<hr>
 
       
     </div>
