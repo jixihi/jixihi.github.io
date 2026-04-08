@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -152,204 +152,6 @@
     </div>
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/08/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC1%E5%A4%A9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Hexo">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/08/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC1%E5%A4%A9/" class="post-title-link" itemprop="url">Linux学习第1天</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2026-04-08 12:55:05 / Modified: 15:07:45" itemprop="dateCreated datePublished" datetime="2026-04-08T12:55:05+08:00">2026-04-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="🐧-Linux-根目录结构详解"><a href="#🐧-Linux-根目录结构详解" class="headerlink" title="🐧 Linux 根目录结构详解"></a>🐧 Linux 根目录结构详解</h1><hr>
-<h2 id="🌲-目录结构全景"><a href="#🌲-目录结构全景" class="headerlink" title="🌲 目录结构全景"></a>🌲 目录结构全景</h2><p>Linux 文件系统以 <code>/</code> 为根，采用严格的树状层级规范。以下是核心目录的精准定位与功能说明：</p>
-<table>
-<thead>
-<tr>
-<th align="left">目录路径</th>
-<th align="left">英文全称 &#x2F; 含义</th>
-<th align="left">核心作用与说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>/bin</code></td>
-<td align="left"><strong>Bin</strong>ary</td>
-<td align="left">存放<strong>所有用户</strong>可执行的基础命令（如 <code>ls</code>、<code>cp</code>、<code>cat</code>、<code>bash</code>）</td>
-</tr>
-<tr>
-<td align="left"><code>/sbin</code></td>
-<td align="left"><strong>S</strong>ystem <strong>Bin</strong>ary</td>
-<td align="left">存放<strong>系统管理员</strong>专用的管理命令（如 <code>fdisk</code>、<code>iptables</code>、<code>systemctl</code>）</td>
-</tr>
-<tr>
-<td align="left"><code>/lib</code> <code>/lib64</code></td>
-<td align="left"><strong>Lib</strong>rary</td>
-<td align="left">系统启动与程序运行所需的<strong>共享库文件</strong>（<code>.so</code>）及动态链接器；<code>lib64</code> 专用于 64 位架构</td>
-</tr>
-<tr>
-<td align="left"><code>/usr</code></td>
-<td align="left"><strong>U</strong>nix <strong>S</strong>ystem <strong>R</strong>esources</td>
-<td align="left">存放用户级应用程序、库、文档与头文件（⚠️ <strong>非 <code>user</code> 缩写</strong>，是系统中最大的只读数据目录）</td>
-</tr>
-<tr>
-<td align="left"><code>/usr/local</code></td>
-<td align="left">Local Software</td>
-<td align="left"><strong>本地编译安装</strong>的第三方软件独立目录，避免与系统包管理器（apt&#x2F;yum）冲突</td>
-</tr>
-<tr>
-<td align="left"><code>/boot</code></td>
-<td align="left">Boot Loader</td>
-<td align="left">系统启动核心文件：Linux 内核（<code>vmlinuz</code>）、初始内存盘（<code>initramfs</code>）、GRUB 引导配置</td>
-</tr>
-<tr>
-<td align="left"><code>/dev</code></td>
-<td align="left"><strong>Dev</strong>ice</td>
-<td align="left"><strong>设备文件</strong>目录，代表所有硬件（如 <code>/dev/sda</code> 硬盘、<code>/dev/tty</code> 终端），由 <code>udev</code> 动态管理</td>
-</tr>
-<tr>
-<td align="left"><code>/etc</code></td>
-<td align="left"><strong>E</strong>ditable <strong>T</strong>ext <strong>C</strong>onfiguration</td>
-<td align="left">系统及应用的<strong>全局配置文件</strong>（如 <code>/etc/passwd</code>、<code>/etc/ssh/sshd_config</code>），通常为纯文本</td>
-</tr>
-<tr>
-<td align="left"><code>/home</code></td>
-<td align="left">Home Directories</td>
-<td align="left"><strong>普通用户主目录</strong>，存放个人文档、配置与数据（如 <code>/home/alice</code>）</td>
-</tr>
-<tr>
-<td align="left"><code>/root</code></td>
-<td align="left">Root Home</td>
-<td align="left"><strong>超级管理员专属主目录</strong>，独立于 <code>/home</code>，权限严格隔离</td>
-</tr>
-<tr>
-<td align="left"><code>/opt</code></td>
-<td align="left"><strong>Opt</strong>ional</td>
-<td align="left"><strong>第三方商业&#x2F;大型软件</strong>安装目录（如 Oracle、MATLAB、Chrome），通常自包含、不干扰系统</td>
-</tr>
-<tr>
-<td align="left"><code>/media</code></td>
-<td align="left"><strong>Media</strong></td>
-<td align="left">系统<strong>自动挂载</strong>可移动介质（U盘、光盘、SD卡）的默认入口</td>
-</tr>
-<tr>
-<td align="left"><code>/mnt</code></td>
-<td align="left"><strong>Mou</strong>n<strong>t</strong></td>
-<td align="left">供管理员<strong>手动临时挂载</strong>文件系统的通用目录（如测试分区、NFS&#x2F;CIFS 共享）</td>
-</tr>
-<tr>
-<td align="left"><code>/proc</code></td>
-<td align="left"><strong>Proc</strong>ess</td>
-<td align="left"><strong>虚拟文件系统</strong>（内存映射），实时反映进程状态与内核参数（如 <code>/proc/cpuinfo</code>、<code>/proc/meminfo</code>）</td>
-</tr>
-<tr>
-<td align="left"><code>/run</code></td>
-<td align="left"><strong>Run</strong>time</td>
-<td align="left">存放系统运行时的<strong>临时状态数据</strong>（PID 文件、socket、锁文件），基于 <code>tmpfs</code>，重启清空</td>
-</tr>
-<tr>
-<td align="left"><code>/srv</code></td>
-<td align="left"><strong>S</strong>e<strong>rv</strong>ice</td>
-<td align="left">本机对外提供的<strong>服务数据</strong>目录（如 Web 服务器 <code>/srv/www</code>、FTP 服务器 <code>/srv/ftp</code>）</td>
-</tr>
-<tr>
-<td align="left"><code>/sys</code></td>
-<td align="left"><strong>Sys</strong>tem</td>
-<td align="left"><strong>虚拟文件系统</strong>，提供内核与硬件&#x2F;驱动&#x2F;电源管理的交互接口（常用于设备调试与电源策略）</td>
-</tr>
-<tr>
-<td align="left"><code>/tmp</code></td>
-<td align="left"><strong>Tmp</strong>orary</td>
-<td align="left"><strong>全局临时目录</strong>，任意用户可读写，通常重启自动清理或配置 <code>tmpwatch</code> 定期轮转</td>
-</tr>
-<tr>
-<td align="left"><code>/var</code></td>
-<td align="left"><strong>Var</strong>iable</td>
-<td align="left">存放<strong>频繁变更的数据</strong>：日志（<code>/var/log</code>）、缓存（<code>/var/cache</code>）、邮件队列、数据库文件等</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="🔍-关键修正与避坑指南"><a href="#🔍-关键修正与避坑指南" class="headerlink" title="🔍 关键修正与避坑指南"></a>🔍 关键修正与避坑指南</h2><ul>
-<li>✅ <code>user</code> → 实际为 <code>/usr</code>。历史命名源于早期 Unix 将用户工具与系统核心分离，<strong>并非 <code>user</code> 的缩写</strong>。</li>
-<li>✅ <code>ect</code> → 正确拼写为 <code>/etc</code>。早期用于存放 “et cetera”（杂项）文件，现代 Linux 已演进为<strong>配置中心</strong>。</li>
-<li>🚫 <strong>勿随意修改</strong> <code>/proc</code> 与 <code>/sys</code> 中的节点，除非明确知晓对应内核接口作用。</li>
-<li>🗑️ <code>/tmp</code> 和 <code>/run</code> 属于<strong>易失性目录</strong>，重要业务数据与持久化配置切勿存放于此。</li>
-<li>📦 安装源码或第三方软件优先选择 <code>/opt</code> 或 <code>/usr/local</code>，保持系统目录纯净，便于升级与卸载。</li>
-<li>🔐 修改 <code>/etc</code> 配置前务必备份：<code>sudo cp -a /etc/ssh/sshd_config /etc/ssh/sshd_config.bak</code></li>
-</ul>
-<hr>
-<h2 id="🧠-高效记忆口诀"><a href="#🧠-高效记忆口诀" class="headerlink" title="🧠 高效记忆口诀"></a>🧠 高效记忆口诀</h2><blockquote>
-<p>📦 <strong>bin&#x2F;sbin 放命令，lib&#x2F;lib64 存库文件；</strong><br>🌐 <strong>usr 装资源，boot 管启动；</strong><br>🔧 <strong>dev 映射硬件，etc 管配置；</strong><br>🏠 <strong>home 住用户，root 独居处；</strong><br>📥 <strong>opt 装第三方，media&#x2F;mnt 挂载区；</strong><br>🧵 <strong>proc 看进程，sys 调驱动；</strong><br>🕰️ <strong>run 存状态，tmp 临时用，var 记日志。</strong></p>
-</blockquote>
-<hr>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -496,6 +298,490 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/03/Linux%E7%AC%AC%E4%BA%8C%E5%A4%A9-vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/03/Linux%E7%AC%AC%E4%BA%8C%E5%A4%A9-vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Linux第二天-vim编辑器学习</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-04-03 15:21:02" itemprop="dateCreated datePublished" datetime="2026-04-03T15:21:02+08:00">2026-04-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-04-08 15:23:43" itemprop="dateModified" datetime="2026-04-08T15:23:43+08:00">2026-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="📝-Vim-编辑器核心快捷键笔记：三大模式速查指南"><a href="#📝-Vim-编辑器核心快捷键笔记：三大模式速查指南" class="headerlink" title="📝 Vim 编辑器核心快捷键笔记：三大模式速查指南"></a>📝 Vim 编辑器核心快捷键笔记：三大模式速查指南</h1><hr>
+<h2 id="🟦-一、普通模式（Normal-Mode）"><a href="#🟦-一、普通模式（Normal-Mode）" class="headerlink" title="🟦 一、普通模式（Normal Mode）"></a>🟦 一、普通模式（Normal Mode）</h2><blockquote>
+<p>Vim 启动后的默认模式。光标移动、文本复制&#x2F;删除、撤销等操作均在此完成。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">快捷键</th>
+<th align="left">功能说明</th>
+<th align="left">🛠️ 规范与实战提示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>y</code></td>
+<td align="left">复制（Yank）</td>
+<td align="left">需配合移动指令使用，如 <code>yw</code></td>
+</tr>
+<tr>
+<td align="left"><code>yy</code></td>
+<td align="left">复制当前行</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>ny</code></td>
+<td align="left">复制 n 行</td>
+<td align="left">实际更常用标准写法 <code>nyy</code></td>
+</tr>
+<tr>
+<td align="left"><code>yw</code></td>
+<td align="left">复制一个词</td>
+<td align="left">从光标处复制到词尾</td>
+</tr>
+<tr>
+<td align="left"><code>yny</code></td>
+<td align="left">复制含光标的 n 行</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>y$</code></td>
+<td align="left">复制光标后至行尾</td>
+<td align="left">包含当前字符</td>
+</tr>
+<tr>
+<td align="left"><code>y^</code></td>
+<td align="left">复制光标前至行首</td>
+<td align="left">不包含行首缩进（可用 <code>y0</code> 包含）</td>
+</tr>
+<tr>
+<td align="left"><code>p</code></td>
+<td align="left">粘贴</td>
+<td align="left">粘贴至光标<strong>后方</strong></td>
+</tr>
+<tr>
+<td align="left"><code>np</code></td>
+<td align="left">重复粘贴 n 次</td>
+<td align="left">如 <code>3p</code> 粘贴三次</td>
+</tr>
+<tr>
+<td align="left"><code>d</code></td>
+<td align="left">删除&#x2F;剪切</td>
+<td align="left">删除内容会进入寄存器，可用 <code>p</code> 粘贴</td>
+</tr>
+<tr>
+<td align="left"><code>dw</code></td>
+<td align="left">删除一个词</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>d$</code> &#x2F; <code>d^</code></td>
+<td align="left">删除至行尾 &#x2F; 行首</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>nd</code> &#x2F; <code>dnd</code></td>
+<td align="left">删除 n 行</td>
+<td align="left">推荐标准写法：<code>ndd</code></td>
+</tr>
+<tr>
+<td align="left"><code>u</code></td>
+<td align="left">撤销（Undo）</td>
+<td align="left">可连续按 <code>Ctrl+r</code> 重做（Redo）</td>
+</tr>
+<tr>
+<td align="left"><code>x</code></td>
+<td align="left">删除光标处字符</td>
+<td align="left">笔记记为“剪贴一个词”，实为<strong>单字符</strong>删除</td>
+</tr>
+<tr>
+<td align="left"><code>g</code> &#x2F; <code>G</code> &#x2F; <code>nG</code></td>
+<td align="left">回到文本开始 &#x2F; 末尾 &#x2F; 第n行</td>
+<td align="left">Vim 标准首行跳转指令为 <code>gg</code></td>
+</tr>
+<tr>
+<td align="left"><code>w</code> &#x2F; <code>e</code></td>
+<td align="left">跳至下一个词首 &#x2F; 词尾</td>
+<td align="left">可搭配数字，如 <code>3w</code> 跳3个词</td>
+</tr>
+<tr>
+<td align="left"><code>set nu</code> &#x2F; <code>set nonu</code></td>
+<td align="left">显示行号 &#x2F; 撤销行号</td>
+<td align="left">需在命令模式下输入 <code>:</code> 执行</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 <strong>核心语法</strong>：<code>[数量] + [操作符(y/d/c)] + [移动指令(w/$/^/G)]</code><br>例如：<code>3dw</code> &#x3D; 删除3个词 ｜ <code>2y$</code> &#x3D; 复制2次光标至行尾</p>
+</blockquote>
+<h2 id="🟩-二、编辑模式（Insert-Mode）"><a href="#🟩-二、编辑模式（Insert-Mode）" class="headerlink" title="🟩 二、编辑模式（Insert Mode）"></a>🟩 二、编辑模式（Insert Mode）</h2><blockquote>
+<p>用于实际输入文本。按 <code>Esc</code> 可随时退回普通模式。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">快捷键</th>
+<th align="left">功能说明</th>
+<th align="left">🎯 适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>i</code></td>
+<td align="left">在光标<strong>前</strong>插入</td>
+<td align="left">精准修改当前字符前方内容</td>
+</tr>
+<tr>
+<td align="left"><code>a</code></td>
+<td align="left">在光标<strong>后</strong>插入</td>
+<td align="left">适合在当前字符后追加文本</td>
+</tr>
+<tr>
+<td align="left"><code>o</code></td>
+<td align="left">在光标<strong>下一行</strong>新建并插入</td>
+<td align="left">自动换行并继承缩进，写代码最常用</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🔑 <strong>记忆口诀</strong>：<code>i</code> &#x3D; Insert（插入）｜ <code>a</code> &#x3D; Append（追加）｜ <code>o</code> &#x3D; Open new line（新开一行）</p>
+</blockquote>
+<h2 id="🟥-三、命令模式（Command-Ex-Mode）"><a href="#🟥-三、命令模式（Command-Ex-Mode）" class="headerlink" title="🟥 三、命令模式（Command &#x2F; Ex Mode）"></a>🟥 三、命令模式（Command &#x2F; Ex Mode）</h2><blockquote>
+<p>在普通模式下输入 <code>:</code> 进入底行，用于文件操作、查找替换、环境配置。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">功能说明</th>
+<th align="left">🔍 细节说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>/word</code></td>
+<td align="left">查找单词 <code>word</code></td>
+<td align="left">按 <code>n</code> 向下匹配，<code>N</code> 向上匹配</td>
+</tr>
+<tr>
+<td align="left"><code>:s/old/new</code></td>
+<td align="left">替换当前行<strong>第一个</strong>匹配项</td>
+<td align="left">仅作用于光标所在行</td>
+</tr>
+<tr>
+<td align="left"><code>:s/old/new/g</code></td>
+<td align="left">替换当前行<strong>所有</strong>匹配项</td>
+<td align="left"><code>g</code> &#x3D; global（本行全局）</td>
+</tr>
+<tr>
+<td align="left"><code>:%s/old/new</code></td>
+<td align="left">替换全文<strong>第一个</strong>匹配项</td>
+<td align="left"><code>%</code> 代表整个文件范围</td>
+</tr>
+<tr>
+<td align="left"><code>:%s/old/new/g</code></td>
+<td align="left">替换全文<strong>所有</strong>匹配项</td>
+<td align="left">最常用批量替换命令</td>
+</tr>
+<tr>
+<td align="left"><code>noh</code></td>
+<td align="left">取消搜索高亮</td>
+<td align="left">实际执行需加前缀：<code>:noh</code></td>
+</tr>
+<tr>
+<td align="left"><code>w</code></td>
+<td align="left">保存文件</td>
+<td align="left">实际执行：<code>:w</code>（Write）</td>
+</tr>
+<tr>
+<td align="left"><code>wq</code></td>
+<td align="left">保存并退出</td>
+<td align="left">实际执行：<code>:wq</code></td>
+</tr>
+<tr>
+<td align="left"><code>q!</code></td>
+<td align="left">强制退出（不保存）</td>
+<td align="left">实际执行：<code>:q!</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>⚠️ <strong>交互替换技巧</strong>：在替换命令末尾添加 <code>c</code>（如 <code>:%s/old/new/gc</code>）可开启<strong>逐次确认</strong>模式，避免误替换重要代码。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/02/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC1%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/02/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC1%E5%A4%A9/" class="post-title-link" itemprop="url">Linux学习第1天</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-04-02 12:55:05" itemprop="dateCreated datePublished" datetime="2026-04-02T12:55:05+08:00">2026-04-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-04-08 15:21:34" itemprop="dateModified" datetime="2026-04-08T15:21:34+08:00">2026-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="🐧-Linux-根目录结构详解"><a href="#🐧-Linux-根目录结构详解" class="headerlink" title="🐧 Linux 根目录结构详解"></a>🐧 Linux 根目录结构详解</h1><hr>
+<h2 id="🌲-目录结构全景"><a href="#🌲-目录结构全景" class="headerlink" title="🌲 目录结构全景"></a>🌲 目录结构全景</h2><p>Linux 文件系统以 <code>/</code> 为根，采用严格的树状层级规范。以下是核心目录的精准定位与功能说明：</p>
+<table>
+<thead>
+<tr>
+<th align="left">目录路径</th>
+<th align="left">英文全称 &#x2F; 含义</th>
+<th align="left">核心作用与说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>/bin</code></td>
+<td align="left"><strong>Bin</strong>ary</td>
+<td align="left">存放<strong>所有用户</strong>可执行的基础命令（如 <code>ls</code>、<code>cp</code>、<code>cat</code>、<code>bash</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>/sbin</code></td>
+<td align="left"><strong>S</strong>ystem <strong>Bin</strong>ary</td>
+<td align="left">存放<strong>系统管理员</strong>专用的管理命令（如 <code>fdisk</code>、<code>iptables</code>、<code>systemctl</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>/lib</code> <code>/lib64</code></td>
+<td align="left"><strong>Lib</strong>rary</td>
+<td align="left">系统启动与程序运行所需的<strong>共享库文件</strong>（<code>.so</code>）及动态链接器；<code>lib64</code> 专用于 64 位架构</td>
+</tr>
+<tr>
+<td align="left"><code>/usr</code></td>
+<td align="left"><strong>U</strong>nix <strong>S</strong>ystem <strong>R</strong>esources</td>
+<td align="left">存放用户级应用程序、库、文档与头文件（⚠️ <strong>非 <code>user</code> 缩写</strong>，是系统中最大的只读数据目录）</td>
+</tr>
+<tr>
+<td align="left"><code>/usr/local</code></td>
+<td align="left">Local Software</td>
+<td align="left"><strong>本地编译安装</strong>的第三方软件独立目录，避免与系统包管理器（apt&#x2F;yum）冲突</td>
+</tr>
+<tr>
+<td align="left"><code>/boot</code></td>
+<td align="left">Boot Loader</td>
+<td align="left">系统启动核心文件：Linux 内核（<code>vmlinuz</code>）、初始内存盘（<code>initramfs</code>）、GRUB 引导配置</td>
+</tr>
+<tr>
+<td align="left"><code>/dev</code></td>
+<td align="left"><strong>Dev</strong>ice</td>
+<td align="left"><strong>设备文件</strong>目录，代表所有硬件（如 <code>/dev/sda</code> 硬盘、<code>/dev/tty</code> 终端），由 <code>udev</code> 动态管理</td>
+</tr>
+<tr>
+<td align="left"><code>/etc</code></td>
+<td align="left"><strong>E</strong>ditable <strong>T</strong>ext <strong>C</strong>onfiguration</td>
+<td align="left">系统及应用的<strong>全局配置文件</strong>（如 <code>/etc/passwd</code>、<code>/etc/ssh/sshd_config</code>），通常为纯文本</td>
+</tr>
+<tr>
+<td align="left"><code>/home</code></td>
+<td align="left">Home Directories</td>
+<td align="left"><strong>普通用户主目录</strong>，存放个人文档、配置与数据（如 <code>/home/alice</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>/root</code></td>
+<td align="left">Root Home</td>
+<td align="left"><strong>超级管理员专属主目录</strong>，独立于 <code>/home</code>，权限严格隔离</td>
+</tr>
+<tr>
+<td align="left"><code>/opt</code></td>
+<td align="left"><strong>Opt</strong>ional</td>
+<td align="left"><strong>第三方商业&#x2F;大型软件</strong>安装目录（如 Oracle、MATLAB、Chrome），通常自包含、不干扰系统</td>
+</tr>
+<tr>
+<td align="left"><code>/media</code></td>
+<td align="left"><strong>Media</strong></td>
+<td align="left">系统<strong>自动挂载</strong>可移动介质（U盘、光盘、SD卡）的默认入口</td>
+</tr>
+<tr>
+<td align="left"><code>/mnt</code></td>
+<td align="left"><strong>Mou</strong>n<strong>t</strong></td>
+<td align="left">供管理员<strong>手动临时挂载</strong>文件系统的通用目录（如测试分区、NFS&#x2F;CIFS 共享）</td>
+</tr>
+<tr>
+<td align="left"><code>/proc</code></td>
+<td align="left"><strong>Proc</strong>ess</td>
+<td align="left"><strong>虚拟文件系统</strong>（内存映射），实时反映进程状态与内核参数（如 <code>/proc/cpuinfo</code>、<code>/proc/meminfo</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>/run</code></td>
+<td align="left"><strong>Run</strong>time</td>
+<td align="left">存放系统运行时的<strong>临时状态数据</strong>（PID 文件、socket、锁文件），基于 <code>tmpfs</code>，重启清空</td>
+</tr>
+<tr>
+<td align="left"><code>/srv</code></td>
+<td align="left"><strong>S</strong>e<strong>rv</strong>ice</td>
+<td align="left">本机对外提供的<strong>服务数据</strong>目录（如 Web 服务器 <code>/srv/www</code>、FTP 服务器 <code>/srv/ftp</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>/sys</code></td>
+<td align="left"><strong>Sys</strong>tem</td>
+<td align="left"><strong>虚拟文件系统</strong>，提供内核与硬件&#x2F;驱动&#x2F;电源管理的交互接口（常用于设备调试与电源策略）</td>
+</tr>
+<tr>
+<td align="left"><code>/tmp</code></td>
+<td align="left"><strong>Tmp</strong>orary</td>
+<td align="left"><strong>全局临时目录</strong>，任意用户可读写，通常重启自动清理或配置 <code>tmpwatch</code> 定期轮转</td>
+</tr>
+<tr>
+<td align="left"><code>/var</code></td>
+<td align="left"><strong>Var</strong>iable</td>
+<td align="left">存放<strong>频繁变更的数据</strong>：日志（<code>/var/log</code>）、缓存（<code>/var/cache</code>）、邮件队列、数据库文件等</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔍-关键修正与避坑指南"><a href="#🔍-关键修正与避坑指南" class="headerlink" title="🔍 关键修正与避坑指南"></a>🔍 关键修正与避坑指南</h2><ul>
+<li>✅ <code>user</code> → 实际为 <code>/usr</code>。历史命名源于早期 Unix 将用户工具与系统核心分离，<strong>并非 <code>user</code> 的缩写</strong>。</li>
+<li>✅ <code>ect</code> → 正确拼写为 <code>/etc</code>。早期用于存放 “et cetera”（杂项）文件，现代 Linux 已演进为<strong>配置中心</strong>。</li>
+<li>🚫 <strong>勿随意修改</strong> <code>/proc</code> 与 <code>/sys</code> 中的节点，除非明确知晓对应内核接口作用。</li>
+<li>🗑️ <code>/tmp</code> 和 <code>/run</code> 属于<strong>易失性目录</strong>，重要业务数据与持久化配置切勿存放于此。</li>
+<li>📦 安装源码或第三方软件优先选择 <code>/opt</code> 或 <code>/usr/local</code>，保持系统目录纯净，便于升级与卸载。</li>
+<li>🔐 修改 <code>/etc</code> 配置前务必备份：<code>sudo cp -a /etc/ssh/sshd_config /etc/ssh/sshd_config.bak</code></li>
+</ul>
+<hr>
+<h2 id="🧠-高效记忆口诀"><a href="#🧠-高效记忆口诀" class="headerlink" title="🧠 高效记忆口诀"></a>🧠 高效记忆口诀</h2><blockquote>
+<p>📦 <strong>bin&#x2F;sbin 放命令，lib&#x2F;lib64 存库文件；</strong><br>🌐 <strong>usr 装资源，boot 管启动；</strong><br>🔧 <strong>dev 映射硬件，etc 管配置；</strong><br>🏠 <strong>home 住用户，root 独居处；</strong><br>📥 <strong>opt 装第三方，media&#x2F;mnt 挂载区；</strong><br>🧵 <strong>proc 看进程，sys 调驱动；</strong><br>🕰️ <strong>run 存状态，tmp 临时用，var 记日志。</strong></p>
+</blockquote>
+<hr>
 
       
     </div>
