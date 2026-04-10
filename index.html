@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -152,6 +152,295 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/10/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%94%E5%A4%A9-%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/10/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%94%E5%A4%A9-%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB/" class="post-title-link" itemprop="url">Linux学习第五天-时间日期类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-04-10 23:52:45 / Modified: 23:55:10" itemprop="dateCreated datePublished" datetime="2026-04-10T23:52:45+08:00">2026-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="📅-Linux-时间与日期命令：date-cal"><a href="#📅-Linux-时间与日期命令：date-cal" class="headerlink" title="📅 Linux 时间与日期命令：date &amp; cal"></a>📅 Linux 时间与日期命令：<code>date</code> &amp; <code>cal</code></h1><hr>
+<h2 id="🕒-一、date-命令详解"><a href="#🕒-一、date-命令详解" class="headerlink" title="🕒 一、date 命令详解"></a>🕒 一、<code>date</code> 命令详解</h2><p><code>date</code> 是 GNU Coreutils 提供的核心时间工具，支持格式化输出、时间戳转换、相对时间计算以及系统时间设置。</p>
+<h3 id="🔹-1-基础用法与格式化输出"><a href="#🔹-1-基础用法与格式化输出" class="headerlink" title="🔹 1. 基础用法与格式化输出"></a>🔹 1. 基础用法与格式化输出</h3><p><strong>语法</strong>：<code>date [选项] [+格式字符串]</code></p>
+<table>
+<thead>
+<tr>
+<th align="left">命令示例</th>
+<th align="left">功能说明</th>
+<th align="left">输出示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>date</code></td>
+<td align="left">显示当前系统日期与时间（默认格式）</td>
+<td align="left"><code>Fri Apr 10 15:30:22 CST 2026</code></td>
+</tr>
+<tr>
+<td align="left"><code>date +%Y</code></td>
+<td align="left">显示 4 位年份</td>
+<td align="left"><code>2026</code></td>
+</tr>
+<tr>
+<td align="left"><code>date +%m</code></td>
+<td align="left">显示月份（01~12）</td>
+<td align="left"><code>04</code></td>
+</tr>
+<tr>
+<td align="left"><code>date +%d</code></td>
+<td align="left">显示日期（01~31）</td>
+<td align="left"><code>10</code></td>
+</tr>
+<tr>
+<td align="left"><code>date &quot;+%Y-%m-%d %H:%M:%S&quot;</code></td>
+<td align="left">自定义标准时间格式（<strong>推荐</strong>）</td>
+<td align="left"><code>2026-04-10 15:30:22</code></td>
+</tr>
+</tbody></table>
+<h3 id="🔹-2-查看与转换时间戳"><a href="#🔹-2-查看与转换时间戳" class="headerlink" title="🔹 2. 查看与转换时间戳"></a>🔹 2. 查看与转换时间戳</h3><table>
+<thead>
+<tr>
+<th align="left">命令示例</th>
+<th align="left">功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>date +%s</code></td>
+<td align="left">获取当前 Unix 时间戳（秒级，自 <code>1970-01-01 00:00:00 UTC</code> 起）</td>
+</tr>
+<tr>
+<td align="left"><code>date -d @1700000000 &quot;+%Y-%m-%d %H:%M:%S&quot;</code></td>
+<td align="left">将时间戳转换为可读时间</td>
+</tr>
+</tbody></table>
+<h3 id="🔹-3-显示相对时间（过去-未来）"><a href="#🔹-3-显示相对时间（过去-未来）" class="headerlink" title="🔹 3. 显示相对时间（过去&#x2F;未来）"></a>🔹 3. 显示相对时间（过去&#x2F;未来）</h3><p>使用 <code>-d</code>（或 <code>--date</code>）参数可计算非当前时间，支持自然语言表达式：</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令示例</th>
+<th align="left">功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>date -d &quot;1 day ago&quot;</code></td>
+<td align="left">显示昨天此时的时间</td>
+</tr>
+<tr>
+<td align="left"><code>date -d &quot;+1 day&quot;</code> 或 <code>date -d &quot;tomorrow&quot;</code></td>
+<td align="left">显示明天此时的时间</td>
+</tr>
+<tr>
+<td align="left"><code>date -d &quot;next monday&quot;</code></td>
+<td align="left">显示下周一日期</td>
+</tr>
+<tr>
+<td align="left"><code>date -d &quot;2 weeks ago&quot; &quot;+%Y-%m-%d&quot;</code></td>
+<td align="left">仅显示两周前的日期</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p> <code>date -d &#39;-1 days ago&#39;</code> 在 GNU <code>date</code> 中实际等价于 <code>明天</code>（<code>-1</code> 表示减去“1天前”）。建议统一使用 <code>+N day</code> &#x2F; <code>-N day</code> 语法，语义更清晰。</p>
+</blockquote>
+<h3 id="🔹-4-设置系统时间"><a href="#🔹-4-设置系统时间" class="headerlink" title="🔹 4. 设置系统时间"></a>🔹 4. 设置系统时间</h3><table>
+<thead>
+<tr>
+<th align="left">命令示例</th>
+<th align="left">功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>sudo date -s &quot;2026-04-10 15:30:00&quot;</code></td>
+<td align="left">手动设置系统时间（<strong>需 root 权限</strong>）</td>
+</tr>
+<tr>
+<td align="left"><code>sudo hwclock --systohc</code></td>
+<td align="left">将设置好的系统时间同步到硬件时钟（BIOS&#x2F;RTC）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🛡️ <strong>生产环境建议</strong>：服务器时间应通过 <code>chronyd</code> 或 <code>ntpd</code> 自动同步，尽量避免手动修改。</p>
+</blockquote>
+<hr>
+<h2 id="📅-二、cal-命令详解"><a href="#📅-二、cal-命令详解" class="headerlink" title="📅 二、cal 命令详解"></a>📅 二、<code>cal</code> 命令详解</h2><p><code>cal</code>（Calendar）用于快速查看日历，轻量且支持终端直接渲染。</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令示例</th>
+<th align="left">功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>cal</code></td>
+<td align="left">显示当前月份日历</td>
+</tr>
+<tr>
+<td align="left"><code>cal -3</code></td>
+<td align="left">显示上个月、本月、下个月（共3个月）</td>
+</tr>
+<tr>
+<td align="left"><code>cal -m</code></td>
+<td align="left">以 <strong>周一</strong> 作为每周的第一天（默认周日）</td>
+</tr>
+<tr>
+<td align="left"><code>cal 2026</code></td>
+<td align="left">显示指定年份的全年日历</td>
+</tr>
+<tr>
+<td align="left"><code>cal -y</code></td>
+<td align="left">显示当前年份的全年日历</td>
+</tr>
+<tr>
+<td align="left"><code>cal 04 2026</code></td>
+<td align="left">显示指定年月的日历（格式：<code>月 年</code>）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📊-三、核心格式符速查表"><a href="#📊-三、核心格式符速查表" class="headerlink" title="📊 三、核心格式符速查表"></a>📊 三、核心格式符速查表</h2><p>在脚本或日志中格式化时间时，常用占位符如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">格式符</th>
+<th align="left">含义</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>%Y</code></td>
+<td align="left">4位年份</td>
+<td align="left"><code>2026</code></td>
+</tr>
+<tr>
+<td align="center"><code>%y</code></td>
+<td align="left">2位年份</td>
+<td align="left"><code>26</code></td>
+</tr>
+<tr>
+<td align="center"><code>%m</code></td>
+<td align="left">月份（01-12）</td>
+<td align="left"><code>04</code></td>
+</tr>
+<tr>
+<td align="center"><code>%d</code></td>
+<td align="left">日期（01-31）</td>
+<td align="left"><code>10</code></td>
+</tr>
+<tr>
+<td align="center"><code>%H</code></td>
+<td align="left">小时（24小时制，00-23）</td>
+<td align="left"><code>15</code></td>
+</tr>
+<tr>
+<td align="center"><code>%M</code></td>
+<td align="left">分钟（00-59）</td>
+<td align="left"><code>30</code></td>
+</tr>
+<tr>
+<td align="center"><code>%S</code></td>
+<td align="left">秒（00-60）</td>
+<td align="left"><code>22</code></td>
+</tr>
+<tr>
+<td align="center"><code>%s</code></td>
+<td align="left">Unix 时间戳（秒）</td>
+<td align="left"><code>1744270222</code></td>
+</tr>
+<tr>
+<td align="center"><code>%u</code></td>
+<td align="left">星期几（1&#x3D;周一, 7&#x3D;周日）</td>
+<td align="left"><code>5</code></td>
+</tr>
+<tr>
+<td align="center"><code>%F</code></td>
+<td align="left">等价于 <code>%Y-%m-%d</code></td>
+<td align="left"><code>2026-04-10</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="💡-四、实战避坑与最佳实践"><a href="#💡-四、实战避坑与最佳实践" class="headerlink" title="💡 四、实战避坑与最佳实践"></a>💡 四、实战避坑与最佳实践</h2><ol>
+<li><p><strong>时区问题</strong><br><code>date</code> 默认读取系统时区。若需临时切换，可使用环境变量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TZ=UTC <span class="built_in">date</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>引号使用</strong><br>格式字符串若包含空格或特殊字符，<strong>务必使用英文双引号 <code>&quot;</code> 包裹</strong>，单引号 <code>&#39;</code> 会阻止变量展开，但此处不影响格式符解析，习惯上推荐双引号。</p>
+</li>
+<li><p><strong>脚本中的安全用法</strong><br>在 Shell 脚本中赋值时间变量时，推荐使用命令替换：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NOW=$(<span class="built_in">date</span> <span class="string">&quot;+%Y-%m-%d_%H-%M-%S&quot;</span>)</span><br><span class="line"><span class="built_in">mkdir</span> <span class="string">&quot;backup_<span class="variable">$NOW</span>&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>硬件时钟 vs 系统时钟</strong><br><code>date</code> 修改的是内存中的系统时间，重启后可能失效。同步到主板需执行：<code>sudo hwclock -w</code>。</p>
+</li>
+</ol>
+<hr>
+<h2 id="📝-结语"><a href="#📝-结语" class="headerlink" title="📝 结语"></a>📝 结语</h2><p>掌握 <code>date</code> 与 <code>cal</code> 不仅能提升日常终端操作效率，更是编写可靠自动化脚本的基础。建议将本文的 <strong>速查表</strong> 保存为笔记片段，随用随查。</p>
+<blockquote>
+<p>🔄 本文内容基于 GNU <code>date</code> (coreutils) 与 <code>util-linux</code> 的 <code>cal</code> 实现，不同发行版选项可能存在细微差异。如遇兼容性问题，可使用 <code>man date</code> &#x2F; <code>man cal</code> 查看本地手册。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
