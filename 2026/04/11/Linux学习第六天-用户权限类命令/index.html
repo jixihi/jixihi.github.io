@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="🐧 Linux 用户与权限管理 · 核心笔记 📑 快速导航 1. 👤 用户管理命令 2. 🔐 sudo 提权配置 3. 👥 用户组管理 4. 📁 文件权限管理 💡 附：高频命令速查   1. 👤 用户管理命令🔹 useradd 添加新用户12345678# 基础创建useradd 用户名# 指定主组创建useradd -g 组名 用户名# 指定家目录创建useradd -d &#x2F;h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux学习第六天-用户权限类命令">
+<meta property="og:url" content="http://example.com/2026/04/11/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AD%E5%A4%A9-%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%B1%BB%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="ZY_BLOGS">
+<meta property="og:description" content="🐧 Linux 用户与权限管理 · 核心笔记 📑 快速导航 1. 👤 用户管理命令 2. 🔐 sudo 提权配置 3. 👥 用户组管理 4. 📁 文件权限管理 💡 附：高频命令速查   1. 👤 用户管理命令🔹 useradd 添加新用户12345678# 基础创建useradd 用户名# 指定主组创建useradd -g 组名 用户名# 指定家目录创建useradd -d &#x2F;h">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-04-11T07:02:43.000Z">
+<meta property="article:modified_time" content="2026-04-11T07:04:16.239Z">
+<meta property="article:author" content="ZY">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/04/11/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AD%E5%A4%A9-%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%B1%BB%E5%91%BD%E4%BB%A4/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/04/11/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AD%E5%A4%A9-%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%B1%BB%E5%91%BD%E4%BB%A4/","path":"2026/04/11/Linux学习第六天-用户权限类命令/","title":"Linux学习第六天-用户权限类命令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux学习第六天-用户权限类命令 | ZY_BLOGS</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ZY_BLOGS</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%90%A7-Linux-%E7%94%A8%E6%88%B7%E4%B8%8E%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86-%C2%B7-%E6%A0%B8%E5%BF%83%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">🐧 Linux 用户与权限管理 · 核心笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%91-%E5%BF%AB%E9%80%9F%E5%AF%BC%E8%88%AA"><span class="nav-number">1.1.</span> <span class="nav-text">📑 快速导航</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%F0%9F%91%A4-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">1. 👤 用户管理命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-useradd-%E6%B7%BB%E5%8A%A0%E6%96%B0%E7%94%A8%E6%88%B7"><span class="nav-number">1.2.1.</span> <span class="nav-text">🔹 useradd 添加新用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">1.2.2.</span> <span class="nav-text">🔹 查看用户信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E5%88%87%E6%8D%A2%E4%B8%8E%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7"><span class="nav-number">1.2.3.</span> <span class="nav-text">🔹 切换与查看当前用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-passwd-%E8%AE%BE%E7%BD%AE-%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="nav-number">1.2.4.</span> <span class="nav-text">🔹 passwd 设置&#x2F;修改密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%F0%9F%94%90-sudo-%E6%8F%90%E6%9D%83%E9%85%8D%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">2. 🔐 sudo 提权配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E4%B8%B4%E6%97%B6%E4%BD%BF%E7%94%A8-root-%E6%9D%83%E9%99%90"><span class="nav-number">1.3.1.</span> <span class="nav-text">🔹 临时使用 root 权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E6%8E%88%E6%9D%83%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8-sudo"><span class="nav-number">1.3.2.</span> <span class="nav-text">🔹 授权普通用户使用 sudo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%F0%9F%91%A5-%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">3. 👥 用户组管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E6%89%80%E6%9C%89%E7%BB%84"><span class="nav-number">1.4.1.</span> <span class="nav-text">🔹 查看系统所有组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E7%BB%84%E6%93%8D%E4%BD%9C%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="nav-number">1.4.2.</span> <span class="nav-text">🔹 组操作速查表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%F0%9F%93%81-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="nav-number">1.5.</span> <span class="nav-text">4. 📁 文件权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E6%9F%A5%E7%9C%8B%E6%9D%83%E9%99%90-ll-ls-l"><span class="nav-number">1.5.1.</span> <span class="nav-text">🔹 查看权限 ll &#x2F; ls -l</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-rwx-%E6%9D%83%E9%99%90%E5%9C%A8%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E4%B8%AD%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="nav-number">1.5.2.</span> <span class="nav-text">🔹 rwx 权限在文件与目录中的差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-chmod-%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90"><span class="nav-number">1.5.3.</span> <span class="nav-text">🔹 chmod 修改权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-chown-%E4%BF%AE%E6%94%B9%E6%89%80%E6%9C%89%E8%80%85-%E6%89%80%E5%B1%9E%E7%BB%84"><span class="nav-number">1.5.4.</span> <span class="nav-text">🔹 chown 修改所有者 &amp; 所属组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-chgrp-%E4%BB%85%E4%BF%AE%E6%94%B9%E6%89%80%E5%B1%9E%E7%BB%84"><span class="nav-number">1.5.5.</span> <span class="nav-text">🔹 chgrp 仅修改所属组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%A1-%E9%99%84%EF%BC%9A%E9%AB%98%E9%A2%91%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5"><span class="nav-number">1.6.</span> <span class="nav-text">💡 附：高频命令速查</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ZY</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/11/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AD%E5%A4%A9-%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%B1%BB%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZY">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Linux学习第六天-用户权限类命令 | ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux学习第六天-用户权限类命令
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-04-11 15:02:43 / Modified: 15:04:16" itemprop="dateCreated datePublished" datetime="2026-04-11T15:02:43+08:00">2026-04-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="🐧-Linux-用户与权限管理-·-核心笔记"><a href="#🐧-Linux-用户与权限管理-·-核心笔记" class="headerlink" title="🐧 Linux 用户与权限管理 · 核心笔记"></a>🐧 Linux 用户与权限管理 · 核心笔记</h1><hr>
+<h2 id="📑-快速导航"><a href="#📑-快速导航" class="headerlink" title="📑 快速导航"></a>📑 快速导航</h2><ul>
+<li><a href="#1-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4">1. 👤 用户管理命令</a></li>
+<li><a href="#2-sudo-%E6%8F%90%E6%9D%83%E9%85%8D%E7%BD%AE">2. 🔐 <code>sudo</code> 提权配置</a></li>
+<li><a href="#3-%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86">3. 👥 用户组管理</a></li>
+<li><a href="#4-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86">4. 📁 文件权限管理</a></li>
+<li><a href="#%E9%99%84%E9%AB%98%E9%A2%91%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5">💡 附：高频命令速查</a></li>
+</ul>
+<hr>
+<h2 id="1-👤-用户管理命令"><a href="#1-👤-用户管理命令" class="headerlink" title="1. 👤 用户管理命令"></a>1. 👤 用户管理命令</h2><h3 id="🔹-useradd-添加新用户"><a href="#🔹-useradd-添加新用户" class="headerlink" title="🔹 useradd 添加新用户"></a>🔹 <code>useradd</code> 添加新用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基础创建</span></span><br><span class="line">useradd 用户名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定主组创建</span></span><br><span class="line">useradd -g 组名 用户名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定家目录创建</span></span><br><span class="line">useradd -d /home/dave david</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-查看用户信息"><a href="#🔹-查看用户信息" class="headerlink" title="🔹 查看用户信息"></a>🔹 查看用户信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看指定用户的 UID/GID 及所属组</span></span><br><span class="line"><span class="built_in">id</span> tony</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看系统所有用户配置（底层文件）</span></span><br><span class="line"><span class="built_in">cat</span> /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-切换与查看当前用户"><a href="#🔹-切换与查看当前用户" class="headerlink" title="🔹 切换与查看当前用户"></a>🔹 切换与查看当前用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换至其他用户（需输入目标用户密码）</span></span><br><span class="line">su 用户名</span><br><span class="line"><span class="built_in">exit</span>  <span class="comment"># 退出当前登录会话</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前身份</span></span><br><span class="line"><span class="built_in">whoami</span>      <span class="comment"># 仅输出用户名</span></span><br><span class="line"><span class="built_in">who</span> am i    <span class="comment"># 输出详细登录终端与时间信息</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-passwd-设置-修改密码"><a href="#🔹-passwd-设置-修改密码" class="headerlink" title="🔹 passwd 设置&#x2F;修改密码"></a>🔹 <code>passwd</code> 设置&#x2F;修改密码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd 用户名  <span class="comment"># root 可修改任意用户，普通用户仅能修改自身密码</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-🔐-sudo-提权配置"><a href="#2-🔐-sudo-提权配置" class="headerlink" title="2. 🔐 sudo 提权配置"></a>2. 🔐 <code>sudo</code> 提权配置</h2><h3 id="🔹-临时使用-root-权限"><a href="#🔹-临时使用-root-权限" class="headerlink" title="🔹 临时使用 root 权限"></a>🔹 临时使用 <code>root</code> 权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> 命令  <span class="comment"># 执行时需输入当前用户密码</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-授权普通用户使用-sudo"><a href="#🔹-授权普通用户使用-sudo" class="headerlink" title="🔹 授权普通用户使用 sudo"></a>🔹 授权普通用户使用 <code>sudo</code></h3><p>编辑 <code>/etc/sudoers</code> 配置文件（<strong>强烈建议使用 <code>visudo</code> 命令，自带语法检查</strong>）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sudoers</span><br><span class="line"><span class="comment"># 在文件中添加如下行（示例）：</span></span><br><span class="line">username ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>💡 <strong>说明</strong>：<code>username</code> 替换为实际用户名。添加后该用户即可通过 <code>sudo</code> 执行特权命令。</p>
+</blockquote>
+<hr>
+<h2 id="3-👥-用户组管理"><a href="#3-👥-用户组管理" class="headerlink" title="3. 👥 用户组管理"></a>3. 👥 用户组管理</h2><h3 id="🔹-查看系统所有组"><a href="#🔹-查看系统所有组" class="headerlink" title="🔹 查看系统所有组"></a>🔹 查看系统所有组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /etc/group</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-组操作速查表"><a href="#🔹-组操作速查表" class="headerlink" title="🔹 组操作速查表"></a>🔹 组操作速查表</h3><table>
+<thead>
+<tr>
+<th align="left">操作目的</th>
+<th align="left">命令</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">➕ 新增组</td>
+<td align="left"><code>groupadd</code></td>
+<td align="left"><code>groupadd developers</code></td>
+</tr>
+<tr>
+<td align="left">🔄 修改用户的主组</td>
+<td align="left"><code>usermod -g</code></td>
+<td align="left"><code>usermod -g developers alice</code></td>
+</tr>
+<tr>
+<td align="left">🏷️ 修改组名</td>
+<td align="left"><code>groupmod -n</code></td>
+<td align="left"><code>groupmod -n devs developers</code></td>
+</tr>
+<tr>
+<td align="left">🗑️ 删除组</td>
+<td align="left"><code>groupdel</code></td>
+<td align="left"><code>groupdel devs</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="4-📁-文件权限管理"><a href="#4-📁-文件权限管理" class="headerlink" title="4. 📁 文件权限管理"></a>4. 📁 文件权限管理</h2><h3 id="🔹-查看权限-ll-ls-l"><a href="#🔹-查看权限-ll-ls-l" class="headerlink" title="🔹 查看权限 ll &#x2F; ls -l"></a>🔹 查看权限 <code>ll</code> &#x2F; <code>ls -l</code></h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x  2 user  group  4096 Apr 11 10:00 info/</span><br><span class="line">├─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─</span><br><span class="line">│ │ │ │ │ │ │ │ │ │ │ └─ 其他用户(Others)</span><br><span class="line">│ │ │ │ │ │ │ │ │ │ └─── 所属组(Group)</span><br><span class="line">│ │ │ │ │ │ │ │ │ └───── 属主(Owner)</span><br><span class="line">│ │ │ │ │ │ │ │ └─────── 特殊权限(通常忽略)</span><br><span class="line">│ │ │ │ │ │ │ └───────── 文件类型：d=目录, -=普通文件, l=链接, c/b=设备</span><br><span class="line">│ └───────────────────── 完整权限字符串</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-rwx-权限在文件与目录中的差异"><a href="#🔹-rwx-权限在文件与目录中的差异" class="headerlink" title="🔹 rwx 权限在文件与目录中的差异"></a>🔹 <code>rwx</code> 权限在文件与目录中的差异</h3><table>
+<thead>
+<tr>
+<th align="center">权限位</th>
+<th align="left">对 <strong>文件</strong> 的作用</th>
+<th align="left">对 <strong>目录</strong> 的作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>r</code> (Read)</td>
+<td align="left">读取文件内容</td>
+<td align="left">列出目录内文件名 (<code>ls</code>)</td>
+</tr>
+<tr>
+<td align="center"><code>w</code> (Write)</td>
+<td align="left">修改&#x2F;覆盖文件内容</td>
+<td align="left">在目录中创建、删除、重命名文件</td>
+</tr>
+<tr>
+<td align="center"><code>x</code> (Execute)</td>
+<td align="left">作为程序执行文件</td>
+<td align="left">允许 <code>cd</code> 进入该目录</td>
+</tr>
+</tbody></table>
+<h3 id="🔹-chmod-修改权限"><a href="#🔹-chmod-修改权限" class="headerlink" title="🔹 chmod 修改权限"></a>🔹 <code>chmod</code> 修改权限</h3><p><strong>方式一：符号模式（直观）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> [ugoa][+-=][rwx] 目标</span><br><span class="line"><span class="comment"># u=属主, g=属组, o=其他, a=全部</span></span><br><span class="line"><span class="built_in">chmod</span> u+x info      <span class="comment"># 给属主添加执行权限</span></span><br><span class="line"><span class="built_in">chmod</span> o-rwx info    <span class="comment"># 移除其他用户所有权限</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>方式二：数字模式（推荐 ⭐）</strong></p>
+<blockquote>
+<p><code>r=4</code> | <code>w=2</code> | <code>x=1</code> | 无权限&#x3D;<code>0</code></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 755 info   <span class="comment"># rwxr-xr-x（目录常用）</span></span><br><span class="line"><span class="built_in">chmod</span> 644 info   <span class="comment"># rw-r--r--（文件常用）</span></span><br><span class="line"><span class="built_in">chmod</span> 777 info   <span class="comment"># rwxrwxrwx（全开，慎用）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归修改目录及内部所有文件/子目录</span></span><br><span class="line"><span class="built_in">chmod</span> -R 755 info/</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-chown-修改所有者-所属组"><a href="#🔹-chown-修改所有者-所属组" class="headerlink" title="🔹 chown 修改所有者 &amp; 所属组"></a>🔹 <code>chown</code> 修改所有者 &amp; 所属组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 语法：chown [选项] 用户[:组] 文件/目录</span></span><br><span class="line"><span class="built_in">chown</span> david info                <span class="comment"># 仅修改属主</span></span><br><span class="line"><span class="built_in">chown</span> david:developers info     <span class="comment"># 同时修改属主和属组</span></span><br><span class="line"><span class="built_in">chown</span> -R david:developers info/ <span class="comment"># 递归修改</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-chgrp-仅修改所属组"><a href="#🔹-chgrp-仅修改所属组" class="headerlink" title="🔹 chgrp 仅修改所属组"></a>🔹 <code>chgrp</code> 仅修改所属组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chgrp</span> developers info</span><br><span class="line"><span class="built_in">chgrp</span> -R developers info/  <span class="comment"># 递归</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💡-附：高频命令速查"><a href="#💡-附：高频命令速查" class="headerlink" title="💡 附：高频命令速查"></a>💡 附：高频命令速查</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 👤 用户生命周期</span></span><br><span class="line">useradd -d /home/xxx -g xxx xxx   <span class="comment"># 创建用户（指定家目录与组）</span></span><br><span class="line"><span class="built_in">id</span> xxx                            <span class="comment"># 查看用户身份信息</span></span><br><span class="line">passwd xxx                        <span class="comment"># 设置密码</span></span><br><span class="line">userdel -r xxx                    <span class="comment"># 彻底删除用户（含家目录）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 📁 权限与归属</span></span><br><span class="line"><span class="built_in">chmod</span> -R 755 /path                <span class="comment"># 递归赋权</span></span><br><span class="line"><span class="built_in">chown</span> -R user:group /path         <span class="comment"># 递归修改归属</span></span><br><span class="line">ll                                <span class="comment"># 快速查看权限与归属详情</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ <strong>最佳实践提醒</strong></p>
+<ol>
+<li>生产环境修改 <code>/etc/sudoers</code> <strong>务必使用 <code>visudo</code></strong>，避免语法错误导致提权失效。</li>
+<li>权限分配遵循 <strong>最小权限原则</strong>，谨慎使用 <code>777</code> 或 <code>chmod -R</code>。</li>
+<li>批量操作前建议先用 <code>ls -l</code> 或 <code>find</code> 确认目标范围，防止误伤。</li>
+</ol>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/04/10/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%94%E5%A4%A9-%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB/" rel="prev" title="Linux学习第五天-时间日期类">
+                  <i class="fa fa-angle-left"></i> Linux学习第五天-时间日期类
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZY</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

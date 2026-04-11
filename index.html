@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -152,6 +152,183 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/11/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AD%E5%A4%A9-%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%B1%BB%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZY">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/11/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AD%E5%A4%A9-%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%B1%BB%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Linux学习第六天-用户权限类命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-04-11 15:02:43 / Modified: 15:04:16" itemprop="dateCreated datePublished" datetime="2026-04-11T15:02:43+08:00">2026-04-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="🐧-Linux-用户与权限管理-·-核心笔记"><a href="#🐧-Linux-用户与权限管理-·-核心笔记" class="headerlink" title="🐧 Linux 用户与权限管理 · 核心笔记"></a>🐧 Linux 用户与权限管理 · 核心笔记</h1><hr>
+<h2 id="📑-快速导航"><a href="#📑-快速导航" class="headerlink" title="📑 快速导航"></a>📑 快速导航</h2><ul>
+<li><a href="#1-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4">1. 👤 用户管理命令</a></li>
+<li><a href="#2-sudo-%E6%8F%90%E6%9D%83%E9%85%8D%E7%BD%AE">2. 🔐 <code>sudo</code> 提权配置</a></li>
+<li><a href="#3-%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86">3. 👥 用户组管理</a></li>
+<li><a href="#4-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86">4. 📁 文件权限管理</a></li>
+<li><a href="#%E9%99%84%E9%AB%98%E9%A2%91%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5">💡 附：高频命令速查</a></li>
+</ul>
+<hr>
+<h2 id="1-👤-用户管理命令"><a href="#1-👤-用户管理命令" class="headerlink" title="1. 👤 用户管理命令"></a>1. 👤 用户管理命令</h2><h3 id="🔹-useradd-添加新用户"><a href="#🔹-useradd-添加新用户" class="headerlink" title="🔹 useradd 添加新用户"></a>🔹 <code>useradd</code> 添加新用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基础创建</span></span><br><span class="line">useradd 用户名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定主组创建</span></span><br><span class="line">useradd -g 组名 用户名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定家目录创建</span></span><br><span class="line">useradd -d /home/dave david</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-查看用户信息"><a href="#🔹-查看用户信息" class="headerlink" title="🔹 查看用户信息"></a>🔹 查看用户信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看指定用户的 UID/GID 及所属组</span></span><br><span class="line"><span class="built_in">id</span> tony</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看系统所有用户配置（底层文件）</span></span><br><span class="line"><span class="built_in">cat</span> /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-切换与查看当前用户"><a href="#🔹-切换与查看当前用户" class="headerlink" title="🔹 切换与查看当前用户"></a>🔹 切换与查看当前用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换至其他用户（需输入目标用户密码）</span></span><br><span class="line">su 用户名</span><br><span class="line"><span class="built_in">exit</span>  <span class="comment"># 退出当前登录会话</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前身份</span></span><br><span class="line"><span class="built_in">whoami</span>      <span class="comment"># 仅输出用户名</span></span><br><span class="line"><span class="built_in">who</span> am i    <span class="comment"># 输出详细登录终端与时间信息</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-passwd-设置-修改密码"><a href="#🔹-passwd-设置-修改密码" class="headerlink" title="🔹 passwd 设置&#x2F;修改密码"></a>🔹 <code>passwd</code> 设置&#x2F;修改密码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd 用户名  <span class="comment"># root 可修改任意用户，普通用户仅能修改自身密码</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-🔐-sudo-提权配置"><a href="#2-🔐-sudo-提权配置" class="headerlink" title="2. 🔐 sudo 提权配置"></a>2. 🔐 <code>sudo</code> 提权配置</h2><h3 id="🔹-临时使用-root-权限"><a href="#🔹-临时使用-root-权限" class="headerlink" title="🔹 临时使用 root 权限"></a>🔹 临时使用 <code>root</code> 权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> 命令  <span class="comment"># 执行时需输入当前用户密码</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-授权普通用户使用-sudo"><a href="#🔹-授权普通用户使用-sudo" class="headerlink" title="🔹 授权普通用户使用 sudo"></a>🔹 授权普通用户使用 <code>sudo</code></h3><p>编辑 <code>/etc/sudoers</code> 配置文件（<strong>强烈建议使用 <code>visudo</code> 命令，自带语法检查</strong>）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sudoers</span><br><span class="line"><span class="comment"># 在文件中添加如下行（示例）：</span></span><br><span class="line">username ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>💡 <strong>说明</strong>：<code>username</code> 替换为实际用户名。添加后该用户即可通过 <code>sudo</code> 执行特权命令。</p>
+</blockquote>
+<hr>
+<h2 id="3-👥-用户组管理"><a href="#3-👥-用户组管理" class="headerlink" title="3. 👥 用户组管理"></a>3. 👥 用户组管理</h2><h3 id="🔹-查看系统所有组"><a href="#🔹-查看系统所有组" class="headerlink" title="🔹 查看系统所有组"></a>🔹 查看系统所有组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /etc/group</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-组操作速查表"><a href="#🔹-组操作速查表" class="headerlink" title="🔹 组操作速查表"></a>🔹 组操作速查表</h3><table>
+<thead>
+<tr>
+<th align="left">操作目的</th>
+<th align="left">命令</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">➕ 新增组</td>
+<td align="left"><code>groupadd</code></td>
+<td align="left"><code>groupadd developers</code></td>
+</tr>
+<tr>
+<td align="left">🔄 修改用户的主组</td>
+<td align="left"><code>usermod -g</code></td>
+<td align="left"><code>usermod -g developers alice</code></td>
+</tr>
+<tr>
+<td align="left">🏷️ 修改组名</td>
+<td align="left"><code>groupmod -n</code></td>
+<td align="left"><code>groupmod -n devs developers</code></td>
+</tr>
+<tr>
+<td align="left">🗑️ 删除组</td>
+<td align="left"><code>groupdel</code></td>
+<td align="left"><code>groupdel devs</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="4-📁-文件权限管理"><a href="#4-📁-文件权限管理" class="headerlink" title="4. 📁 文件权限管理"></a>4. 📁 文件权限管理</h2><h3 id="🔹-查看权限-ll-ls-l"><a href="#🔹-查看权限-ll-ls-l" class="headerlink" title="🔹 查看权限 ll &#x2F; ls -l"></a>🔹 查看权限 <code>ll</code> &#x2F; <code>ls -l</code></h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x  2 user  group  4096 Apr 11 10:00 info/</span><br><span class="line">├─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─</span><br><span class="line">│ │ │ │ │ │ │ │ │ │ │ └─ 其他用户(Others)</span><br><span class="line">│ │ │ │ │ │ │ │ │ │ └─── 所属组(Group)</span><br><span class="line">│ │ │ │ │ │ │ │ │ └───── 属主(Owner)</span><br><span class="line">│ │ │ │ │ │ │ │ └─────── 特殊权限(通常忽略)</span><br><span class="line">│ │ │ │ │ │ │ └───────── 文件类型：d=目录, -=普通文件, l=链接, c/b=设备</span><br><span class="line">│ └───────────────────── 完整权限字符串</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-rwx-权限在文件与目录中的差异"><a href="#🔹-rwx-权限在文件与目录中的差异" class="headerlink" title="🔹 rwx 权限在文件与目录中的差异"></a>🔹 <code>rwx</code> 权限在文件与目录中的差异</h3><table>
+<thead>
+<tr>
+<th align="center">权限位</th>
+<th align="left">对 <strong>文件</strong> 的作用</th>
+<th align="left">对 <strong>目录</strong> 的作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>r</code> (Read)</td>
+<td align="left">读取文件内容</td>
+<td align="left">列出目录内文件名 (<code>ls</code>)</td>
+</tr>
+<tr>
+<td align="center"><code>w</code> (Write)</td>
+<td align="left">修改&#x2F;覆盖文件内容</td>
+<td align="left">在目录中创建、删除、重命名文件</td>
+</tr>
+<tr>
+<td align="center"><code>x</code> (Execute)</td>
+<td align="left">作为程序执行文件</td>
+<td align="left">允许 <code>cd</code> 进入该目录</td>
+</tr>
+</tbody></table>
+<h3 id="🔹-chmod-修改权限"><a href="#🔹-chmod-修改权限" class="headerlink" title="🔹 chmod 修改权限"></a>🔹 <code>chmod</code> 修改权限</h3><p><strong>方式一：符号模式（直观）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> [ugoa][+-=][rwx] 目标</span><br><span class="line"><span class="comment"># u=属主, g=属组, o=其他, a=全部</span></span><br><span class="line"><span class="built_in">chmod</span> u+x info      <span class="comment"># 给属主添加执行权限</span></span><br><span class="line"><span class="built_in">chmod</span> o-rwx info    <span class="comment"># 移除其他用户所有权限</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>方式二：数字模式（推荐 ⭐）</strong></p>
+<blockquote>
+<p><code>r=4</code> | <code>w=2</code> | <code>x=1</code> | 无权限&#x3D;<code>0</code></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 755 info   <span class="comment"># rwxr-xr-x（目录常用）</span></span><br><span class="line"><span class="built_in">chmod</span> 644 info   <span class="comment"># rw-r--r--（文件常用）</span></span><br><span class="line"><span class="built_in">chmod</span> 777 info   <span class="comment"># rwxrwxrwx（全开，慎用）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归修改目录及内部所有文件/子目录</span></span><br><span class="line"><span class="built_in">chmod</span> -R 755 info/</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-chown-修改所有者-所属组"><a href="#🔹-chown-修改所有者-所属组" class="headerlink" title="🔹 chown 修改所有者 &amp; 所属组"></a>🔹 <code>chown</code> 修改所有者 &amp; 所属组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 语法：chown [选项] 用户[:组] 文件/目录</span></span><br><span class="line"><span class="built_in">chown</span> david info                <span class="comment"># 仅修改属主</span></span><br><span class="line"><span class="built_in">chown</span> david:developers info     <span class="comment"># 同时修改属主和属组</span></span><br><span class="line"><span class="built_in">chown</span> -R david:developers info/ <span class="comment"># 递归修改</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-chgrp-仅修改所属组"><a href="#🔹-chgrp-仅修改所属组" class="headerlink" title="🔹 chgrp 仅修改所属组"></a>🔹 <code>chgrp</code> 仅修改所属组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chgrp</span> developers info</span><br><span class="line"><span class="built_in">chgrp</span> -R developers info/  <span class="comment"># 递归</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💡-附：高频命令速查"><a href="#💡-附：高频命令速查" class="headerlink" title="💡 附：高频命令速查"></a>💡 附：高频命令速查</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 👤 用户生命周期</span></span><br><span class="line">useradd -d /home/xxx -g xxx xxx   <span class="comment"># 创建用户（指定家目录与组）</span></span><br><span class="line"><span class="built_in">id</span> xxx                            <span class="comment"># 查看用户身份信息</span></span><br><span class="line">passwd xxx                        <span class="comment"># 设置密码</span></span><br><span class="line">userdel -r xxx                    <span class="comment"># 彻底删除用户（含家目录）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 📁 权限与归属</span></span><br><span class="line"><span class="built_in">chmod</span> -R 755 /path                <span class="comment"># 递归赋权</span></span><br><span class="line"><span class="built_in">chown</span> -R user:group /path         <span class="comment"># 递归修改归属</span></span><br><span class="line">ll                                <span class="comment"># 快速查看权限与归属详情</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ <strong>最佳实践提醒</strong></p>
+<ol>
+<li>生产环境修改 <code>/etc/sudoers</code> <strong>务必使用 <code>visudo</code></strong>，避免语法错误导致提权失效。</li>
+<li>权限分配遵循 <strong>最小权限原则</strong>，谨慎使用 <code>777</code> 或 <code>chmod -R</code>。</li>
+<li>批量操作前建议先用 <code>ls -l</code> 或 <code>find</code> 确认目标范围，防止误伤。</li>
+</ol>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
