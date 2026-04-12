@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="🐧 Linux 常用命令速查：搜索查找与压缩解压📖 前言在 Linux 日常操作中，快速定位文件与高效归档压缩是最基础也最高频的技能。本文基于实操笔记整理，按使用场景分类，配合参数表、代码示例与避坑指南，助你形成肌肉记忆，告别反复查阅。  🔍 一、搜索查找类命令📊 核心命令对比速查   命令 查找目标 核心特点 典型场景    find 文件&#x2F;目录（名称、大小、权限等） 实时全盘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux学习第七天-搜索查找与解压缩类">
+<meta property="og:url" content="http://example.com/2026/04/12/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%83%E5%A4%A9-%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE%E4%B8%8E%E8%A7%A3%E5%8E%8B%E7%BC%A9%E7%B1%BB/index.html">
+<meta property="og:site_name" content="ZY_BLOGS">
+<meta property="og:description" content="🐧 Linux 常用命令速查：搜索查找与压缩解压📖 前言在 Linux 日常操作中，快速定位文件与高效归档压缩是最基础也最高频的技能。本文基于实操笔记整理，按使用场景分类，配合参数表、代码示例与避坑指南，助你形成肌肉记忆，告别反复查阅。  🔍 一、搜索查找类命令📊 核心命令对比速查   命令 查找目标 核心特点 典型场景    find 文件&#x2F;目录（名称、大小、权限等） 实时全盘">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-04-12T07:11:27.000Z">
+<meta property="article:modified_time" content="2026-04-12T07:13:49.412Z">
+<meta property="article:author" content="ZY">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/04/12/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%83%E5%A4%A9-%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE%E4%B8%8E%E8%A7%A3%E5%8E%8B%E7%BC%A9%E7%B1%BB/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/04/12/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%83%E5%A4%A9-%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE%E4%B8%8E%E8%A7%A3%E5%8E%8B%E7%BC%A9%E7%B1%BB/","path":"2026/04/12/Linux学习第七天-搜索查找与解压缩类/","title":"Linux学习第七天-搜索查找与解压缩类"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux学习第七天-搜索查找与解压缩类 | ZY_BLOGS</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ZY_BLOGS</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%90%A7-Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%EF%BC%9A%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE%E4%B8%8E%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B"><span class="nav-number">1.</span> <span class="nav-text">🐧 Linux 常用命令速查：搜索查找与压缩解压</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%96-%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">📖 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%8D-%E4%B8%80%E3%80%81%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE%E7%B1%BB%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">🔍 一、搜索查找类命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%93%8A-%E6%A0%B8%E5%BF%83%E5%91%BD%E4%BB%A4%E5%AF%B9%E6%AF%94%E9%80%9F%E6%9F%A5"><span class="nav-number">1.2.1.</span> <span class="nav-text">📊 核心命令对比速查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%92%A1-%E6%A0%B8%E5%BF%83%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.2.2.</span> <span class="nav-text">💡 核心使用详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-find%EF%BC%9A%E5%AE%9E%E6%97%B6%E7%B2%BE%E5%87%86%E6%9F%A5%E6%89%BE"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">1. find：实时精准查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-locate%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2. locate：数据库快速定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-grep-%E7%AE%A1%E9%81%93%E7%AC%A6-%EF%BC%9A%E5%86%85%E5%AE%B9%E8%BF%87%E6%BB%A4%E5%88%A9%E5%99%A8"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">3. grep + 管道符 |：内容过滤利器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-wc%EF%BC%9A%E7%BB%9F%E8%AE%A1%E8%AE%A1%E6%95%B0"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">4. wc：统计计数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%A6-%E4%BA%8C%E3%80%81%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B%E7%BC%A9%E7%B1%BB%E5%91%BD%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">📦 二、压缩与解压缩类命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%93%8A-%E5%8E%8B%E7%BC%A9%E6%A0%BC%E5%BC%8F%E5%AF%B9%E6%AF%94%E9%80%9F%E6%9F%A5"><span class="nav-number">1.3.1.</span> <span class="nav-text">📊 压缩格式对比速查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%92%A1-%E6%A0%B8%E5%BF%83%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">💡 核心使用详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-gzip-gunzip%EF%BC%9A%E5%8D%95%E6%96%87%E4%BB%B6%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">1. gzip &#x2F; gunzip：单文件压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-zip-unzip%EF%BC%9A%E8%B7%A8%E5%B9%B3%E5%8F%B0%E9%80%9A%E7%94%A8"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2. zip &#x2F; unzip：跨平台通用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-tar%EF%BC%9A%E6%89%93%E5%8C%85%E8%A7%A3%E5%8E%8B%E7%A5%9E%E5%99%A8%EF%BC%88%F0%9F%8C%9F-%E6%8E%A8%E8%8D%90%E6%8E%8C%E6%8F%A1%EF%BC%89"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">3. tar：打包解压神器（🌟 推荐掌握）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%A0-%E4%B8%89%E3%80%81%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93"><span class="nav-number">1.4.</span> <span class="nav-text">🧠 三、实战经验总结</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ZY</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/12/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%83%E5%A4%A9-%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE%E4%B8%8E%E8%A7%A3%E5%8E%8B%E7%BC%A9%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZY">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Linux学习第七天-搜索查找与解压缩类 | ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux学习第七天-搜索查找与解压缩类
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-04-12 15:11:27 / Modified: 15:13:49" itemprop="dateCreated datePublished" datetime="2026-04-12T15:11:27+08:00">2026-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="🐧-Linux-常用命令速查：搜索查找与压缩解压"><a href="#🐧-Linux-常用命令速查：搜索查找与压缩解压" class="headerlink" title="🐧 Linux 常用命令速查：搜索查找与压缩解压"></a>🐧 Linux 常用命令速查：搜索查找与压缩解压</h1><h2 id="📖-前言"><a href="#📖-前言" class="headerlink" title="📖 前言"></a>📖 前言</h2><p>在 Linux 日常操作中，<strong>快速定位文件</strong>与<strong>高效归档压缩</strong>是最基础也最高频的技能。本文基于实操笔记整理，按使用场景分类，配合参数表、代码示例与避坑指南，助你形成肌肉记忆，告别反复查阅。</p>
+<hr>
+<h2 id="🔍-一、搜索查找类命令"><a href="#🔍-一、搜索查找类命令" class="headerlink" title="🔍 一、搜索查找类命令"></a>🔍 一、搜索查找类命令</h2><h3 id="📊-核心命令对比速查"><a href="#📊-核心命令对比速查" class="headerlink" title="📊 核心命令对比速查"></a>📊 核心命令对比速查</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">查找目标</th>
+<th align="left">核心特点</th>
+<th align="left">典型场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>find</code></td>
+<td align="left">文件&#x2F;目录（名称、大小、权限等）</td>
+<td align="left">实时全盘扫描，功能最强但稍慢</td>
+<td align="left">精确查找、多条件过滤</td>
+</tr>
+<tr>
+<td align="left"><code>locate</code></td>
+<td align="left">文件路径</td>
+<td align="left">依赖本地数据库，速度极快</td>
+<td align="left">快速定位已知文件名</td>
+</tr>
+<tr>
+<td align="left"><code>which</code></td>
+<td align="left">可执行程序</td>
+<td align="left">仅检索 <code>$PATH</code> 环境变量</td>
+<td align="left">确认命令安装路径</td>
+</tr>
+<tr>
+<td align="left"><code>whereis</code></td>
+<td align="left">二进制&#x2F;源码&#x2F;man手册</td>
+<td align="left">范围固定，速度较快</td>
+<td align="left">查找命令关联文件位置</td>
+</tr>
+<tr>
+<td align="left"><code>grep</code></td>
+<td align="left"><strong>文件内容</strong></td>
+<td align="left">文本过滤神器，常配合管道使用</td>
+<td align="left">在日志&#x2F;配置文件中查关键字</td>
+</tr>
+</tbody></table>
+<h3 id="💡-核心使用详解"><a href="#💡-核心使用详解" class="headerlink" title="💡 核心使用详解"></a>💡 核心使用详解</h3><h4 id="1-find：实时精准查找"><a href="#1-find：实时精准查找" class="headerlink" title="1. find：实时精准查找"></a>1. <code>find</code>：实时精准查找</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find [搜索路径] [选项] [表达式]</span><br></pre></td></tr></table></figure>
+<p><strong>常用选项：</strong></p>
+<ul>
+<li><code>-name</code>：按文件名匹配（支持 <code>*</code> <code>?</code> 通配符）</li>
+<li><code>-user</code>：按文件所属用户查找</li>
+<li><code>-size</code>：按文件大小查找（<code>+</code> 大于，<code>-</code> 小于，<code>k/M/G</code> 为单位）</li>
+</ul>
+<p><strong>实战示例：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查找 /root 下名为 info 的文件</span></span><br><span class="line">find /root -name <span class="string">&quot;info&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找 /root 下所有 .cfg 配置文件</span></span><br><span class="line">find /root -name <span class="string">&quot;*.cfg&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找 /home 下属于用户 tony 的文件</span></span><br><span class="line">find /home -user tony</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找 /root 下大于 1M 的文件（注：原笔记 =size 为笔误，应为 -size）</span></span><br><span class="line">find /root -size +1M</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-locate：数据库快速定位"><a href="#2-locate：数据库快速定位" class="headerlink" title="2. locate：数据库快速定位"></a>2. <code>locate</code>：数据库快速定位</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ⚠️ 新创建的文件需先更新数据库才能被搜到</span></span><br><span class="line"><span class="built_in">sudo</span> updatedb</span><br><span class="line"><span class="comment"># 快速查找文件路径</span></span><br><span class="line">locate 文件名或关键词</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-grep-管道符-：内容过滤利器"><a href="#3-grep-管道符-：内容过滤利器" class="headerlink" title="3. grep + 管道符 |：内容过滤利器"></a>3. <code>grep</code> + 管道符 <code>|</code>：内容过滤利器</h4><blockquote>
+<p>📌 <strong>重要区别</strong>：<code>find</code> &#x2F; <code>which</code> 找的是<strong>文件位置</strong>，而 <code>grep</code> 找的是<strong>文件内容</strong>。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep [选项] <span class="string">&quot;查找内容&quot;</span> 源文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-n</code>：显示匹配行及行号</li>
+<li><code>|</code>（管道符）：将前一个命令的标准输出，传递给后一个命令作为标准输入。</li>
+</ul>
+<p><strong>实战示例：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在配置文件中查找含 boot 的行，显示行号后，统计匹配行数</span></span><br><span class="line">grep -n <span class="string">&quot;boot&quot;</span> initial-setup-ks.cfg | <span class="built_in">wc</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-wc：统计计数"><a href="#4-wc：统计计数" class="headerlink" title="4. wc：统计计数"></a>4. <code>wc</code>：统计计数</h4><p>常与管道配合，输出三列数据：<code>行数  单词数  字节数</code>。若只需行数可加 <code>-l</code> 参数。</p>
+<hr>
+<h2 id="📦-二、压缩与解压缩类命令"><a href="#📦-二、压缩与解压缩类命令" class="headerlink" title="📦 二、压缩与解压缩类命令"></a>📦 二、压缩与解压缩类命令</h2><h3 id="📊-压缩格式对比速查"><a href="#📊-压缩格式对比速查" class="headerlink" title="📊 压缩格式对比速查"></a>📊 压缩格式对比速查</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">压缩格式</th>
+<th align="left">特点</th>
+<th align="left">适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>gzip</code> &#x2F; <code>gunzip</code></td>
+<td align="left"><code>.gz</code></td>
+<td align="left">单文件压缩，Linux 原生，压缩率高</td>
+<td align="left">日志归档、单文件瘦身</td>
+</tr>
+<tr>
+<td align="left"><code>zip</code> &#x2F; <code>unzip</code></td>
+<td align="left"><code>.zip</code></td>
+<td align="left">跨平台兼容性好，支持目录递归</td>
+<td align="left">与 Windows&#x2F;macOS 交互</td>
+</tr>
+<tr>
+<td align="left"><code>tar</code></td>
+<td align="left"><code>.tar</code> &#x2F; <code>.tar.gz</code></td>
+<td align="left"><strong>打包+压缩</strong>，完整保留权限与目录结构</td>
+<td align="left">服务器备份、源码分发</td>
+</tr>
+</tbody></table>
+<h3 id="💡-核心使用详解-1"><a href="#💡-核心使用详解-1" class="headerlink" title="💡 核心使用详解"></a>💡 核心使用详解</h3><h4 id="1-gzip-gunzip：单文件压缩"><a href="#1-gzip-gunzip：单文件压缩" class="headerlink" title="1. gzip &#x2F; gunzip：单文件压缩"></a>1. <code>gzip</code> &#x2F; <code>gunzip</code>：单文件压缩</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 压缩（原文件默认被替换为 .gz 文件）</span></span><br><span class="line">gzip 文件名</span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">gunzip 文件名.gz</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>📝 注：<code>gzip</code> 无法直接压缩目录，需先打包或使用 <code>tar</code>。</p>
+</blockquote>
+<h4 id="2-zip-unzip：跨平台通用"><a href="#2-zip-unzip：跨平台通用" class="headerlink" title="2. zip &#x2F; unzip：跨平台通用"></a>2. <code>zip</code> &#x2F; <code>unzip</code>：跨平台通用</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 压缩（-r 表示递归处理子目录）</span></span><br><span class="line">zip [选项] 压缩包.zip 目标文件/目录</span><br><span class="line"><span class="comment"># 解压（-d 指定解压目标路径）</span></span><br><span class="line">unzip [选项] 压缩包.zip</span><br></pre></td></tr></table></figure>
+<p><strong>示例：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zip -r project.zip ./src/          <span class="comment"># 压缩目录</span></span><br><span class="line">unzip -d /tmp/backup project.zip   <span class="comment"># 解压到指定目录</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-tar：打包解压神器（🌟-推荐掌握）"><a href="#3-tar：打包解压神器（🌟-推荐掌握）" class="headerlink" title="3. tar：打包解压神器（🌟 推荐掌握）"></a>3. <code>tar</code>：打包解压神器（🌟 推荐掌握）</h4><p>Linux 下最常用的归档工具，参数组合灵活。</p>
+<p><strong>核心参数口诀：</strong> <code>cvfxzC</code></p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">含义</th>
+<th align="left">记忆技巧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-c</code></td>
+<td align="left">create，创建归档</td>
+<td align="left">📦 打包</td>
+</tr>
+<tr>
+<td align="left"><code>-v</code></td>
+<td align="left">verbose，显示详细过程</td>
+<td align="left">👁️ 看进度</td>
+</tr>
+<tr>
+<td align="left"><code>-x</code></td>
+<td align="left">extract，解归档</td>
+<td align="left">📂 解压</td>
+</tr>
+<tr>
+<td align="left"><code>-z</code></td>
+<td align="left">gzip，调用 gzip 压缩&#x2F;解压</td>
+<td align="left">🔧 处理 .gz</td>
+</tr>
+<tr>
+<td align="left"><code>-f</code></td>
+<td align="left">file，指定归档文件名</td>
+<td align="left">📛 <strong>必须放最后</strong></td>
+</tr>
+<tr>
+<td align="left"><code>-C</code></td>
+<td align="left">change directory，指定解压路径</td>
+<td align="left">🎯 定向释放</td>
+</tr>
+</tbody></table>
+<p><strong>实战示例：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 📦 打包压缩：将多个文件/目录打包为 temp.tar.gz</span></span><br><span class="line">tar -zcvf temp.tar.gz initial-setup-ks.cfg 111.txt info 公共/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 📂 解压：将 temp.tar.gz 完整解压到 /tmp 目录</span></span><br><span class="line">tar -zxvf temp.tar.gz -C /tmp</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>⚠️ <strong>避坑提示</strong>：参数 <code>-f</code> 后面必须紧跟压缩包文件名，且习惯上放在参数组合的末尾（如 <code>-zcvf</code> 而非 <code>-fzcv</code>）。</p>
+</blockquote>
+<hr>
+<h2 id="🧠-三、实战经验总结"><a href="#🧠-三、实战经验总结" class="headerlink" title="🧠 三、实战经验总结"></a>🧠 三、实战经验总结</h2><ol>
+<li><strong>按需选查找命令</strong>：<ul>
+<li>刚创建的文件 <code>locate</code> 搜不到？→ 执行 <code>updatedb</code> 或直接上 <code>find</code></li>
+<li>找命令装在哪？→ <code>which</code> 或 <code>whereis</code></li>
+<li>翻日志找报错？→ <code>grep -n &quot;ERROR&quot; app.log | tail -20</code></li>
+</ul>
+</li>
+<li><strong>管道符是效率灵魂</strong>：<code>cmd1 | cmd2 | cmd3</code> 能实现复杂流处理，例如 <code>find /var/log -name &quot;*.log&quot; | xargs grep -l &quot;timeout&quot;</code></li>
+<li><strong>压缩格式选择策略</strong>：<ul>
+<li>纯 Linux 服务器交互 → 优先 <code>tar -zcvf</code></li>
+<li>需发给非 Linux 环境同事 → 用 <code>zip -r</code></li>
+<li>仅压缩单个大文本&#x2F;日志 → <code>gzip</code> 最轻量</li>
+</ul>
+</li>
+</ol>
+<hr>
+<blockquote>
+<p>📝 本文基于个人实操笔记整理，命令参数均经环境验证。建议收藏备用，日常练习可配合 <code>man 命令名</code> 深入探索。持续更新中，欢迎交流指正！</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/04/11/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AD%E5%A4%A9-%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%B1%BB%E5%91%BD%E4%BB%A4/" rel="prev" title="Linux学习第六天-用户权限类命令">
+                  <i class="fa fa-angle-left"></i> Linux学习第六天-用户权限类命令
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZY</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
