@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -152,6 +152,260 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/13/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AB%E5%A4%A9-%E7%A3%81%E7%9B%98%E6%9F%A5%E7%9C%8B%E5%92%8C%E5%88%86%E5%8C%BA%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZY">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/13/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AB%E5%A4%A9-%E7%A3%81%E7%9B%98%E6%9F%A5%E7%9C%8B%E5%92%8C%E5%88%86%E5%8C%BA%E7%B1%BB/" class="post-title-link" itemprop="url">Linux学习第八天-磁盘查看和分区类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-04-13 16:35:57 / Modified: 16:38:50" itemprop="dateCreated datePublished" datetime="2026-04-13T16:35:57+08:00">2026-04-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="🖥️-Linux-磁盘管理命令全解析：从查看到分区，一文搞懂！"><a href="#🖥️-Linux-磁盘管理命令全解析：从查看到分区，一文搞懂！" class="headerlink" title="🖥️ Linux 磁盘管理命令全解析：从查看到分区，一文搞懂！"></a>🖥️ Linux 磁盘管理命令全解析：从查看到分区，一文搞懂！</h1><hr>
+<h2 id="📖-核心概念速览（防懵指南）"><a href="#📖-核心概念速览（防懵指南）" class="headerlink" title="📖 核心概念速览（防懵指南）"></a>📖 核心概念速览（防懵指南）</h2><p>在敲命令之前，先理清 Linux 管理磁盘的 <strong>3 个核心逻辑</strong>：</p>
+<ol>
+<li><strong>看空间</strong>：到底是谁占满了硬盘？（<code>du</code> 查文件，<code>df</code> 查分区）</li>
+<li><strong>看结构 &amp; 挂载</strong>：硬盘在哪？怎么接到系统里？（<code>lsblk</code>、<code>mount</code>、<code>fstab</code>）</li>
+<li><strong>划地盘</strong>：新硬盘怎么用？（<code>fdisk</code> 分区）</li>
+</ol>
+<hr>
+<h2 id="🔍-一、磁盘空间查看：du-vs-df"><a href="#🔍-一、磁盘空间查看：du-vs-df" class="headerlink" title="🔍 一、磁盘空间查看：du vs df"></a>🔍 一、磁盘空间查看：<code>du</code> vs <code>df</code></h2><p>这两个命令最容易搞混，记住一句话：<strong><code>du</code> 向下看（文件&#x2F;目录），<code>df</code> 向上看（文件系统&#x2F;分区）</strong>。</p>
+<h3 id="1-du-Disk-Usage-查看文件-目录实际占用"><a href="#1-du-Disk-Usage-查看文件-目录实际占用" class="headerlink" title="1. du (Disk Usage) - 查看文件&#x2F;目录实际占用"></a>1. <code>du</code> (Disk Usage) - 查看文件&#x2F;目录实际占用</h3><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">含义</th>
+<th align="left">记忆技巧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-h</code></td>
+<td align="left"><code>--human-readable</code>，以 K&#x2F;M&#x2F;G 显示</td>
+<td align="left"><strong>H</strong>uman（人类可读）</td>
+</tr>
+<tr>
+<td align="left"><code>-a</code></td>
+<td align="left"><code>--all</code>，显示所有文件（含隐藏）</td>
+<td align="left"><strong>A</strong>ll（全部）</td>
+</tr>
+<tr>
+<td align="left"><code>-c</code></td>
+<td align="left"><code>--total</code>，最后显示总计</td>
+<td align="left"><strong>C</strong>ount（合计）</td>
+</tr>
+<tr>
+<td align="left"><code>-s</code></td>
+<td align="left"><code>--summarize</code>，只显示目录总和</td>
+<td align="left"><strong>S</strong>ummary（摘要）</td>
+</tr>
+<tr>
+<td align="left"><code>--max-depth=n</code></td>
+<td align="left">控制向下递归的目录层数</td>
+<td align="left">层数限制器</td>
+</tr>
+</tbody></table>
+<p>📌 <strong>实战示例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前目录总大小（最常用）</span></span><br><span class="line"><span class="built_in">du</span> -sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 /var 目录下所有文件的大小，并显示总计</span></span><br><span class="line"><span class="built_in">du</span> -ach /var</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只看当前目录下一层的目录/文件大小（不展开子目录）</span></span><br><span class="line"><span class="built_in">du</span> --max-depth=1 -ah</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-df-Disk-Free-查看磁盘分区剩余空间"><a href="#2-df-Disk-Free-查看磁盘分区剩余空间" class="headerlink" title="2. df (Disk Free) - 查看磁盘分区剩余空间"></a>2. <code>df</code> (Disk Free) - 查看磁盘分区剩余空间</h3><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-h</code></td>
+<td align="left">以易读格式显示容量</td>
+</tr>
+</tbody></table>
+<p>📌 <strong>实战示例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span> -h</span><br><span class="line"><span class="comment"># 输出示例：</span></span><br><span class="line"><span class="comment"># Filesystem      Size  Used Avail Use% Mounted on</span></span><br><span class="line"><span class="comment"># /dev/sda1        50G   20G   28G  42% /</span></span><br><span class="line"><span class="comment"># /dev/sdb1       100G   10G   85G  11% /data</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>💡 <strong>关键区别</strong>：<code>df</code> 看的是<strong>文件系统层面</strong>的剩余空间；<code>du</code> 看的是<strong>文件层面</strong>的占用。两者偶尔不一致，通常是因为有文件被删除但进程仍占用（<code>lsof | grep deleted</code>）。</p>
+</blockquote>
+<hr>
+<h2 id="📂-二、设备查看与挂载管理"><a href="#📂-二、设备查看与挂载管理" class="headerlink" title="📂 二、设备查看与挂载管理"></a>📂 二、设备查看与挂载管理</h2><h3 id="1-lsblk-List-Block-Devices-树状查看硬盘结构"><a href="#1-lsblk-List-Block-Devices-树状查看硬盘结构" class="headerlink" title="1. lsblk (List Block Devices) - 树状查看硬盘结构"></a>1. <code>lsblk</code> (List Block Devices) - 树状查看硬盘结构</h3><p>最直观的“硬盘地图”命令，比 <code>fdisk -l</code> 更适合日常查看。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lsblk      <span class="comment"># 查看设备、大小、挂载点</span></span><br><span class="line">lsblk -f   <span class="comment"># 额外显示文件系统类型(FSTYPE)和UUID（排错必备）</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-mount-umount-手动挂载与卸载"><a href="#2-mount-umount-手动挂载与卸载" class="headerlink" title="2. mount &#x2F; umount - 手动挂载与卸载"></a>2. <code>mount</code> &#x2F; <code>umount</code> - 手动挂载与卸载</h3><p>Linux 没有“盘符”概念，所有设备必须<strong>挂载到某个空目录</strong>才能访问。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 挂载语法</span></span><br><span class="line">mount [-t 文件系统类型] [-o 选项] 设备路径 挂载点目录</span><br><span class="line">mount -t ext4 /dev/sdb1 /mnt/data</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载（二选一即可）</span></span><br><span class="line">umount /dev/sdb1</span><br><span class="line">umount /mnt/data</span><br></pre></td></tr></table></figure>
+<p>⚠️ <strong>注意</strong>：卸载前必须退出该目录（<code>cd ~</code>），且不能有进程在使用该目录，否则会报 <code>target is busy</code>。</p>
+<h3 id="3-🤖-开机自动挂载：-etc-fstab"><a href="#3-🤖-开机自动挂载：-etc-fstab" class="headerlink" title="3. 🤖 开机自动挂载：/etc/fstab"></a>3. 🤖 开机自动挂载：<code>/etc/fstab</code></h3><p>手动挂载重启会失效。要实现开机自动挂载，需编辑此文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/fstab</span><br></pre></td></tr></table></figure>
+<p><strong>标准格式（6列）</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;设备/UUID&gt;  &lt;挂载点&gt;  &lt;文件系统类型&gt;  &lt;挂载参数&gt;  &lt;dump备份&gt;  &lt;fsck检查&gt;</span><br><span class="line">/dev/sdb1    /data     ext4            defaults    0           2</span><br></pre></td></tr></table></figure>
+<p>🛑 <strong>高危警告</strong>：修改 <code>fstab</code> 前务必 <code>cp /etc/fstab /etc/fstab.bak</code>！配错可能导致系统无法开机。</p>
+<hr>
+<h2 id="✂️-三、磁盘分区工具：fdisk"><a href="#✂️-三、磁盘分区工具：fdisk" class="headerlink" title="✂️ 三、磁盘分区工具：fdisk"></a>✂️ 三、磁盘分区工具：<code>fdisk</code></h2><p><code>fdisk</code> 是传统的 <strong>MBR 分区表</strong>管理工具（适合 ≤2TB 磁盘）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l          <span class="comment"># 列出所有磁盘及分区详情</span></span><br><span class="line">fdisk /dev/sdb    <span class="comment"># 进入交互式分区界面</span></span><br></pre></td></tr></table></figure>
+<p><strong>交互模式常用按键</strong>：</p>
+<table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">功能</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>m</code></td>
+<td align="left"><code>menu</code></td>
+<td align="left">查看帮助（<strong>忘记命令必按</strong>）</td>
+</tr>
+<tr>
+<td align="left"><code>p</code></td>
+<td align="left"><code>print</code></td>
+<td align="left">打印当前分区表</td>
+</tr>
+<tr>
+<td align="left"><code>n</code></td>
+<td align="left"><code>new</code></td>
+<td align="left">新建分区（<code>p</code>主分区 &#x2F; <code>e</code>扩展分区）</td>
+</tr>
+<tr>
+<td align="left"><code>d</code></td>
+<td align="left"><code>delete</code></td>
+<td align="left">删除分区</td>
+</tr>
+<tr>
+<td align="left"><code>w</code></td>
+<td align="left"><code>write</code></td>
+<td align="left"><strong>保存并退出</strong>（真正生效）</td>
+</tr>
+<tr>
+<td align="left"><code>q</code></td>
+<td align="left"><code>quit</code></td>
+<td align="left">不保存退出</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🌟 <strong>进阶提示</strong>：现代服务器磁盘通常 &gt;2TB，建议改用 <code>parted</code> 或 <code>gdisk</code>（GPT分区表）。分区完成后，记得用 <code>partprobe</code> 或重启让内核重新读取分区表，再格式化（<code>mkfs.ext4 /dev/sdb1</code>）和挂载。</p>
+</blockquote>
+<hr>
+<h2 id="📊-命令速查表（一键截图备用）"><a href="#📊-命令速查表（一键截图备用）" class="headerlink" title="📊 命令速查表（一键截图备用）"></a>📊 命令速查表（一键截图备用）</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">核心作用</th>
+<th align="left">黄金组合</th>
+<th align="left">一句话人话翻译</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>du</code></td>
+<td align="left">查目录&#x2F;文件大小</td>
+<td align="left"><code>du -sh &lt;路径&gt;</code></td>
+<td align="left">“这个文件夹到底吃了多少硬盘？”</td>
+</tr>
+<tr>
+<td align="left"><code>df</code></td>
+<td align="left">查分区剩余空间</td>
+<td align="left"><code>df -h</code></td>
+<td align="left">“我的系统盘&#x2F;数据盘还剩多少？”</td>
+</tr>
+<tr>
+<td align="left"><code>lsblk</code></td>
+<td align="left">看硬盘分区树</td>
+<td align="left"><code>lsblk -f</code></td>
+<td align="left">“电脑插了几块盘？格式是啥？挂哪了？”</td>
+</tr>
+<tr>
+<td align="left"><code>mount</code></td>
+<td align="left">临时挂载设备</td>
+<td align="left"><code>mount /dev/sdb1 /mnt</code></td>
+<td align="left">“把U盘&#x2F;新硬盘‘插’到系统目录上”</td>
+</tr>
+<tr>
+<td align="left"><code>fstab</code></td>
+<td align="left">永久挂载配置</td>
+<td align="left"><code>vim /etc/fstab</code></td>
+<td align="left">“告诉系统：开机自动把硬盘挂上来”</td>
+</tr>
+<tr>
+<td align="left"><code>fdisk</code></td>
+<td align="left">磁盘分区管理</td>
+<td align="left"><code>fdisk -l</code></td>
+<td align="left">“给空白硬盘‘画格子’（分区）”</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="💡-给新手的-3-条避坑建议"><a href="#💡-给新手的-3-条避坑建议" class="headerlink" title="💡 给新手的 3 条避坑建议"></a>💡 给新手的 3 条避坑建议</h2><ol>
+<li><strong>先查后动</strong>：分区、格式化、改 <code>fstab</code> 前，先用 <code>lsblk</code> 和 <code>df -h</code> 确认设备名，<strong>千万别操作错磁盘（如 <code>/dev/sda</code> 通常是系统盘）</strong>。</li>
+<li><strong>卸载失败怎么办</strong>：<code>umount: target is busy</code> → 用 <code>lsof +D /挂载点</code> 或 <code>fuser -m /挂载点</code> 查看谁在占用，杀掉进程或 <code>cd</code> 出去再卸载。</li>
+<li><strong>交互命令别慌</strong>：进 <code>fdisk</code> 后如果不知道下一步按什么，直接敲 <code>m</code> 回车，官方帮助永远最靠谱。</li>
+</ol>
+<hr>
+<p>📝 <em>本篇笔记基于实际运维场景整理，建议配合虚拟机反复练习 <code>du/df/lsblk</code> 组合拳。磁盘操作无小事，养成 <code>备份+确认</code> 的习惯，你就是团队里最稳的仔！</em> </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
