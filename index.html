@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -152,6 +152,221 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/14/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B9%9D%E5%A4%A9-RPM%E4%B8%8EYUM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZY">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/14/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B9%9D%E5%A4%A9-RPM%E4%B8%8EYUM/" class="post-title-link" itemprop="url">Linux学习第九天-RPM与YUM</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-04-14 20:44:00 / Modified: 20:45:05" itemprop="dateCreated datePublished" datetime="2026-04-14T20:44:00+08:00">2026-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="🐧-Linux-软件包管理指南：RPM-与-YUM-详解"><a href="#🐧-Linux-软件包管理指南：RPM-与-YUM-详解" class="headerlink" title="🐧 Linux 软件包管理指南：RPM 与 YUM 详解"></a>🐧 Linux 软件包管理指南：RPM 与 YUM 详解</h1><hr>
+<h2 id="📋-前言"><a href="#📋-前言" class="headerlink" title="📋 前言"></a>📋 前言</h2><p>在 Linux 系统运维中，<strong>软件包管理</strong>是每位开发者和管理员必须掌握的核心技能。本文基于学习笔记，系统梳理了 RPM 包管理工具与 YUM 仓库配置的核心命令与实用技巧，助你高效管理软件依赖，告别”依赖地狱”！</p>
+<hr>
+<h2 id="🔹-一、RPM-包管理基础"><a href="#🔹-一、RPM-包管理基础" class="headerlink" title="🔹 一、RPM 包管理基础"></a>🔹 一、RPM 包管理基础</h2><h3 id="什么是-RPM？"><a href="#什么是-RPM？" class="headerlink" title="什么是 RPM？"></a>什么是 RPM？</h3><p><strong>RPM</strong>（Red Hat Package Manager）是 Red Hat 系列 Linux 发行版的官方打包安装工具，用于软件的安装、查询、验证、升级和卸载。</p>
+<h3 id="📦-常用命令速查表"><a href="#📦-常用命令速查表" class="headerlink" title="📦 常用命令速查表"></a>📦 常用命令速查表</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>查询已安装包</strong></td>
+<td><code>rpm -qa</code></td>
+<td>列出系统所有已安装的 RPM 包</td>
+</tr>
+<tr>
+<td><strong>模糊查询</strong></td>
+<td><code>rpm -qa | grep 软件包名</code></td>
+<td>过滤查找特定软件</td>
+</tr>
+<tr>
+<td><strong>查看包详情</strong></td>
+<td><code>rpm -qi 软件包名称</code></td>
+<td>显示版本、厂商、安装时间等元数据</td>
+</tr>
+<tr>
+<td><strong>卸载软件</strong></td>
+<td><code>rpm -e 软件包名</code></td>
+<td>正常卸载（会检查依赖）</td>
+</tr>
+<tr>
+<td><strong>强制卸载</strong></td>
+<td><code>rpm -e --nodeps 软件包名</code></td>
+<td>忽略依赖关系强制卸载 ⚠️</td>
+</tr>
+<tr>
+<td><strong>安装软件</strong></td>
+<td><code>rpm -ivh 软件包.rpm</code></td>
+<td><code>-i</code>安装 <code>-v</code>详细输出 <code>-h</code>显示进度</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 <strong>参数小贴士</strong><br><code>--nodeps</code>：跳过依赖检查（谨慎使用，可能导致系统不稳定）</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 🔍 实用示例：查找并查看 nginx 信息</span></span><br><span class="line">rpm -qa | grep nginx</span><br><span class="line">rpm -qi nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 🗑️ 卸载示例（推荐先确认依赖）</span></span><br><span class="line">rpm -e nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 📦 安装本地 RPM 包</span></span><br><span class="line">rpm -ivh nginx-1.20.1-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🔹-二、YUM-仓库：自动化包管理神器"><a href="#🔹-二、YUM-仓库：自动化包管理神器" class="headerlink" title="🔹 二、YUM 仓库：自动化包管理神器"></a>🔹 二、YUM 仓库：自动化包管理神器</h2><h3 id="🌟-为什么选择-YUM？"><a href="#🌟-为什么选择-YUM？" class="headerlink" title="🌟 为什么选择 YUM？"></a>🌟 为什么选择 YUM？</h3><p>YUM（Yellowdog Updater Modified）基于 RPM 构建，核心优势：</p>
+<ul>
+<li>✅ <strong>自动解决依赖关系</strong>，一键安装所有前置包</li>
+<li>✅ <strong>支持远程仓库</strong>，软件源集中管理</li>
+<li>✅ <strong>批量更新&#x2F;回滚</strong>，系统维护更高效</li>
+</ul>
+<h3 id="⚙️-YUM-常用命令参数"><a href="#⚙️-YUM-常用命令参数" class="headerlink" title="⚙️ YUM 常用命令参数"></a>⚙️ YUM 常用命令参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基础语法</span></span><br><span class="line">yum [选项] [命令] [参数]</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能说明</th>
+<th>典型用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>install</code></td>
+<td>安装软件包</td>
+<td><code>yum install -y vim</code></td>
+</tr>
+<tr>
+<td><code>update</code></td>
+<td>更新软件&#x2F;系统</td>
+<td><code>yum update httpd</code></td>
+</tr>
+<tr>
+<td><code>check-update</code></td>
+<td>检查可更新包</td>
+<td><code>yum check-update</code></td>
+</tr>
+<tr>
+<td><code>remove</code> &#x2F; <code>erase</code></td>
+<td>卸载软件</td>
+<td><code>yum remove nginx</code></td>
+</tr>
+<tr>
+<td><code>list</code></td>
+<td>列出可用&#x2F;已安装包</td>
+<td><code>yum list available | grep mysql</code></td>
+</tr>
+<tr>
+<td><code>clean</code></td>
+<td>清理缓存</td>
+<td><code>yum clean all</code></td>
+</tr>
+<tr>
+<td><code>deplist</code></td>
+<td>查看依赖关系</td>
+<td><code>yum deplist nginx</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🎯 <strong>推荐选项</strong>：<code>-y</code> 自动确认所有提示，适合脚本自动化  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y git wget curl</span><br></pre></td></tr></table></figure></blockquote>
+<h3 id="🌐-配置网络-YUM-源（以-CentOS-为例）"><a href="#🌐-配置网络-YUM-源（以-CentOS-为例）" class="headerlink" title="🌐 配置网络 YUM 源（以 CentOS 为例）"></a>🌐 配置网络 YUM 源（以 CentOS 为例）</h3><ol>
+<li><p><strong>备份默认配置</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>下载国内镜像源</strong>（推荐阿里云&#x2F;清华源）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 阿里云 CentOS 7 源</span></span><br><span class="line">curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>清理并重建缓存</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>验证配置</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum repolist</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>🔐 <strong>安全提示</strong>：生产环境建议校验 GPG 密钥，避免安装恶意包</p>
+</blockquote>
+<hr>
+<h2 id="🔹-三、最佳实践-避坑指南"><a href="#🔹-三、最佳实践-避坑指南" class="headerlink" title="🔹 三、最佳实践 &amp; 避坑指南"></a>🔹 三、最佳实践 &amp; 避坑指南</h2><h3 id="✅-推荐操作流程"><a href="#✅-推荐操作流程" class="headerlink" title="✅ 推荐操作流程"></a>✅ 推荐操作流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[查询软件] --&gt; B[检查依赖]</span><br><span class="line">B --&gt; C[备份配置]</span><br><span class="line">C --&gt; D[执行安装/更新]</span><br><span class="line">D --&gt; E[验证服务状态]</span><br></pre></td></tr></table></figure>
+
+<h3 id="⚠️-常见注意事项"><a href="#⚠️-常见注意事项" class="headerlink" title="⚠️ 常见注意事项"></a>⚠️ 常见注意事项</h3><ul>
+<li>❗ 使用 <code>--nodeps</code> 前务必确认：强制卸载可能破坏系统组件</li>
+<li>❗ 生产环境更新前：先在测试环境验证兼容性</li>
+<li>❗ 自定义源配置后：记得执行 <code>yum makecache</code> 刷新元数据</li>
+<li>❗ 磁盘空间不足时：定期 <code>yum clean packages</code> 清理旧包</li>
+</ul>
+<h3 id="🛠️-高效技巧"><a href="#🛠️-高效技巧" class="headerlink" title="🛠️ 高效技巧"></a>🛠️ 高效技巧</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 搜索包含关键字的软件</span></span><br><span class="line">yum search nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看某个文件属于哪个包</span></span><br><span class="line">yum whatprovides /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 仅下载不安装（用于离线部署）</span></span><br><span class="line">yum install --downloadonly --downloaddir=/opt/packages nginx</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📚-延伸学习资源"><a href="#📚-延伸学习资源" class="headerlink" title="📚 延伸学习资源"></a>📚 延伸学习资源</h2><ul>
+<li>📘 <a target="_blank" rel="noopener" href="https://rpm-software-management.github.io/">RPM 官方文档</a></li>
+<li>🌍 <a target="_blank" rel="noopener" href="https://mirrors.centos.org/">CentOS 镜像站汇总</a></li>
+<li>🐳 结合 Docker 实践：<code>FROM centos:7 &amp;&amp; RUN yum install -y ...</code></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2118,129 +2333,6 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/06/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E5%A4%A9-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ZY">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZY_BLOGS">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | ZY_BLOGS">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/06/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E5%A4%A9-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">Linux学习第三天-网络配置与系统管理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2026-04-06 13:49:57" itemprop="dateCreated datePublished" datetime="2026-04-06T13:49:57+08:00">2026-04-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-04-09 13:54:58" itemprop="dateModified" datetime="2026-04-09T13:54:58+08:00">2026-04-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="📘-Linux-第三天-网络配置与系统管理"><a href="#📘-Linux-第三天-网络配置与系统管理" class="headerlink" title="📘 Linux 第三天-网络配置与系统管理"></a>📘 Linux 第三天-网络配置与系统管理</h1><hr>
-<h2 id="🌐-网络部分"><a href="#🌐-网络部分" class="headerlink" title="🌐 网络部分"></a>🌐 网络部分</h2><ol>
-<li><p>利用 <code>ping</code> 命令去进行网络连接测试</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.baidu.com</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看网络 IP</p>
-<ul>
-<li>Windows 环境：<code>ipconfig</code></li>
-<li>Linux 环境：<code>ifconfig</code></li>
-</ul>
-</li>
-<li><p>修改静态 IP</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-ens33</span><br></pre></td></tr></table></figure>
-<p>在文件末尾添加：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># IP地址</span></span><br><span class="line"><span class="attr">IPADDR</span>=你要静态规定的IP</span><br><span class="line"><span class="comment"># 网关</span></span><br><span class="line">GATEWAY=</span><br><span class="line"><span class="comment"># 域名解析器</span></span><br><span class="line">DNS1=</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置主机名</p>
-<ul>
-<li>查看主机名命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostname</span><br></pre></td></tr></table></figure></li>
-<li>修改命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname newhostname</span><br></pre></td></tr></table></figure></li>
-<li>利用主机名访问本机方法：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br></pre></td></tr></table></figure>
-进入后在下面插入要绑定的 IP 地址与主机名，例如：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.100  newhostname</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="⚙️-系统管理配置"><a href="#⚙️-系统管理配置" class="headerlink" title="⚙️ 系统管理配置"></a>⚙️ 系统管理配置</h2><h3 id="系统服务管理"><a href="#系统服务管理" class="headerlink" title="系统服务管理"></a>系统服务管理</h3><ol>
-<li><p>基本语法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start|stop|restart|status 服务名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置开机自启动：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span>|<span class="built_in">enable</span> 服务名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看系统所有开机自启动的服务：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-unit-files</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>关机重启命令（✅ 修正拼写与参数格式）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shutdown +数字          <span class="comment"># 在数字分钟后关机</span></span><br><span class="line">shutdown now            </span><br><span class="line"><span class="built_in">sync</span>                    <span class="comment"># 将数据由内存同步到硬盘中</span></span><br><span class="line">shutdown -r now         </span><br><span class="line">halt         		   <span class="comment"># 停机</span></span><br></pre></td></tr></table></figure></li>
-</ol>
 
       
     </div>

@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -152,6 +152,129 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/06/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E5%A4%A9-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZY">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/06/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E5%A4%A9-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">Linux学习第三天-网络配置与系统管理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-04-06 13:49:57" itemprop="dateCreated datePublished" datetime="2026-04-06T13:49:57+08:00">2026-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-04-09 13:54:58" itemprop="dateModified" datetime="2026-04-09T13:54:58+08:00">2026-04-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="📘-Linux-第三天-网络配置与系统管理"><a href="#📘-Linux-第三天-网络配置与系统管理" class="headerlink" title="📘 Linux 第三天-网络配置与系统管理"></a>📘 Linux 第三天-网络配置与系统管理</h1><hr>
+<h2 id="🌐-网络部分"><a href="#🌐-网络部分" class="headerlink" title="🌐 网络部分"></a>🌐 网络部分</h2><ol>
+<li><p>利用 <code>ping</code> 命令去进行网络连接测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.baidu.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看网络 IP</p>
+<ul>
+<li>Windows 环境：<code>ipconfig</code></li>
+<li>Linux 环境：<code>ifconfig</code></li>
+</ul>
+</li>
+<li><p>修改静态 IP</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-ens33</span><br></pre></td></tr></table></figure>
+<p>在文件末尾添加：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># IP地址</span></span><br><span class="line"><span class="attr">IPADDR</span>=你要静态规定的IP</span><br><span class="line"><span class="comment"># 网关</span></span><br><span class="line">GATEWAY=</span><br><span class="line"><span class="comment"># 域名解析器</span></span><br><span class="line">DNS1=</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置主机名</p>
+<ul>
+<li>查看主机名命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostname</span><br></pre></td></tr></table></figure></li>
+<li>修改命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname newhostname</span><br></pre></td></tr></table></figure></li>
+<li>利用主机名访问本机方法：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br></pre></td></tr></table></figure>
+进入后在下面插入要绑定的 IP 地址与主机名，例如：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.100  newhostname</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="⚙️-系统管理配置"><a href="#⚙️-系统管理配置" class="headerlink" title="⚙️ 系统管理配置"></a>⚙️ 系统管理配置</h2><h3 id="系统服务管理"><a href="#系统服务管理" class="headerlink" title="系统服务管理"></a>系统服务管理</h3><ol>
+<li><p>基本语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start|stop|restart|status 服务名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置开机自启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span>|<span class="built_in">enable</span> 服务名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看系统所有开机自启动的服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-unit-files</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关机重启命令（✅ 修正拼写与参数格式）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shutdown +数字          <span class="comment"># 在数字分钟后关机</span></span><br><span class="line">shutdown now            </span><br><span class="line"><span class="built_in">sync</span>                    <span class="comment"># 将数据由内存同步到硬盘中</span></span><br><span class="line">shutdown -r now         </span><br><span class="line">halt         		   <span class="comment"># 停机</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
