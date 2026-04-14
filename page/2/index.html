@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -152,6 +152,286 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/03/Linux%E7%AC%AC%E4%BA%8C%E5%A4%A9-vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZY">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/03/Linux%E7%AC%AC%E4%BA%8C%E5%A4%A9-vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Linux第二天-vim编辑器学习</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-04-03 15:21:02" itemprop="dateCreated datePublished" datetime="2026-04-03T15:21:02+08:00">2026-04-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-04-08 15:23:43" itemprop="dateModified" datetime="2026-04-08T15:23:43+08:00">2026-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="📝-Vim-编辑器核心快捷键笔记：三大模式速查指南"><a href="#📝-Vim-编辑器核心快捷键笔记：三大模式速查指南" class="headerlink" title="📝 Vim 编辑器核心快捷键笔记：三大模式速查指南"></a>📝 Vim 编辑器核心快捷键笔记：三大模式速查指南</h1><hr>
+<h2 id="🟦-一、普通模式（Normal-Mode）"><a href="#🟦-一、普通模式（Normal-Mode）" class="headerlink" title="🟦 一、普通模式（Normal Mode）"></a>🟦 一、普通模式（Normal Mode）</h2><blockquote>
+<p>Vim 启动后的默认模式。光标移动、文本复制&#x2F;删除、撤销等操作均在此完成。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">快捷键</th>
+<th align="left">功能说明</th>
+<th align="left">🛠️ 规范与实战提示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>y</code></td>
+<td align="left">复制（Yank）</td>
+<td align="left">需配合移动指令使用，如 <code>yw</code></td>
+</tr>
+<tr>
+<td align="left"><code>yy</code></td>
+<td align="left">复制当前行</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>ny</code></td>
+<td align="left">复制 n 行</td>
+<td align="left">实际更常用标准写法 <code>nyy</code></td>
+</tr>
+<tr>
+<td align="left"><code>yw</code></td>
+<td align="left">复制一个词</td>
+<td align="left">从光标处复制到词尾</td>
+</tr>
+<tr>
+<td align="left"><code>yny</code></td>
+<td align="left">复制含光标的 n 行</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>y$</code></td>
+<td align="left">复制光标后至行尾</td>
+<td align="left">包含当前字符</td>
+</tr>
+<tr>
+<td align="left"><code>y^</code></td>
+<td align="left">复制光标前至行首</td>
+<td align="left">不包含行首缩进（可用 <code>y0</code> 包含）</td>
+</tr>
+<tr>
+<td align="left"><code>p</code></td>
+<td align="left">粘贴</td>
+<td align="left">粘贴至光标<strong>后方</strong></td>
+</tr>
+<tr>
+<td align="left"><code>np</code></td>
+<td align="left">重复粘贴 n 次</td>
+<td align="left">如 <code>3p</code> 粘贴三次</td>
+</tr>
+<tr>
+<td align="left"><code>d</code></td>
+<td align="left">删除&#x2F;剪切</td>
+<td align="left">删除内容会进入寄存器，可用 <code>p</code> 粘贴</td>
+</tr>
+<tr>
+<td align="left"><code>dw</code></td>
+<td align="left">删除一个词</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>d$</code> &#x2F; <code>d^</code></td>
+<td align="left">删除至行尾 &#x2F; 行首</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>nd</code> &#x2F; <code>dnd</code></td>
+<td align="left">删除 n 行</td>
+<td align="left">推荐标准写法：<code>ndd</code></td>
+</tr>
+<tr>
+<td align="left"><code>u</code></td>
+<td align="left">撤销（Undo）</td>
+<td align="left">可连续按 <code>Ctrl+r</code> 重做（Redo）</td>
+</tr>
+<tr>
+<td align="left"><code>x</code></td>
+<td align="left">删除光标处字符</td>
+<td align="left">笔记记为“剪贴一个词”，实为<strong>单字符</strong>删除</td>
+</tr>
+<tr>
+<td align="left"><code>g</code> &#x2F; <code>G</code> &#x2F; <code>nG</code></td>
+<td align="left">回到文本开始 &#x2F; 末尾 &#x2F; 第n行</td>
+<td align="left">Vim 标准首行跳转指令为 <code>gg</code></td>
+</tr>
+<tr>
+<td align="left"><code>w</code> &#x2F; <code>e</code></td>
+<td align="left">跳至下一个词首 &#x2F; 词尾</td>
+<td align="left">可搭配数字，如 <code>3w</code> 跳3个词</td>
+</tr>
+<tr>
+<td align="left"><code>set nu</code> &#x2F; <code>set nonu</code></td>
+<td align="left">显示行号 &#x2F; 撤销行号</td>
+<td align="left">需在命令模式下输入 <code>:</code> 执行</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 <strong>核心语法</strong>：<code>[数量] + [操作符(y/d/c)] + [移动指令(w/$/^/G)]</code><br>例如：<code>3dw</code> &#x3D; 删除3个词 ｜ <code>2y$</code> &#x3D; 复制2次光标至行尾</p>
+</blockquote>
+<h2 id="🟩-二、编辑模式（Insert-Mode）"><a href="#🟩-二、编辑模式（Insert-Mode）" class="headerlink" title="🟩 二、编辑模式（Insert Mode）"></a>🟩 二、编辑模式（Insert Mode）</h2><blockquote>
+<p>用于实际输入文本。按 <code>Esc</code> 可随时退回普通模式。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">快捷键</th>
+<th align="left">功能说明</th>
+<th align="left">🎯 适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>i</code></td>
+<td align="left">在光标<strong>前</strong>插入</td>
+<td align="left">精准修改当前字符前方内容</td>
+</tr>
+<tr>
+<td align="left"><code>a</code></td>
+<td align="left">在光标<strong>后</strong>插入</td>
+<td align="left">适合在当前字符后追加文本</td>
+</tr>
+<tr>
+<td align="left"><code>o</code></td>
+<td align="left">在光标<strong>下一行</strong>新建并插入</td>
+<td align="left">自动换行并继承缩进，写代码最常用</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🔑 <strong>记忆口诀</strong>：<code>i</code> &#x3D; Insert（插入）｜ <code>a</code> &#x3D; Append（追加）｜ <code>o</code> &#x3D; Open new line（新开一行）</p>
+</blockquote>
+<h2 id="🟥-三、命令模式（Command-Ex-Mode）"><a href="#🟥-三、命令模式（Command-Ex-Mode）" class="headerlink" title="🟥 三、命令模式（Command &#x2F; Ex Mode）"></a>🟥 三、命令模式（Command &#x2F; Ex Mode）</h2><blockquote>
+<p>在普通模式下输入 <code>:</code> 进入底行，用于文件操作、查找替换、环境配置。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">功能说明</th>
+<th align="left">🔍 细节说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>/word</code></td>
+<td align="left">查找单词 <code>word</code></td>
+<td align="left">按 <code>n</code> 向下匹配，<code>N</code> 向上匹配</td>
+</tr>
+<tr>
+<td align="left"><code>:s/old/new</code></td>
+<td align="left">替换当前行<strong>第一个</strong>匹配项</td>
+<td align="left">仅作用于光标所在行</td>
+</tr>
+<tr>
+<td align="left"><code>:s/old/new/g</code></td>
+<td align="left">替换当前行<strong>所有</strong>匹配项</td>
+<td align="left"><code>g</code> &#x3D; global（本行全局）</td>
+</tr>
+<tr>
+<td align="left"><code>:%s/old/new</code></td>
+<td align="left">替换全文<strong>第一个</strong>匹配项</td>
+<td align="left"><code>%</code> 代表整个文件范围</td>
+</tr>
+<tr>
+<td align="left"><code>:%s/old/new/g</code></td>
+<td align="left">替换全文<strong>所有</strong>匹配项</td>
+<td align="left">最常用批量替换命令</td>
+</tr>
+<tr>
+<td align="left"><code>noh</code></td>
+<td align="left">取消搜索高亮</td>
+<td align="left">实际执行需加前缀：<code>:noh</code></td>
+</tr>
+<tr>
+<td align="left"><code>w</code></td>
+<td align="left">保存文件</td>
+<td align="left">实际执行：<code>:w</code>（Write）</td>
+</tr>
+<tr>
+<td align="left"><code>wq</code></td>
+<td align="left">保存并退出</td>
+<td align="left">实际执行：<code>:wq</code></td>
+</tr>
+<tr>
+<td align="left"><code>q!</code></td>
+<td align="left">强制退出（不保存）</td>
+<td align="left">实际执行：<code>:q!</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>⚠️ <strong>交互替换技巧</strong>：在替换命令末尾添加 <code>c</code>（如 <code>:%s/old/new/gc</code>）可开启<strong>逐次确认</strong>模式，避免误替换重要代码。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
