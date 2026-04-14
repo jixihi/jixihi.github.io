@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="📘 Linux 进程管理核心命令速查笔记 📋 1. ps：查看进程瞬时快照ps 用于捕获执行瞬间的系统进程状态。由于进程数量庞大，实际使用中几乎总是搭配 grep 过滤。最常被问到的 ps aux 与 ps -ef 虽然都能列出全部进程，但底层设计流派与核心用途完全不同： 🔍 ps aux vs ps -ef 到底在做什么？   命令组合 设计流派 💡 核心作用（在做什么） 适用场景">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux学习第九天-进程管理类">
+<meta property="og:url" content="http://example.com/2026/04/14/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B9%9D%E5%A4%A9-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E7%B1%BB/index.html">
+<meta property="og:site_name" content="ZY_BLOGS">
+<meta property="og:description" content="📘 Linux 进程管理核心命令速查笔记 📋 1. ps：查看进程瞬时快照ps 用于捕获执行瞬间的系统进程状态。由于进程数量庞大，实际使用中几乎总是搭配 grep 过滤。最常被问到的 ps aux 与 ps -ef 虽然都能列出全部进程，但底层设计流派与核心用途完全不同： 🔍 ps aux vs ps -ef 到底在做什么？   命令组合 设计流派 💡 核心作用（在做什么） 适用场景">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-04-14T08:01:38.000Z">
+<meta property="article:modified_time" content="2026-04-14T08:02:34.876Z">
+<meta property="article:author" content="ZY">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/04/14/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B9%9D%E5%A4%A9-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E7%B1%BB/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/04/14/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B9%9D%E5%A4%A9-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E7%B1%BB/","path":"2026/04/14/Linux学习第九天-进程管理类/","title":"Linux学习第九天-进程管理类"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux学习第九天-进程管理类 | ZY_BLOGS</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ZY_BLOGS</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%98-Linux-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E6%A0%B8%E5%BF%83%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">📘 Linux 进程管理核心命令速查笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%8B-1-ps%EF%BC%9A%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E7%9E%AC%E6%97%B6%E5%BF%AB%E7%85%A7"><span class="nav-number">1.1.</span> <span class="nav-text">📋 1. ps：查看进程瞬时快照</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%8D-ps-aux-vs-ps-ef-%E5%88%B0%E5%BA%95%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">🔍 ps aux vs ps -ef 到底在做什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0%E5%AF%B9%E7%85%A7"><span class="nav-number">1.1.2.</span> <span class="nav-text">🔹 常用参数对照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%93%96-%E8%BE%93%E5%87%BA%E5%AD%97%E6%AE%B5%E9%80%9F%E6%9F%A5"><span class="nav-number">1.1.3.</span> <span class="nav-text">📖 输出字段速查</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ps-aux-%E5%B8%B8%E7%94%A8%E5%AD%97%E6%AE%B5"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">ps aux 常用字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ps-ef-%E5%B8%B8%E7%94%A8%E5%AD%97%E6%AE%B5"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">ps -ef 常用字段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%92%BB-%E5%AE%9E%E6%88%98%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">💻 实战示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9B%91-2-kill-killall%EF%BC%9A%E5%AE%89%E5%85%A8%E7%BB%88%E6%AD%A2%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">🛑 2. kill &amp; killall：安全终止进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">🔹 基础语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E5%B8%B8%E7%94%A8%E4%BF%A1%E5%8F%B7%E5%AF%B9%E7%85%A7"><span class="nav-number">1.2.2.</span> <span class="nav-text">🔹 常用信号对照</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8C%B3-3-pstree%EF%BC%9A%E8%BF%9B%E7%A8%8B%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-number">1.3.</span> <span class="nav-text">🌳 3. pstree：进程依赖关系可视化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="nav-number">1.3.1.</span> <span class="nav-text">🔹 常用参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%8A-4-top%EF%BC%9A%E5%AE%9E%E6%97%B6%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E9%9D%A2%E6%9D%BF"><span class="nav-number">1.4.</span> <span class="nav-text">📊 4. top：实时性能监控面板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0"><span class="nav-number">1.4.1.</span> <span class="nav-text">🔹 启动参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BA%A4%E4%BA%92%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">1.4.2.</span> <span class="nav-text">🔹 运行时交互快捷键</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8C%90-5-netstat%EF%BC%9A%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E4%B8%8E%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8%E6%8E%92%E6%9F%A5"><span class="nav-number">1.5.</span> <span class="nav-text">🌐 5. netstat：网络连接与端口占用排查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E9%AB%98%E9%A2%91%E5%AE%9E%E6%88%98%E7%BB%84%E5%90%88"><span class="nav-number">1.5.1.</span> <span class="nav-text">🔹 高频实战组合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-number">1.5.2.</span> <span class="nav-text">🔹 参数说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%8E-%E5%9C%BA%E6%99%AF%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="nav-number">1.6.</span> <span class="nav-text">📎 场景速查表</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ZY</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/14/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B9%9D%E5%A4%A9-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZY">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Linux学习第九天-进程管理类 | ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux学习第九天-进程管理类
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-04-14 16:01:38 / Modified: 16:02:34" itemprop="dateCreated datePublished" datetime="2026-04-14T16:01:38+08:00">2026-04-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="📘-Linux-进程管理核心命令速查笔记"><a href="#📘-Linux-进程管理核心命令速查笔记" class="headerlink" title="📘 Linux 进程管理核心命令速查笔记"></a>📘 Linux 进程管理核心命令速查笔记</h1><hr>
+<h2 id="📋-1-ps：查看进程瞬时快照"><a href="#📋-1-ps：查看进程瞬时快照" class="headerlink" title="📋 1. ps：查看进程瞬时快照"></a>📋 1. <code>ps</code>：查看进程瞬时快照</h2><p><code>ps</code> 用于捕获<strong>执行瞬间的系统进程状态</strong>。由于进程数量庞大，实际使用中几乎总是搭配 <code>grep</code> 过滤。最常被问到的 <code>ps aux</code> 与 <code>ps -ef</code> 虽然都能列出全部进程，但<strong>底层设计流派与核心用途完全不同</strong>：</p>
+<h3 id="🔍-ps-aux-vs-ps-ef-到底在做什么？"><a href="#🔍-ps-aux-vs-ps-ef-到底在做什么？" class="headerlink" title="🔍 ps aux vs ps -ef 到底在做什么？"></a>🔍 <code>ps aux</code> vs <code>ps -ef</code> 到底在做什么？</h3><table>
+<thead>
+<tr>
+<th align="left">命令组合</th>
+<th align="left">设计流派</th>
+<th align="left">💡 核心作用（在做什么）</th>
+<th align="left">适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>ps aux</code></td>
+<td align="left">BSD 风格</td>
+<td align="left">📊 <strong>侧重资源监控</strong>：直观展示每个进程的 CPU&#x2F;内存消耗、运行状态与完整启动参数</td>
+<td align="left">快速定位“吃满资源”的进程、查看进程详细状态</td>
+</tr>
+<tr>
+<td align="left"><code>ps -ef</code></td>
+<td align="left">System V 风格</td>
+<td align="left">🌲 <strong>侧重进程血缘</strong>：突出父进程 ID（<code>PPID</code>），输出格式规整，便于脚本解析与链路追踪</td>
+<td align="left">排查服务启动链、定位僵尸进程源头、自动化脚本提取</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>📌 <strong>语法提示</strong>：严格来说 BSD 选项不带短横线（应为 <code>ps aux</code>），但 Linux 的 GNU <code>ps</code> 已做兼容，<code>ps -aux</code> 也可正常执行。</p>
+</blockquote>
+<h3 id="🔹-常用参数对照"><a href="#🔹-常用参数对照" class="headerlink" title="🔹 常用参数对照"></a>🔹 常用参数对照</h3><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">含义</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>a</code></td>
+<td align="left">显示所有终端下的进程</td>
+<td align="left">含其他用户</td>
+</tr>
+<tr>
+<td align="center"><code>u</code></td>
+<td align="left">以用户友好格式输出</td>
+<td align="left">显示 CPU&#x2F;内存&#x2F;状态等</td>
+</tr>
+<tr>
+<td align="center"><code>x</code></td>
+<td align="left">显示无控制终端的后台进程</td>
+<td align="left">守护进程必备</td>
+</tr>
+<tr>
+<td align="center"><code>-e</code></td>
+<td align="left">显示所有进程</td>
+<td align="left">等同于 <code>a</code></td>
+</tr>
+<tr>
+<td align="center"><code>-u</code></td>
+<td align="left">以用户格式输出</td>
+<td align="left">等同于 <code>u</code></td>
+</tr>
+<tr>
+<td align="center"><code>-f</code></td>
+<td align="left">全格式输出</td>
+<td align="left">包含 <code>PPID</code>、<code>C</code> 等字段</td>
+</tr>
+</tbody></table>
+<h3 id="📖-输出字段速查"><a href="#📖-输出字段速查" class="headerlink" title="📖 输出字段速查"></a>📖 输出字段速查</h3><h4 id="ps-aux-常用字段"><a href="#ps-aux-常用字段" class="headerlink" title="ps aux 常用字段"></a><code>ps aux</code> 常用字段</h4><table>
+<thead>
+<tr>
+<th align="center">字段</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>USER</code></td>
+<td align="left">进程所属用户</td>
+</tr>
+<tr>
+<td align="center"><code>PID</code></td>
+<td align="left">进程 ID</td>
+</tr>
+<tr>
+<td align="center"><code>%CPU</code></td>
+<td align="left">CPU 使用率</td>
+</tr>
+<tr>
+<td align="center"><code>%MEM</code></td>
+<td align="left">物理内存使用率</td>
+</tr>
+<tr>
+<td align="center"><code>VSZ</code></td>
+<td align="left">虚拟内存大小（KB）</td>
+</tr>
+<tr>
+<td align="center"><code>RSS</code></td>
+<td align="left">常驻物理内存大小（KB）</td>
+</tr>
+<tr>
+<td align="center"><code>TTY</code></td>
+<td align="left">终端设备，<code>?</code> 表示无终端</td>
+</tr>
+<tr>
+<td align="center"><code>STAT</code></td>
+<td align="left">进程状态（<code>R</code>运行 <code>S</code>睡眠 <code>D</code>IO等待 <code>Z</code>僵尸 <code>T</code>停止）</td>
+</tr>
+<tr>
+<td align="center"><code>START</code></td>
+<td align="left">进程启动时间</td>
+</tr>
+<tr>
+<td align="center"><code>TIME</code></td>
+<td align="left">累计占用 CPU 时间</td>
+</tr>
+<tr>
+<td align="center"><code>COMMAND</code></td>
+<td align="left">完整启动命令及参数</td>
+</tr>
+</tbody></table>
+<h4 id="ps-ef-常用字段"><a href="#ps-ef-常用字段" class="headerlink" title="ps -ef 常用字段"></a><code>ps -ef</code> 常用字段</h4><table>
+<thead>
+<tr>
+<th align="center">字段</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>UID</code></td>
+<td align="left">用户 ID</td>
+</tr>
+<tr>
+<td align="center"><code>PID</code></td>
+<td align="left">进程 ID</td>
+</tr>
+<tr>
+<td align="center"><code>PPID</code></td>
+<td align="left">父进程 ID（排查依赖关系核心）</td>
+</tr>
+<tr>
+<td align="center"><code>C</code></td>
+<td align="left">CPU 使用率估算值</td>
+</tr>
+<tr>
+<td align="center"><code>STIME</code></td>
+<td align="left">启动时间</td>
+</tr>
+<tr>
+<td align="center"><code>TTY</code></td>
+<td align="left">终端</td>
+</tr>
+<tr>
+<td align="center"><code>TIME</code></td>
+<td align="left">CPU 累计时间</td>
+</tr>
+<tr>
+<td align="center"><code>CMD</code></td>
+<td align="left">进程名（通常不含长参数）</td>
+</tr>
+</tbody></table>
+<h3 id="💻-实战示例"><a href="#💻-实战示例" class="headerlink" title="💻 实战示例"></a>💻 实战示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep nginx      <span class="comment"># 查 nginx 的资源占用与运行状态</span></span><br><span class="line">ps -ef | grep java       <span class="comment"># 查 java 进程的启动链与父进程</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🛑-2-kill-killall：安全终止进程"><a href="#🛑-2-kill-killall：安全终止进程" class="headerlink" title="🛑 2. kill &amp; killall：安全终止进程"></a>🛑 2. <code>kill</code> &amp; <code>killall</code>：安全终止进程</h2><p>用于向指定进程发送控制信号，最常用于优雅关闭或强制清理卡死进程。</p>
+<h3 id="🔹-基础语法"><a href="#🔹-基础语法" class="headerlink" title="🔹 基础语法"></a>🔹 基础语法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> [信号] &lt;PID&gt;        <span class="comment"># 通过进程 ID 终止</span></span><br><span class="line">killall &lt;进程名称&gt;        <span class="comment"># 通过进程名批量终止所有同名进程</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-常用信号对照"><a href="#🔹-常用信号对照" class="headerlink" title="🔹 常用信号对照"></a>🔹 常用信号对照</h3><table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="left">信号名</th>
+<th align="center">编号</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><em>(默认)</em></td>
+<td align="left"><code>SIGTERM</code></td>
+<td align="center"><code>15</code></td>
+<td align="left">优雅退出，允许进程保存数据、清理资源</td>
+</tr>
+<tr>
+<td align="center"><code>-9</code></td>
+<td align="left"><code>SIGKILL</code></td>
+<td align="center"><code>9</code></td>
+<td align="left">强制终止，内核直接回收，进程无法拦截</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>⚠️ <strong>最佳实践</strong>：始终优先使用默认 <code>kill &lt;PID&gt;</code>。仅在进程完全无响应时，才使用 <code>kill -9 &lt;PID&gt;</code>。</p>
+</blockquote>
+<hr>
+<h2 id="🌳-3-pstree：进程依赖关系可视化"><a href="#🌳-3-pstree：进程依赖关系可视化" class="headerlink" title="🌳 3. pstree：进程依赖关系可视化"></a>🌳 3. <code>pstree</code>：进程依赖关系可视化</h2><p>以树状结构展示进程的父子派生关系，直观呈现服务启动拓扑。</p>
+<h3 id="🔹-常用参数"><a href="#🔹-常用参数" class="headerlink" title="🔹 常用参数"></a>🔹 常用参数</h3><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>-p</code></td>
+<td align="left">在进程名后显示 <code>PID</code></td>
+</tr>
+<tr>
+<td align="center"><code>-u</code></td>
+<td align="left">显示进程所属用户</td>
+</tr>
+<tr>
+<td align="center"><code>-pu</code></td>
+<td align="left">同时显示 PID 与用户信息</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pstree          <span class="comment"># 基础进程树</span></span><br><span class="line">pstree -pu      <span class="comment"># 推荐：带 PID 和用户的完整视图</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📊-4-top：实时性能监控面板"><a href="#📊-4-top：实时性能监控面板" class="headerlink" title="📊 4. top：实时性能监控面板"></a>📊 4. <code>top</code>：实时性能监控面板</h2><p>动态刷新系统进程状态，是排查 CPU&#x2F;内存瓶颈的首选交互工具。</p>
+<h3 id="🔹-启动参数"><a href="#🔹-启动参数" class="headerlink" title="🔹 启动参数"></a>🔹 启动参数</h3><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>-d &lt;秒&gt;</code></td>
+<td align="left">设置屏幕刷新间隔（如 <code>top -d 2</code>）</td>
+</tr>
+<tr>
+<td align="center"><code>-i</code></td>
+<td align="left">不显示空闲或僵尸进程</td>
+</tr>
+<tr>
+<td align="center"><code>-p &lt;PID&gt;</code></td>
+<td align="left">仅监控指定进程</td>
+</tr>
+</tbody></table>
+<h3 id="🔹-运行时交互快捷键"><a href="#🔹-运行时交互快捷键" class="headerlink" title="🔹 运行时交互快捷键"></a>🔹 运行时交互快捷键</h3><table>
+<thead>
+<tr>
+<th align="center">按键</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>P</code></td>
+<td align="left">按 <strong>CPU 使用率</strong> 降序排序（默认）</td>
+</tr>
+<tr>
+<td align="center"><code>M</code></td>
+<td align="left">按 <strong>内存使用率</strong> 降序排序</td>
+</tr>
+<tr>
+<td align="center"><code>N</code></td>
+<td align="left">按 <strong>PID</strong> 排序</td>
+</tr>
+<tr>
+<td align="center"><code>u</code></td>
+<td align="left">输入用户名，过滤仅显示该用户进程</td>
+</tr>
+<tr>
+<td align="center"><code>k</code></td>
+<td align="left">输入 PID 与信号值，终止指定进程</td>
+</tr>
+<tr>
+<td align="center"><code>q</code></td>
+<td align="left">退出 <code>top</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🌐-5-netstat：网络连接与端口占用排查"><a href="#🌐-5-netstat：网络连接与端口占用排查" class="headerlink" title="🌐 5. netstat：网络连接与端口占用排查"></a>🌐 5. <code>netstat</code>：网络连接与端口占用排查</h2><p>查看 TCP&#x2F;UDP 连接状态、服务监听端口及对应进程归属。</p>
+<h3 id="🔹-高频实战组合"><a href="#🔹-高频实战组合" class="headerlink" title="🔹 高频实战组合"></a>🔹 高频实战组合</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看某进程占用的所有网络连接</span></span><br><span class="line">netstat -anp | grep &lt;进程号&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看某端口被哪个进程占用</span></span><br><span class="line">netstat -nlp | grep &lt;端口号&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-参数说明"><a href="#🔹-参数说明" class="headerlink" title="🔹 参数说明"></a>🔹 参数说明</h3><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>-a</code></td>
+<td align="left">显示所有连接与监听端口</td>
+</tr>
+<tr>
+<td align="center"><code>-n</code></td>
+<td align="left">以数字形式显示 IP 与端口（关闭 DNS 反向解析，提速）</td>
+</tr>
+<tr>
+<td align="center"><code>-l</code></td>
+<td align="left">仅显示处于 <code>LISTEN</code>（监听）状态的端口</td>
+</tr>
+<tr>
+<td align="center"><code>-p</code></td>
+<td align="left">显示占用端口的 PID 与程序名称</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🔄 <strong>补充提示</strong>：部分新版 Linux 发行版已默认弃用 <code>netstat</code>，推荐使用等效工具 <code>ss</code>：<br><code>ss -tulnp | grep &lt;端口号&gt;</code></p>
+</blockquote>
+<hr>
+<h2 id="📎-场景速查表"><a href="#📎-场景速查表" class="headerlink" title="📎 场景速查表"></a>📎 场景速查表</h2><table>
+<thead>
+<tr>
+<th align="left">排查目标</th>
+<th align="left">推荐命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">查进程资源占用</td>
+<td align="left"><code>ps aux | grep &lt;关键词&gt;</code></td>
+</tr>
+<tr>
+<td align="left">查进程父子关系</td>
+<td align="left"><code>ps -ef | grep &lt;关键词&gt;</code></td>
+</tr>
+<tr>
+<td align="left">优雅停止服务</td>
+<td align="left"><code>kill &lt;PID&gt;</code></td>
+</tr>
+<tr>
+<td align="left">强制清理卡死进程</td>
+<td align="left"><code>kill -9 &lt;PID&gt;</code></td>
+</tr>
+<tr>
+<td align="left">按名称批量杀进程</td>
+<td align="left"><code>killall &lt;名称&gt;</code></td>
+</tr>
+<tr>
+<td align="left">查看服务依赖拓扑</td>
+<td align="left"><code>pstree -pu</code></td>
+</tr>
+<tr>
+<td align="left">实时监控 CPU&#x2F;内存</td>
+<td align="left"><code>top</code> → 按 <code>P</code>&#x2F;<code>M</code> 切换排序</td>
+</tr>
+<tr>
+<td align="left">查端口归属进程</td>
+<td align="left">&#96;netstat -nlp</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/04/13/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AB%E5%A4%A9-%E7%A3%81%E7%9B%98%E6%9F%A5%E7%9C%8B%E5%92%8C%E5%88%86%E5%8C%BA%E7%B1%BB/" rel="prev" title="Linux学习第八天-磁盘查看和分区类">
+                  <i class="fa fa-angle-left"></i> Linux学习第八天-磁盘查看和分区类
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZY</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

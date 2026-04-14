@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -152,6 +152,414 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/14/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B9%9D%E5%A4%A9-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZY">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/14/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B9%9D%E5%A4%A9-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E7%B1%BB/" class="post-title-link" itemprop="url">Linux学习第九天-进程管理类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-04-14 16:01:38 / Modified: 16:02:34" itemprop="dateCreated datePublished" datetime="2026-04-14T16:01:38+08:00">2026-04-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="📘-Linux-进程管理核心命令速查笔记"><a href="#📘-Linux-进程管理核心命令速查笔记" class="headerlink" title="📘 Linux 进程管理核心命令速查笔记"></a>📘 Linux 进程管理核心命令速查笔记</h1><hr>
+<h2 id="📋-1-ps：查看进程瞬时快照"><a href="#📋-1-ps：查看进程瞬时快照" class="headerlink" title="📋 1. ps：查看进程瞬时快照"></a>📋 1. <code>ps</code>：查看进程瞬时快照</h2><p><code>ps</code> 用于捕获<strong>执行瞬间的系统进程状态</strong>。由于进程数量庞大，实际使用中几乎总是搭配 <code>grep</code> 过滤。最常被问到的 <code>ps aux</code> 与 <code>ps -ef</code> 虽然都能列出全部进程，但<strong>底层设计流派与核心用途完全不同</strong>：</p>
+<h3 id="🔍-ps-aux-vs-ps-ef-到底在做什么？"><a href="#🔍-ps-aux-vs-ps-ef-到底在做什么？" class="headerlink" title="🔍 ps aux vs ps -ef 到底在做什么？"></a>🔍 <code>ps aux</code> vs <code>ps -ef</code> 到底在做什么？</h3><table>
+<thead>
+<tr>
+<th align="left">命令组合</th>
+<th align="left">设计流派</th>
+<th align="left">💡 核心作用（在做什么）</th>
+<th align="left">适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>ps aux</code></td>
+<td align="left">BSD 风格</td>
+<td align="left">📊 <strong>侧重资源监控</strong>：直观展示每个进程的 CPU&#x2F;内存消耗、运行状态与完整启动参数</td>
+<td align="left">快速定位“吃满资源”的进程、查看进程详细状态</td>
+</tr>
+<tr>
+<td align="left"><code>ps -ef</code></td>
+<td align="left">System V 风格</td>
+<td align="left">🌲 <strong>侧重进程血缘</strong>：突出父进程 ID（<code>PPID</code>），输出格式规整，便于脚本解析与链路追踪</td>
+<td align="left">排查服务启动链、定位僵尸进程源头、自动化脚本提取</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>📌 <strong>语法提示</strong>：严格来说 BSD 选项不带短横线（应为 <code>ps aux</code>），但 Linux 的 GNU <code>ps</code> 已做兼容，<code>ps -aux</code> 也可正常执行。</p>
+</blockquote>
+<h3 id="🔹-常用参数对照"><a href="#🔹-常用参数对照" class="headerlink" title="🔹 常用参数对照"></a>🔹 常用参数对照</h3><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">含义</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>a</code></td>
+<td align="left">显示所有终端下的进程</td>
+<td align="left">含其他用户</td>
+</tr>
+<tr>
+<td align="center"><code>u</code></td>
+<td align="left">以用户友好格式输出</td>
+<td align="left">显示 CPU&#x2F;内存&#x2F;状态等</td>
+</tr>
+<tr>
+<td align="center"><code>x</code></td>
+<td align="left">显示无控制终端的后台进程</td>
+<td align="left">守护进程必备</td>
+</tr>
+<tr>
+<td align="center"><code>-e</code></td>
+<td align="left">显示所有进程</td>
+<td align="left">等同于 <code>a</code></td>
+</tr>
+<tr>
+<td align="center"><code>-u</code></td>
+<td align="left">以用户格式输出</td>
+<td align="left">等同于 <code>u</code></td>
+</tr>
+<tr>
+<td align="center"><code>-f</code></td>
+<td align="left">全格式输出</td>
+<td align="left">包含 <code>PPID</code>、<code>C</code> 等字段</td>
+</tr>
+</tbody></table>
+<h3 id="📖-输出字段速查"><a href="#📖-输出字段速查" class="headerlink" title="📖 输出字段速查"></a>📖 输出字段速查</h3><h4 id="ps-aux-常用字段"><a href="#ps-aux-常用字段" class="headerlink" title="ps aux 常用字段"></a><code>ps aux</code> 常用字段</h4><table>
+<thead>
+<tr>
+<th align="center">字段</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>USER</code></td>
+<td align="left">进程所属用户</td>
+</tr>
+<tr>
+<td align="center"><code>PID</code></td>
+<td align="left">进程 ID</td>
+</tr>
+<tr>
+<td align="center"><code>%CPU</code></td>
+<td align="left">CPU 使用率</td>
+</tr>
+<tr>
+<td align="center"><code>%MEM</code></td>
+<td align="left">物理内存使用率</td>
+</tr>
+<tr>
+<td align="center"><code>VSZ</code></td>
+<td align="left">虚拟内存大小（KB）</td>
+</tr>
+<tr>
+<td align="center"><code>RSS</code></td>
+<td align="left">常驻物理内存大小（KB）</td>
+</tr>
+<tr>
+<td align="center"><code>TTY</code></td>
+<td align="left">终端设备，<code>?</code> 表示无终端</td>
+</tr>
+<tr>
+<td align="center"><code>STAT</code></td>
+<td align="left">进程状态（<code>R</code>运行 <code>S</code>睡眠 <code>D</code>IO等待 <code>Z</code>僵尸 <code>T</code>停止）</td>
+</tr>
+<tr>
+<td align="center"><code>START</code></td>
+<td align="left">进程启动时间</td>
+</tr>
+<tr>
+<td align="center"><code>TIME</code></td>
+<td align="left">累计占用 CPU 时间</td>
+</tr>
+<tr>
+<td align="center"><code>COMMAND</code></td>
+<td align="left">完整启动命令及参数</td>
+</tr>
+</tbody></table>
+<h4 id="ps-ef-常用字段"><a href="#ps-ef-常用字段" class="headerlink" title="ps -ef 常用字段"></a><code>ps -ef</code> 常用字段</h4><table>
+<thead>
+<tr>
+<th align="center">字段</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>UID</code></td>
+<td align="left">用户 ID</td>
+</tr>
+<tr>
+<td align="center"><code>PID</code></td>
+<td align="left">进程 ID</td>
+</tr>
+<tr>
+<td align="center"><code>PPID</code></td>
+<td align="left">父进程 ID（排查依赖关系核心）</td>
+</tr>
+<tr>
+<td align="center"><code>C</code></td>
+<td align="left">CPU 使用率估算值</td>
+</tr>
+<tr>
+<td align="center"><code>STIME</code></td>
+<td align="left">启动时间</td>
+</tr>
+<tr>
+<td align="center"><code>TTY</code></td>
+<td align="left">终端</td>
+</tr>
+<tr>
+<td align="center"><code>TIME</code></td>
+<td align="left">CPU 累计时间</td>
+</tr>
+<tr>
+<td align="center"><code>CMD</code></td>
+<td align="left">进程名（通常不含长参数）</td>
+</tr>
+</tbody></table>
+<h3 id="💻-实战示例"><a href="#💻-实战示例" class="headerlink" title="💻 实战示例"></a>💻 实战示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep nginx      <span class="comment"># 查 nginx 的资源占用与运行状态</span></span><br><span class="line">ps -ef | grep java       <span class="comment"># 查 java 进程的启动链与父进程</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🛑-2-kill-killall：安全终止进程"><a href="#🛑-2-kill-killall：安全终止进程" class="headerlink" title="🛑 2. kill &amp; killall：安全终止进程"></a>🛑 2. <code>kill</code> &amp; <code>killall</code>：安全终止进程</h2><p>用于向指定进程发送控制信号，最常用于优雅关闭或强制清理卡死进程。</p>
+<h3 id="🔹-基础语法"><a href="#🔹-基础语法" class="headerlink" title="🔹 基础语法"></a>🔹 基础语法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> [信号] &lt;PID&gt;        <span class="comment"># 通过进程 ID 终止</span></span><br><span class="line">killall &lt;进程名称&gt;        <span class="comment"># 通过进程名批量终止所有同名进程</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-常用信号对照"><a href="#🔹-常用信号对照" class="headerlink" title="🔹 常用信号对照"></a>🔹 常用信号对照</h3><table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="left">信号名</th>
+<th align="center">编号</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><em>(默认)</em></td>
+<td align="left"><code>SIGTERM</code></td>
+<td align="center"><code>15</code></td>
+<td align="left">优雅退出，允许进程保存数据、清理资源</td>
+</tr>
+<tr>
+<td align="center"><code>-9</code></td>
+<td align="left"><code>SIGKILL</code></td>
+<td align="center"><code>9</code></td>
+<td align="left">强制终止，内核直接回收，进程无法拦截</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>⚠️ <strong>最佳实践</strong>：始终优先使用默认 <code>kill &lt;PID&gt;</code>。仅在进程完全无响应时，才使用 <code>kill -9 &lt;PID&gt;</code>。</p>
+</blockquote>
+<hr>
+<h2 id="🌳-3-pstree：进程依赖关系可视化"><a href="#🌳-3-pstree：进程依赖关系可视化" class="headerlink" title="🌳 3. pstree：进程依赖关系可视化"></a>🌳 3. <code>pstree</code>：进程依赖关系可视化</h2><p>以树状结构展示进程的父子派生关系，直观呈现服务启动拓扑。</p>
+<h3 id="🔹-常用参数"><a href="#🔹-常用参数" class="headerlink" title="🔹 常用参数"></a>🔹 常用参数</h3><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>-p</code></td>
+<td align="left">在进程名后显示 <code>PID</code></td>
+</tr>
+<tr>
+<td align="center"><code>-u</code></td>
+<td align="left">显示进程所属用户</td>
+</tr>
+<tr>
+<td align="center"><code>-pu</code></td>
+<td align="left">同时显示 PID 与用户信息</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pstree          <span class="comment"># 基础进程树</span></span><br><span class="line">pstree -pu      <span class="comment"># 推荐：带 PID 和用户的完整视图</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📊-4-top：实时性能监控面板"><a href="#📊-4-top：实时性能监控面板" class="headerlink" title="📊 4. top：实时性能监控面板"></a>📊 4. <code>top</code>：实时性能监控面板</h2><p>动态刷新系统进程状态，是排查 CPU&#x2F;内存瓶颈的首选交互工具。</p>
+<h3 id="🔹-启动参数"><a href="#🔹-启动参数" class="headerlink" title="🔹 启动参数"></a>🔹 启动参数</h3><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>-d &lt;秒&gt;</code></td>
+<td align="left">设置屏幕刷新间隔（如 <code>top -d 2</code>）</td>
+</tr>
+<tr>
+<td align="center"><code>-i</code></td>
+<td align="left">不显示空闲或僵尸进程</td>
+</tr>
+<tr>
+<td align="center"><code>-p &lt;PID&gt;</code></td>
+<td align="left">仅监控指定进程</td>
+</tr>
+</tbody></table>
+<h3 id="🔹-运行时交互快捷键"><a href="#🔹-运行时交互快捷键" class="headerlink" title="🔹 运行时交互快捷键"></a>🔹 运行时交互快捷键</h3><table>
+<thead>
+<tr>
+<th align="center">按键</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>P</code></td>
+<td align="left">按 <strong>CPU 使用率</strong> 降序排序（默认）</td>
+</tr>
+<tr>
+<td align="center"><code>M</code></td>
+<td align="left">按 <strong>内存使用率</strong> 降序排序</td>
+</tr>
+<tr>
+<td align="center"><code>N</code></td>
+<td align="left">按 <strong>PID</strong> 排序</td>
+</tr>
+<tr>
+<td align="center"><code>u</code></td>
+<td align="left">输入用户名，过滤仅显示该用户进程</td>
+</tr>
+<tr>
+<td align="center"><code>k</code></td>
+<td align="left">输入 PID 与信号值，终止指定进程</td>
+</tr>
+<tr>
+<td align="center"><code>q</code></td>
+<td align="left">退出 <code>top</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🌐-5-netstat：网络连接与端口占用排查"><a href="#🌐-5-netstat：网络连接与端口占用排查" class="headerlink" title="🌐 5. netstat：网络连接与端口占用排查"></a>🌐 5. <code>netstat</code>：网络连接与端口占用排查</h2><p>查看 TCP&#x2F;UDP 连接状态、服务监听端口及对应进程归属。</p>
+<h3 id="🔹-高频实战组合"><a href="#🔹-高频实战组合" class="headerlink" title="🔹 高频实战组合"></a>🔹 高频实战组合</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看某进程占用的所有网络连接</span></span><br><span class="line">netstat -anp | grep &lt;进程号&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看某端口被哪个进程占用</span></span><br><span class="line">netstat -nlp | grep &lt;端口号&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-参数说明"><a href="#🔹-参数说明" class="headerlink" title="🔹 参数说明"></a>🔹 参数说明</h3><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>-a</code></td>
+<td align="left">显示所有连接与监听端口</td>
+</tr>
+<tr>
+<td align="center"><code>-n</code></td>
+<td align="left">以数字形式显示 IP 与端口（关闭 DNS 反向解析，提速）</td>
+</tr>
+<tr>
+<td align="center"><code>-l</code></td>
+<td align="left">仅显示处于 <code>LISTEN</code>（监听）状态的端口</td>
+</tr>
+<tr>
+<td align="center"><code>-p</code></td>
+<td align="left">显示占用端口的 PID 与程序名称</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🔄 <strong>补充提示</strong>：部分新版 Linux 发行版已默认弃用 <code>netstat</code>，推荐使用等效工具 <code>ss</code>：<br><code>ss -tulnp | grep &lt;端口号&gt;</code></p>
+</blockquote>
+<hr>
+<h2 id="📎-场景速查表"><a href="#📎-场景速查表" class="headerlink" title="📎 场景速查表"></a>📎 场景速查表</h2><table>
+<thead>
+<tr>
+<th align="left">排查目标</th>
+<th align="left">推荐命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">查进程资源占用</td>
+<td align="left"><code>ps aux | grep &lt;关键词&gt;</code></td>
+</tr>
+<tr>
+<td align="left">查进程父子关系</td>
+<td align="left"><code>ps -ef | grep &lt;关键词&gt;</code></td>
+</tr>
+<tr>
+<td align="left">优雅停止服务</td>
+<td align="left"><code>kill &lt;PID&gt;</code></td>
+</tr>
+<tr>
+<td align="left">强制清理卡死进程</td>
+<td align="left"><code>kill -9 &lt;PID&gt;</code></td>
+</tr>
+<tr>
+<td align="left">按名称批量杀进程</td>
+<td align="left"><code>killall &lt;名称&gt;</code></td>
+</tr>
+<tr>
+<td align="left">查看服务依赖拓扑</td>
+<td align="left"><code>pstree -pu</code></td>
+</tr>
+<tr>
+<td align="left">实时监控 CPU&#x2F;内存</td>
+<td align="left"><code>top</code> → 按 <code>P</code>&#x2F;<code>M</code> 切换排序</td>
+</tr>
+<tr>
+<td align="left">查端口归属进程</td>
+<td align="left">&#96;netstat -nlp</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1987,210 +2395,9 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/02/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC1%E5%A4%A9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ZY">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZY_BLOGS">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | ZY_BLOGS">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/02/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC1%E5%A4%A9/" class="post-title-link" itemprop="url">Linux学习第1天</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2026-04-02 12:55:05" itemprop="dateCreated datePublished" datetime="2026-04-02T12:55:05+08:00">2026-04-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-04-08 15:21:34" itemprop="dateModified" datetime="2026-04-08T15:21:34+08:00">2026-04-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="🐧-Linux-根目录结构详解"><a href="#🐧-Linux-根目录结构详解" class="headerlink" title="🐧 Linux 根目录结构详解"></a>🐧 Linux 根目录结构详解</h1><hr>
-<h2 id="🌲-目录结构全景"><a href="#🌲-目录结构全景" class="headerlink" title="🌲 目录结构全景"></a>🌲 目录结构全景</h2><p>Linux 文件系统以 <code>/</code> 为根，采用严格的树状层级规范。以下是核心目录的精准定位与功能说明：</p>
-<table>
-<thead>
-<tr>
-<th align="left">目录路径</th>
-<th align="left">英文全称 &#x2F; 含义</th>
-<th align="left">核心作用与说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>/bin</code></td>
-<td align="left"><strong>Bin</strong>ary</td>
-<td align="left">存放<strong>所有用户</strong>可执行的基础命令（如 <code>ls</code>、<code>cp</code>、<code>cat</code>、<code>bash</code>）</td>
-</tr>
-<tr>
-<td align="left"><code>/sbin</code></td>
-<td align="left"><strong>S</strong>ystem <strong>Bin</strong>ary</td>
-<td align="left">存放<strong>系统管理员</strong>专用的管理命令（如 <code>fdisk</code>、<code>iptables</code>、<code>systemctl</code>）</td>
-</tr>
-<tr>
-<td align="left"><code>/lib</code> <code>/lib64</code></td>
-<td align="left"><strong>Lib</strong>rary</td>
-<td align="left">系统启动与程序运行所需的<strong>共享库文件</strong>（<code>.so</code>）及动态链接器；<code>lib64</code> 专用于 64 位架构</td>
-</tr>
-<tr>
-<td align="left"><code>/usr</code></td>
-<td align="left"><strong>U</strong>nix <strong>S</strong>ystem <strong>R</strong>esources</td>
-<td align="left">存放用户级应用程序、库、文档与头文件（⚠️ <strong>非 <code>user</code> 缩写</strong>，是系统中最大的只读数据目录）</td>
-</tr>
-<tr>
-<td align="left"><code>/usr/local</code></td>
-<td align="left">Local Software</td>
-<td align="left"><strong>本地编译安装</strong>的第三方软件独立目录，避免与系统包管理器（apt&#x2F;yum）冲突</td>
-</tr>
-<tr>
-<td align="left"><code>/boot</code></td>
-<td align="left">Boot Loader</td>
-<td align="left">系统启动核心文件：Linux 内核（<code>vmlinuz</code>）、初始内存盘（<code>initramfs</code>）、GRUB 引导配置</td>
-</tr>
-<tr>
-<td align="left"><code>/dev</code></td>
-<td align="left"><strong>Dev</strong>ice</td>
-<td align="left"><strong>设备文件</strong>目录，代表所有硬件（如 <code>/dev/sda</code> 硬盘、<code>/dev/tty</code> 终端），由 <code>udev</code> 动态管理</td>
-</tr>
-<tr>
-<td align="left"><code>/etc</code></td>
-<td align="left"><strong>E</strong>ditable <strong>T</strong>ext <strong>C</strong>onfiguration</td>
-<td align="left">系统及应用的<strong>全局配置文件</strong>（如 <code>/etc/passwd</code>、<code>/etc/ssh/sshd_config</code>），通常为纯文本</td>
-</tr>
-<tr>
-<td align="left"><code>/home</code></td>
-<td align="left">Home Directories</td>
-<td align="left"><strong>普通用户主目录</strong>，存放个人文档、配置与数据（如 <code>/home/alice</code>）</td>
-</tr>
-<tr>
-<td align="left"><code>/root</code></td>
-<td align="left">Root Home</td>
-<td align="left"><strong>超级管理员专属主目录</strong>，独立于 <code>/home</code>，权限严格隔离</td>
-</tr>
-<tr>
-<td align="left"><code>/opt</code></td>
-<td align="left"><strong>Opt</strong>ional</td>
-<td align="left"><strong>第三方商业&#x2F;大型软件</strong>安装目录（如 Oracle、MATLAB、Chrome），通常自包含、不干扰系统</td>
-</tr>
-<tr>
-<td align="left"><code>/media</code></td>
-<td align="left"><strong>Media</strong></td>
-<td align="left">系统<strong>自动挂载</strong>可移动介质（U盘、光盘、SD卡）的默认入口</td>
-</tr>
-<tr>
-<td align="left"><code>/mnt</code></td>
-<td align="left"><strong>Mou</strong>n<strong>t</strong></td>
-<td align="left">供管理员<strong>手动临时挂载</strong>文件系统的通用目录（如测试分区、NFS&#x2F;CIFS 共享）</td>
-</tr>
-<tr>
-<td align="left"><code>/proc</code></td>
-<td align="left"><strong>Proc</strong>ess</td>
-<td align="left"><strong>虚拟文件系统</strong>（内存映射），实时反映进程状态与内核参数（如 <code>/proc/cpuinfo</code>、<code>/proc/meminfo</code>）</td>
-</tr>
-<tr>
-<td align="left"><code>/run</code></td>
-<td align="left"><strong>Run</strong>time</td>
-<td align="left">存放系统运行时的<strong>临时状态数据</strong>（PID 文件、socket、锁文件），基于 <code>tmpfs</code>，重启清空</td>
-</tr>
-<tr>
-<td align="left"><code>/srv</code></td>
-<td align="left"><strong>S</strong>e<strong>rv</strong>ice</td>
-<td align="left">本机对外提供的<strong>服务数据</strong>目录（如 Web 服务器 <code>/srv/www</code>、FTP 服务器 <code>/srv/ftp</code>）</td>
-</tr>
-<tr>
-<td align="left"><code>/sys</code></td>
-<td align="left"><strong>Sys</strong>tem</td>
-<td align="left"><strong>虚拟文件系统</strong>，提供内核与硬件&#x2F;驱动&#x2F;电源管理的交互接口（常用于设备调试与电源策略）</td>
-</tr>
-<tr>
-<td align="left"><code>/tmp</code></td>
-<td align="left"><strong>Tmp</strong>orary</td>
-<td align="left"><strong>全局临时目录</strong>，任意用户可读写，通常重启自动清理或配置 <code>tmpwatch</code> 定期轮转</td>
-</tr>
-<tr>
-<td align="left"><code>/var</code></td>
-<td align="left"><strong>Var</strong>iable</td>
-<td align="left">存放<strong>频繁变更的数据</strong>：日志（<code>/var/log</code>）、缓存（<code>/var/cache</code>）、邮件队列、数据库文件等</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="🔍-关键修正与避坑指南"><a href="#🔍-关键修正与避坑指南" class="headerlink" title="🔍 关键修正与避坑指南"></a>🔍 关键修正与避坑指南</h2><ul>
-<li>✅ <code>user</code> → 实际为 <code>/usr</code>。历史命名源于早期 Unix 将用户工具与系统核心分离，<strong>并非 <code>user</code> 的缩写</strong>。</li>
-<li>✅ <code>ect</code> → 正确拼写为 <code>/etc</code>。早期用于存放 “et cetera”（杂项）文件，现代 Linux 已演进为<strong>配置中心</strong>。</li>
-<li>🚫 <strong>勿随意修改</strong> <code>/proc</code> 与 <code>/sys</code> 中的节点，除非明确知晓对应内核接口作用。</li>
-<li>🗑️ <code>/tmp</code> 和 <code>/run</code> 属于<strong>易失性目录</strong>，重要业务数据与持久化配置切勿存放于此。</li>
-<li>📦 安装源码或第三方软件优先选择 <code>/opt</code> 或 <code>/usr/local</code>，保持系统目录纯净，便于升级与卸载。</li>
-<li>🔐 修改 <code>/etc</code> 配置前务必备份：<code>sudo cp -a /etc/ssh/sshd_config /etc/ssh/sshd_config.bak</code></li>
-</ul>
-<hr>
-<h2 id="🧠-高效记忆口诀"><a href="#🧠-高效记忆口诀" class="headerlink" title="🧠 高效记忆口诀"></a>🧠 高效记忆口诀</h2><blockquote>
-<p>📦 <strong>bin&#x2F;sbin 放命令，lib&#x2F;lib64 存库文件；</strong><br>🌐 <strong>usr 装资源，boot 管启动；</strong><br>🔧 <strong>dev 映射硬件，etc 管配置；</strong><br>🏠 <strong>home 住用户，root 独居处；</strong><br>📥 <strong>opt 装第三方，media&#x2F;mnt 挂载区；</strong><br>🧵 <strong>proc 看进程，sys 调驱动；</strong><br>🕰️ <strong>run 存状态，tmp 临时用，var 记日志。</strong></p>
-</blockquote>
-<hr>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
 
 </div>
   </main>
