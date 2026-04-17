@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="🐧 Linux 脚本编程学习笔记 | Shell 函数·正则·文本处理 一、系统函数速查🔹 basename &amp; dirname   函数 作用 示例    basename 提取路径中的文件名 basename &#x2F;home&#x2F;user&#x2F;file.txt → file.txt   dirname 提取路径中的目录部分 dirname &#x2F;home&#x2F;user&#x2F;file.txt → &#x2F;home">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell-函数·正则·文本处理">
+<meta property="og:url" content="http://example.com/2026/04/17/Shell-%E5%87%BD%E6%95%B0%C2%B7%E6%AD%A3%E5%88%99%C2%B7%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="ZY_BLOGS">
+<meta property="og:description" content="🐧 Linux 脚本编程学习笔记 | Shell 函数·正则·文本处理 一、系统函数速查🔹 basename &amp; dirname   函数 作用 示例    basename 提取路径中的文件名 basename &#x2F;home&#x2F;user&#x2F;file.txt → file.txt   dirname 提取路径中的目录部分 dirname &#x2F;home&#x2F;user&#x2F;file.txt → &#x2F;home">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-04-17T13:32:34.000Z">
+<meta property="article:modified_time" content="2026-04-17T13:40:29.798Z">
+<meta property="article:author" content="ZY">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/04/17/Shell-%E5%87%BD%E6%95%B0%C2%B7%E6%AD%A3%E5%88%99%C2%B7%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/04/17/Shell-%E5%87%BD%E6%95%B0%C2%B7%E6%AD%A3%E5%88%99%C2%B7%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/","path":"2026/04/17/Shell-函数·正则·文本处理/","title":"Shell-函数·正则·文本处理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Shell-函数·正则·文本处理 | ZY_BLOGS</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ZY_BLOGS</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%90%A7-Linux-%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Shell-%E5%87%BD%E6%95%B0%C2%B7%E6%AD%A3%E5%88%99%C2%B7%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">🐧 Linux 脚本编程学习笔记 | Shell 函数·正则·文本处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E9%80%9F%E6%9F%A5"><span class="nav-number">1.1.</span> <span class="nav-text">一、系统函数速查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-basename-dirname"><span class="nav-number">1.1.1.</span> <span class="nav-text">🔹 basename &amp; dirname</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E5%86%99%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">二、自定义函数写法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">🔹 基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">🔹 参数传递示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8"><span class="nav-number">1.3.</span> <span class="nav-text">三、正则表达式入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E5%9F%BA%E7%A1%80%E5%8C%B9%E9%85%8D"><span class="nav-number">1.3.1.</span> <span class="nav-text">🔹 基础匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E5%B8%B8%E7%94%A8%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="nav-number">1.3.2.</span> <span class="nav-text">🔹 常用特殊字符速查表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E5%AE%9E%E6%88%98%EF%BC%9A%E6%89%8B%E6%9C%BA%E5%8F%B7%E9%AA%8C%E8%AF%81"><span class="nav-number">1.3.3.</span> <span class="nav-text">🔹 实战：手机号验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%88%A9%E5%99%A8"><span class="nav-number">1.4.</span> <span class="nav-text">四、文本处理利器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-cut%EF%BC%9A%E6%8C%89%E5%88%97%E6%88%AA%E5%8F%96"><span class="nav-number">1.4.1.</span> <span class="nav-text">🔹 cut：按列截取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-awk%EF%BC%9A%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="nav-number">1.4.2.</span> <span class="nav-text">🔹 awk：强大的文本分析工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%93%A6-%E5%86%85%E7%BD%AE%E5%8F%98%E9%87%8F%E9%80%9F%E6%9F%A5"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">📦 内置变量速查</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%AE%9E%E6%88%98%E5%B0%8F%E8%84%9A%E6%9C%AC"><span class="nav-number">1.5.</span> <span class="nav-text">五、实战小脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E7%9B%AE%E5%BD%95%E8%87%AA%E5%8A%A8%E5%BD%92%E6%A1%A3%E8%84%9A%E6%9C%AC"><span class="nav-number">1.5.1.</span> <span class="nav-text">🔹 目录自动归档脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-%E7%94%A8%E6%88%B7%E6%B6%88%E6%81%AF%E5%8F%91%E9%80%81%E8%84%9A%E6%9C%AC"><span class="nav-number">1.5.2.</span> <span class="nav-text">🔹 用户消息发送脚本</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ZY</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/17/Shell-%E5%87%BD%E6%95%B0%C2%B7%E6%AD%A3%E5%88%99%C2%B7%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZY">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Shell-函数·正则·文本处理 | ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Shell-函数·正则·文本处理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-04-17 21:32:34 / Modified: 21:40:29" itemprop="dateCreated datePublished" datetime="2026-04-17T21:32:34+08:00">2026-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Shell%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Shell学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="🐧-Linux-脚本编程学习笔记-Shell-函数·正则·文本处理"><a href="#🐧-Linux-脚本编程学习笔记-Shell-函数·正则·文本处理" class="headerlink" title="🐧 Linux 脚本编程学习笔记 | Shell 函数·正则·文本处理"></a>🐧 Linux 脚本编程学习笔记 | Shell 函数·正则·文本处理</h1><hr>
+<h2 id="一、系统函数速查"><a href="#一、系统函数速查" class="headerlink" title="一、系统函数速查"></a>一、系统函数速查</h2><h3 id="🔹-basename-dirname"><a href="#🔹-basename-dirname" class="headerlink" title="🔹 basename &amp; dirname"></a>🔹 <code>basename</code> &amp; <code>dirname</code></h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>basename</code></td>
+<td>提取路径中的<strong>文件名</strong></td>
+<td><code>basename /home/user/file.txt</code> → <code>file.txt</code></td>
+</tr>
+<tr>
+<td><code>dirname</code></td>
+<td>提取路径中的<strong>目录部分</strong></td>
+<td><code>dirname /home/user/file.txt</code> → <code>/home/user</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 本质：这两个函数只是对字符串做”剪切”处理，不涉及文件系统操作</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实用技巧：获取绝对路径</span></span><br><span class="line">DIR_NAME=$(<span class="built_in">basename</span> <span class="variable">$1</span>)</span><br><span class="line">DIR_PATH=$(<span class="built_in">cd</span> $(<span class="built_in">dirname</span> <span class="variable">$1</span>); <span class="built_in">pwd</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="二、自定义函数写法"><a href="#二、自定义函数写法" class="headerlink" title="二、自定义函数写法"></a>二、自定义函数写法</h2><h3 id="🔹-基本语法"><a href="#🔹-基本语法" class="headerlink" title="🔹 基本语法"></a>🔹 基本语法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 两种写法等价</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">func_name</span></span>() &#123;</span><br><span class="line">    <span class="comment"># 函数体</span></span><br><span class="line">    action</span><br><span class="line">    [<span class="built_in">return</span> int]  <span class="comment"># 可选：返回状态码（0-255）</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或简写</span></span><br><span class="line"><span class="function"><span class="title">func_name</span></span>() &#123;</span><br><span class="line">    action</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-参数传递示例"><a href="#🔹-参数传递示例" class="headerlink" title="🔹 参数传递示例"></a>🔹 参数传递示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">add</span></span>()&#123;</span><br><span class="line">    s=$[ <span class="variable">$1</span> + <span class="variable">$2</span> ]  <span class="comment"># $1 $2 为位置参数</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;和：&quot;</span><span class="variable">$s</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;请输入第一个参数：&quot;</span> a</span><br><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;请输入第二个参数：&quot;</span> b</span><br><span class="line">add <span class="variable">$a</span> <span class="variable">$b</span>  <span class="comment"># 调用函数并传参</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ 注意：Shell 函数返回值只能是 0-255 的状态码，如需返回计算结果请用 <code>echo</code> 输出后捕获</p>
+</blockquote>
+<hr>
+<h2 id="三、正则表达式入门"><a href="#三、正则表达式入门" class="headerlink" title="三、正则表达式入门"></a>三、正则表达式入门</h2><h3 id="🔹-基础匹配"><a href="#🔹-基础匹配" class="headerlink" title="🔹 基础匹配"></a>🔹 基础匹配</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 常规字符串匹配</span></span><br><span class="line"><span class="built_in">cat</span> /etc/passwd | grep mom</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-常用特殊字符速查表"><a href="#🔹-常用特殊字符速查表" class="headerlink" title="🔹 常用特殊字符速查表"></a>🔹 常用特殊字符速查表</h3><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+<th>示例</th>
+<th>匹配结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>^</code></td>
+<td>行首锚定</td>
+<td><code>grep ^a</code></td>
+<td>以 <code>a</code> 开头的行</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>行尾锚定</td>
+<td><code>grep bash$</code></td>
+<td>以 <code>bash</code> 结尾的行</td>
+</tr>
+<tr>
+<td><code>^$</code></td>
+<td>空行</td>
+<td><code>grep -n ^$</code></td>
+<td>匹配空白行并显示行号</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>任意单字符</td>
+<td><code>grep r..t</code></td>
+<td>匹配 <code>root</code>, <code>root</code>, <code>rtkt</code> 等</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>前字符重复0+次</td>
+<td><code>grep ro*t</code></td>
+<td>匹配 <code>rt</code>, <code>rot</code>, <code>root</code>, <code>rooot</code></td>
+</tr>
+<tr>
+<td><code>.*</code></td>
+<td>任意字符任意次</td>
+<td><code>grep ^a.*in$</code></td>
+<td>以a开头、in结尾的整行</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td>字符集合</td>
+<td><code>[a-z]</code>, <code>[34578]</code></td>
+<td>匹配指定范围内的任一字符</td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td>转义字符</td>
+<td><code>grep &#39;/\$&#39;</code></td>
+<td>匹配字面意义的 <code>$</code></td>
+</tr>
+</tbody></table>
+<h3 id="🔹-实战：手机号验证"><a href="#🔹-实战：手机号验证" class="headerlink" title="🔹 实战：手机号验证"></a>🔹 实战：手机号验证</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基础版（11位数字）</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;18850975034&quot;</span> | grep ^1[34578][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进阶版（使用 -E 扩展正则 + &#123;n&#125; 量词）</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;18850975034&quot;</span> | grep -E ^1[34578][0-9]&#123;9&#125;$</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>✅ 推荐：复杂正则建议使用 <code>grep -E</code>（等价于 <code>egrep</code>）语法更简洁</p>
+</blockquote>
+<hr>
+<h2 id="四、文本处理利器"><a href="#四、文本处理利器" class="headerlink" title="四、文本处理利器"></a>四、文本处理利器</h2><h3 id="🔹-cut：按列截取"><a href="#🔹-cut：按列截取" class="headerlink" title="🔹 cut：按列截取"></a>🔹 <code>cut</code>：按列截取</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 语法</span></span><br><span class="line"><span class="built_in">cut</span> [选项] filename</span><br><span class="line"></span><br><span class="line"><span class="comment"># 常用参数</span></span><br><span class="line"><span class="comment"># -f  指定字段（列）</span></span><br><span class="line"><span class="comment"># -d  指定分隔符</span></span><br><span class="line"><span class="comment"># -c  按字符位置截取</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 示例：提取passwd中bash用户的用户名、家目录、shell</span></span><br><span class="line"><span class="built_in">cat</span> /etc/passwd | grep bash$ | <span class="built_in">cut</span> -d <span class="string">&quot;:&quot;</span> -f 1,6,7</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：提取IP配置中的netmask值</span></span><br><span class="line">ifconfig | grep netmask | <span class="built_in">cut</span> -d <span class="string">&quot; &quot;</span> -f 10</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-awk：强大的文本分析工具"><a href="#🔹-awk：强大的文本分析工具" class="headerlink" title="🔹 awk：强大的文本分析工具"></a>🔹 <code>awk</code>：强大的文本分析工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基础语法</span></span><br><span class="line">awk [选项] <span class="string">&#x27;/pattern/&#123;action&#125;&#x27;</span> filename</span><br><span class="line"></span><br><span class="line"><span class="comment"># 常用参数</span></span><br><span class="line"><span class="comment"># -F  指定字段分隔符</span></span><br><span class="line"><span class="comment"># -v  定义awk内部变量</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 示例：打印所有用户的UID（第3列）</span></span><br><span class="line"><span class="built_in">cat</span> /etc/passwd | awk -F <span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print $3&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：变量参与计算</span></span><br><span class="line"><span class="built_in">cat</span> /etc/passwd | awk -v i=1 -F <span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print $3+i&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="📦-内置变量速查"><a href="#📦-内置变量速查" class="headerlink" title="📦 内置变量速查"></a>📦 内置变量速查</h4><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>含义</th>
+<th>示例输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>FILENAME</code></td>
+<td>当前文件名</td>
+<td><code>文件名：/etc/passwd</code></td>
+</tr>
+<tr>
+<td><code>NR</code></td>
+<td>当前行号</td>
+<td><code>行号：25</code></td>
+</tr>
+<tr>
+<td><code>NF</code></td>
+<td>当前行字段数</td>
+<td><code>列数：7</code></td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 综合示例</span></span><br><span class="line">awk -F <span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print &quot;文件名：&quot;FILENAME &quot; 行号：&quot;NR &quot; 列数：&quot;NF&#125;&#x27;</span> /etc/passwd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配特定行：查找ifconfig中含netmask的行，打印第2列</span></span><br><span class="line">ifconfig | awk <span class="string">&#x27;/netmask/&#123;print $2&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="五、实战小脚本"><a href="#五、实战小脚本" class="headerlink" title="五、实战小脚本"></a>五、实战小脚本</h2><h3 id="🔹-目录自动归档脚本"><a href="#🔹-目录自动归档脚本" class="headerlink" title="🔹 目录自动归档脚本"></a>🔹 目录自动归档脚本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 首先判断输入参数个数是否为1</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -ne 1 ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;参数个数错误！应该输入一个参数：作为归档目录名&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment">#从参数中获取目录名称</span></span><br><span class="line"><span class="keyword">if</span> [ -d <span class="variable">$1</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="built_in">echo</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;目录不存在&quot;</span></span><br><span class="line">	<span class="built_in">echo</span></span><br><span class="line">	<span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">DIR_NAME=$(<span class="built_in">basename</span> <span class="variable">$1</span>)</span><br><span class="line">DIR_PATH=$(<span class="built_in">cd</span> $(<span class="built_in">dirname</span> <span class="variable">$1</span>); <span class="built_in">pwd</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#获取当前日期</span></span><br><span class="line">DATE=$(<span class="built_in">date</span> +%y%m%d)</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义生成的归档文件名称</span></span><br><span class="line">FILE=archive_$(DIR_NAME)_<span class="variable">$DATE</span>.tar.gz</span><br><span class="line">DEST=/root/archive/<span class="variable">$FILE</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#开始归档目录文件</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;开始归档&quot;</span></span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line">tar -czf <span class="variable">$DEST</span> <span class="variable">$DIR_PATH</span>/<span class="variable">$DIR_NAME</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ $? -eq 0 ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;归档成功&quot;</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;归档文件为：<span class="variable">$DEST</span>&quot;</span></span><br><span class="line">	<span class="built_in">echo</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;归档出现问题&quot;</span></span><br><span class="line">	<span class="built_in">echo</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="🔹-用户消息发送脚本"><a href="#🔹-用户消息发送脚本" class="headerlink" title="🔹 用户消息发送脚本"></a>🔹 用户消息发送脚本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#查看用户是否登录</span></span><br><span class="line">login_user=$(<span class="built_in">who</span> | grep -i -m 1 <span class="variable">$1</span> | awk <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="variable">$login_user</span> ]</span><br><span class="line"><span class="keyword">then</span> </span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$1</span>不在线&quot;</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;脚本退出&quot;</span></span><br><span class="line">	<span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#查看用户是否开启消息功能</span></span><br><span class="line">login_allowed=$(<span class="built_in">who</span> -T | grep -i -m 1 <span class="variable">$1</span> | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$login_alllowed</span> != <span class="string">&quot;+&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$1</span>没有开启消息功能&quot;</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;脚本退出&quot;</span></span><br><span class="line">        <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#确认是否有消息发送</span></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="variable">$2</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;没有消息发送&quot;</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;脚本退出&quot;</span></span><br><span class="line">        <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#从参数中获取要发送的消息</span></span><br><span class="line"></span><br><span class="line">whole_msg=$(<span class="built_in">echo</span> $* | <span class="built_in">cut</span> -d <span class="string">&quot; &quot;</span> -f 2-)</span><br><span class="line"></span><br><span class="line"><span class="comment">#获取用户登录的终端</span></span><br><span class="line">user_terminal=$(<span class="built_in">who</span> | grep -i -m 1 <span class="variable">$1</span> | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#写入要发送的消息</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$whole_msg</span> | write <span class="variable">$login_user</span> <span class="variable">$user_terminal</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ $? != 0 ]</span><br><span class="line"><span class="keyword">then</span> </span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;发送失败&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;发送成功&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>🔐 使用前提：目标用户执行过 <code>mesg y</code> 允许接收消息，且当前用户有 <code>write</code> 权限</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/04/16/Shell-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" rel="prev" title="Shell-流程控制">
+                  <i class="fa fa-angle-left"></i> Shell-流程控制
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZY</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

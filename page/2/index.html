@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -152,6 +152,305 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/09/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%9B%9B%E5%A4%A9-%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BB%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZY">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | ZY_BLOGS">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/09/Linux%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%9B%9B%E5%A4%A9-%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BB%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Linux学习第四天-文件目录类命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-04-09 20:22:20" itemprop="dateCreated datePublished" datetime="2026-04-09T20:22:20+08:00">2026-04-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-04-10 17:00:02" itemprop="dateModified" datetime="2026-04-10T17:00:02+08:00">2026-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="🐧-Linux-核心命令速查手册：文件、目录与终端管理"><a href="#🐧-Linux-核心命令速查手册：文件、目录与终端管理" class="headerlink" title="🐧 Linux 核心命令速查手册：文件、目录与终端管理"></a>🐧 Linux 核心命令速查手册：文件、目录与终端管理</h1><h2 id="📁-一、-目录操作命令"><a href="#📁-一、-目录操作命令" class="headerlink" title="📁 一、 目录操作命令"></a>📁 一、 目录操作命令</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">功能说明</th>
+<th align="left">常用示例 &amp; 备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>pwd</code></td>
+<td align="left">打印当前工作目录的<strong>绝对路径</strong></td>
+<td align="left"><code>pwd</code></td>
+</tr>
+<tr>
+<td align="left"><code>cd</code></td>
+<td align="left">切换工作目录</td>
+<td align="left"><code>cd ../xxx</code>（进入上级目录的 <code>xxx</code>）<br><code>cd -</code>（返回上一次所在目录）</td>
+</tr>
+<tr>
+<td align="left"><code>ls</code></td>
+<td align="left">列出目录内容</td>
+<td align="left"><code>ls</code>：默认非隐藏<br><code>ls -a</code>：包含 <code>.</code> 开头的隐藏文件<br><code>ls -l</code>：长格式详情（等效别名 <code>ll</code>）<br><code>ls -al</code>：完整显示所有文件详情</td>
+</tr>
+<tr>
+<td align="left"><code>mkdir</code></td>
+<td align="left">创建目录</td>
+<td align="left"><code>mkdir dir</code><br><code>mkdir -p a/b/c</code>：递归创建多级目录</td>
+</tr>
+<tr>
+<td align="left"><code>rmdir</code></td>
+<td align="left">删除<strong>空目录</strong></td>
+<td align="left"><code>rmdir dir</code><br><code>rmdir -p a/b/c</code>：递归删除空父目录链（遇非空即停止）</td>
+</tr>
+</tbody></table>
+<p>📌 <strong><code>ls -l</code> 输出字段解析</strong>（从左至右）：<br><code>权限 硬链接数 所有者 所属组 文件大小 最后修改时间 名称</code><br>首字符标识：<code>d</code> 目录 | <code>-</code> 普通文件 | <code>l</code> 软链接</p>
+<hr>
+<h2 id="📄-二、-文件操作命令"><a href="#📄-二、-文件操作命令" class="headerlink" title="📄 二、 文件操作命令"></a>📄 二、 文件操作命令</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">功能说明</th>
+<th align="left">注意事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>touch</code></td>
+<td align="left">创建空文件 &#x2F; 更新已有文件时间戳</td>
+<td align="left">不修改文件内容，仅重置 <code>atime</code> 与 <code>mtime</code></td>
+</tr>
+<tr>
+<td align="left"><code>cp</code></td>
+<td align="left">复制文件或目录</td>
+<td align="left"><code>cp -r src dest</code>：递归复制目录（必加）<br><code>\cp src dest</code>：绕过 <code>alias cp=&#39;cp -i&#39;</code> 强制覆盖不提示</td>
+</tr>
+<tr>
+<td align="left"><code>mv</code></td>
+<td align="left">移动或重命名</td>
+<td align="left">同盘移动极快（仅修改元数据）<br><code>mv old new</code>：重命名<br><code>mv file /target/dir/</code>：移动</td>
+</tr>
+<tr>
+<td align="left"><code>rm</code></td>
+<td align="left">删除文件或目录</td>
+<td align="left"><code>rm -f</code>：强制删除不确认<br><code>rm -r</code>：递归删除目录（逐层询问）<br><code>rm -rf</code>：🔥 强制递归删除（不可逆）<br><code>rm -f ./*</code>：清空当前目录（保留 <code>.</code> 本身）</td>
+</tr>
+</tbody></table>
+<p>⚠️ <strong>高危警告</strong>：<code>rm -rf</code> 威力极大且无法撤销，执行前务必 <code>pwd</code> 确认当前路径，养成**“先查看，后执行”**的安全习惯。</p>
+<hr>
+<h2 id="👁️-三、-文件内容查看与实时监控"><a href="#👁️-三、-文件内容查看与实时监控" class="headerlink" title="👁️ 三、 文件内容查看与实时监控"></a>👁️ 三、 文件内容查看与实时监控</h2><p>Linux 查看文本内容有多种工具，按场景选择可大幅提升效率：</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">适用场景</th>
+<th align="left">核心交互快捷键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>cat</code></td>
+<td align="left">查看短小文件 &#x2F; 拼接内容</td>
+<td align="left"><code>cat -n</code> 显示行号<br><code>cat f1 &gt; f2</code> 覆盖写入<br><code>cat f1 &gt;&gt; f2</code> 追加写入</td>
+</tr>
+<tr>
+<td align="left"><code>more</code></td>
+<td align="left">快速浏览中等长度日志（仅向下）</td>
+<td align="left"><code>Space</code> 下翻一页 | <code>Enter</code> 下翻一行 | <code>q</code> 退出</td>
+</tr>
+<tr>
+<td align="left"><code>less</code> ⭐</td>
+<td align="left"><strong>大文件翻阅 &#x2F; 需双向搜索</strong></td>
+<td align="left"><code>Space</code>&#x2F;<code>PgDn</code> 下翻 | <code>b</code>&#x2F;<code>PgUp</code> 上翻<br><code>/key</code> 向下搜 | <code>n</code> 下一个 | <code>N</code> 上一个<br><code>G</code> 跳尾 | <code>g</code> 跳头 | <code>q</code> 退出</td>
+</tr>
+<tr>
+<td align="left"><code>head</code></td>
+<td align="left">查看文件头部</td>
+<td align="left">默认前 10 行<br><code>head -n 20 file</code> 自定义行数</td>
+</tr>
+<tr>
+<td align="left"><code>tail</code></td>
+<td align="left">查看文件尾部 &#x2F; 动态监控</td>
+<td align="left"><code>tail -n 20 file</code><br><code>tail -f file</code> 🔥 实时追踪新增内容（排查日志必备）</td>
+</tr>
+</tbody></table>
+<p>💡 <strong>组合技巧</strong>：<code>head -n 50 app.log | tail -n 10</code> 可快速提取日志中间指定片段。</p>
+<hr>
+<h2 id="🔗-四、-软链接管理-Symbolic-Link"><a href="#🔗-四、-软链接管理-Symbolic-Link" class="headerlink" title="🔗 四、 软链接管理 (Symbolic Link)"></a>🔗 四、 软链接管理 (Symbolic Link)</h2><p>软链接类似 Windows 的“快捷方式”，拥有独立的 inode，仅存储目标路径。</p>
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">命令示例</th>
+<th align="left">关键注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">创建</td>
+<td align="left"><code>ln -s [源文件/目录] [链接名]</code></td>
+<td align="left">建议优先使用<strong>绝对路径</strong>，避免移动后失效</td>
+</tr>
+<tr>
+<td align="left">查看</td>
+<td align="left"><code>ll</code> 或 <code>ls -l</code></td>
+<td align="left">首字符为 <code>l</code>，末尾显示 <code>-&gt; 真实路径</code></td>
+</tr>
+<tr>
+<td align="left">删除文件链接</td>
+<td align="left"><code>rm link_name</code></td>
+<td align="left">仅删除链接，<strong>不影响源文件</strong></td>
+</tr>
+<tr>
+<td align="left">删除目录链接</td>
+<td align="left"><code>rm -rf link_name</code></td>
+<td align="left">⛔ <strong>严禁在末尾加 <code>/</code></strong>（如 <code>rm -rf link/</code>），否则会级联删除真实目录数据！</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📡-五、-控制台输出与重定向-echo"><a href="#📡-五、-控制台输出与重定向-echo" class="headerlink" title="📡 五、 控制台输出与重定向 (echo)"></a>📡 五、 控制台输出与重定向 (<code>echo</code>)</h2><p><code>echo</code> 是最基础的终端输出命令，配合重定向符号可灵活操作文件内容。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> hello                <span class="comment"># 基础输出</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello    world&quot;</span>     <span class="comment"># 多空格需加引号，否则 shell 会合并为单个空格</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;hello\nworld&quot;</span>    <span class="comment"># -e 启用转义，支持 \n(换行) \t(制表符) 等</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Start&quot;</span> &gt; info.txt   <span class="comment"># &gt; 覆盖写入（清空原内容）</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Done&quot;</span> &gt;&gt; info.txt   <span class="comment"># &gt;&gt; 追加写入（保留原内容）</span></span><br></pre></td></tr></table></figure>
+<p>⚠️ 重定向 <code>&gt;</code> 具有破坏性，生产环境使用前建议先 <code>ls</code> 确认目标路径。</p>
+<hr>
+<h2 id="🕰️-六、-历史命令管理-history"><a href="#🕰️-六、-历史命令管理-history" class="headerlink" title="🕰️ 六、 历史命令管理 (history)"></a>🕰️ 六、 历史命令管理 (<code>history</code>)</h2><p>高效复用已执行命令，减少重复输入。</p>
+<ul>
+<li><code>history</code>：列出当前会话历史记录（带行号）</li>
+<li><code>!&lt;数字&gt;</code>：直接执行对应行号命令（例：<code>!105</code>）</li>
+<li><code>history -c</code>：清空当前终端历史</li>
+<li>🔄 <strong>效率进阶</strong>：<ul>
+<li>按 <code>Ctrl + R</code> 进入<strong>交互式搜索模式</strong>，输入关键词快速定位，比 <code>!</code> 更直观安全。</li>
+<li><code>history \| grep &quot;关键词&quot;</code> 精准筛选特定命令。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="📊-核心命令速查对比表"><a href="#📊-核心命令速查对比表" class="headerlink" title="📊 核心命令速查对比表"></a>📊 核心命令速查对比表</h2><table>
+<thead>
+<tr>
+<th align="left">实际需求</th>
+<th align="left">推荐命令</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">查看短配置 &#x2F; 代码</td>
+<td align="left"><code>cat -n</code></td>
+<td align="left">直观带行号</td>
+</tr>
+<tr>
+<td align="left">快速浏览长日志（仅往下）</td>
+<td align="left"><code>more</code></td>
+<td align="left">简单轻量</td>
+</tr>
+<tr>
+<td align="left">仔细翻阅大文件 &#x2F; 需搜索</td>
+<td align="left"><code>less</code> ⭐</td>
+<td align="left">内存友好，功能最全</td>
+</tr>
+<tr>
+<td align="left">实时追踪日志更新</td>
+<td align="left"><code>tail -f</code></td>
+<td align="left">运维排查标配</td>
+</tr>
+<tr>
+<td align="left">创建 &#x2F; 更新时间戳</td>
+<td align="left"><code>touch</code></td>
+<td align="left">不修改内容</td>
+</tr>
+<tr>
+<td align="left">复制目录</td>
+<td align="left"><code>cp -r</code></td>
+<td align="left">注意 <code>-r</code> 位置</td>
+</tr>
+<tr>
+<td align="left">强制覆盖不提示</td>
+<td align="left"><code>\cp</code></td>
+<td align="left">绕过 <code>alias cp=&#39;cp -i&#39;</code></td>
+</tr>
+<tr>
+<td align="left">彻底删除目录</td>
+<td align="left"><code>rm -rf</code></td>
+<td align="left">⚠️ 执行前三思</td>
+</tr>
+<tr>
+<td align="left">移动或重命名</td>
+<td align="left"><code>mv</code></td>
+<td align="left">同盘移动仅改元数据，极快</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🛡️-安全与最佳实践"><a href="#🛡️-安全与最佳实践" class="headerlink" title="🛡️ 安全与最佳实践"></a>🛡️ 安全与最佳实践</h2><ol>
+<li><strong>破坏性操作前必做</strong>：<code>pwd</code> 确认路径 → <code>ls</code> 确认目标 → 再执行 <code>rm</code>&#x2F;<code>&gt;</code>。</li>
+<li><strong>善用帮助文档</strong>：<code>man [命令]</code> 或 <code>[命令] --help</code> 探索完整参数。</li>
+<li><strong>路径习惯</strong>：创建软链接或跨目录操作时，优先使用<strong>绝对路径</strong>，降低环境迁移导致的断裂风险。</li>
+<li><strong>肌肉记忆</strong>：Linux 命令重在实践。建议在本地虚拟机或 Docker 容器中反复练习，形成条件反射。</li>
+</ol>
+<hr>
+<h2 id="💻-附：高频实战代码块"><a href="#💻-附：高频实战代码块" class="headerlink" title="💻 附：高频实战代码块"></a>💻 附：高频实战代码块</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 📁 目录与文件基础</span></span><br><span class="line"><span class="built_in">pwd</span></span><br><span class="line"><span class="built_in">cd</span> /var/log &amp;&amp; <span class="built_in">ls</span> -al</span><br><span class="line"><span class="built_in">mkdir</span> -p project/&#123;src,docs,build&#125;</span><br><span class="line"><span class="built_in">touch</span> config.yaml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 📄 复制、移动与删除</span></span><br><span class="line"><span class="built_in">cp</span> -r ./src ./backup_src</span><br><span class="line">\<span class="built_in">cp</span> important.conf /etc/app/          <span class="comment"># 强制覆盖</span></span><br><span class="line"><span class="built_in">mv</span> app_v1.tar.gz app_v2.tar.gz       <span class="comment"># 重命名</span></span><br><span class="line"><span class="built_in">rm</span> -rf ./build/*                     <span class="comment"># 清空构建目录（保留 build 本身）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 👁️ 日志查看与监控</span></span><br><span class="line"><span class="built_in">cat</span> -n app.conf | <span class="built_in">head</span> -n 20</span><br><span class="line">less huge_data.csv                   <span class="comment"># 进入 less 后按 /error 搜索</span></span><br><span class="line"><span class="built_in">tail</span> -f /var/log/syslog              <span class="comment"># 实时监控系统日志</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 🔗 软链接操作</span></span><br><span class="line"><span class="built_in">ln</span> -s /opt/app/config.json ./conf_link</span><br><span class="line"><span class="built_in">ls</span> -l conf_link                      <span class="comment"># 查看指向</span></span><br><span class="line"><span class="built_in">rm</span> conf_link                         <span class="comment"># 安全删除链接（勿加 /）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 📡 输出与历史</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="subst">$(date)</span> Backup started&quot;</span> &gt;&gt; backup.log</span><br><span class="line"><span class="built_in">history</span> | grep <span class="string">&quot;deploy&quot;</span></span><br><span class="line">!52                                  <span class="comment"># 执行历史第 52 条命令</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
